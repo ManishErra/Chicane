@@ -253,6 +253,32 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
  .result-card .tile-arrow{width:29px;height:29px;font-size:21px}
  #tools{padding-bottom:70px}
 }
+
+/* Reference fidelity: championship controls + mobile navigation */
+.championship-chips{gap:8px;margin:14px 0 30px}
+.champ-chip{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:0 16px;border:1px solid #292929;border-radius:999px;background:#050505;color:#ededed;font-size:13px;font-weight:800;letter-spacing:-.015em;transition:background .16s,border-color .16s,color .16s,transform .16s}
+.champ-chip:hover{border-color:#777;background:#111}
+.champ-chip:active{transform:scale(.98)}
+.champ-chip.selected{background:#fff;color:#000;border-color:#fff}
+.chip-mark{width:25px;height:25px;flex:0 0 25px;display:inline-grid;place-items:center;border:1px solid #555;border-radius:50%;font-size:9px;font-weight:950;letter-spacing:-.04em;line-height:1;color:#fff;background:#141414}
+.champ-chip.selected .chip-mark{background:#000;color:#fff;border-color:#000}
+.chip-mark.chip-all{font-size:14px}
+.mobile-bottom-nav{display:none}
+@media(max-width:680px){
+ body{padding-bottom:calc(78px + env(safe-area-inset-bottom))}
+ .championship-chips{display:flex;flex-wrap:nowrap;overflow-x:auto;gap:8px;margin:12px -16px 26px;padding:3px 16px 8px;scrollbar-width:none;overscroll-behavior-x:contain}
+ .championship-chips::-webkit-scrollbar{display:none}
+ .champ-chip{min-height:43px;gap:7px;padding:0 13px;font-size:12px;flex:0 0 auto}
+ .chip-mark{width:23px;height:23px;flex-basis:23px}
+ .mobile-bottom-nav{position:fixed;z-index:20;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px;padding:8px 10px calc(8px + env(safe-area-inset-bottom));border-top:1px solid #242424;background:#050505f5;backdrop-filter:blur(16px)}
+ .mobile-nav-link{display:flex;min-height:48px;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:#858585;border-radius:12px;text-decoration:none}
+ .mobile-nav-link span{font-size:20px;line-height:1.1}
+ .mobile-nav-link small{font-size:10px;font-weight:750;letter-spacing:.01em}
+ .mobile-nav-link.active{color:#fff;background:#171717}
+ .mobile-nav-link:focus-visible{outline:2px solid #fff;outline-offset:1px}
+}
+@media(min-width:681px){.mobile-bottom-nav{display:none!important}}
+
 </style>
 </head>
 <body>
@@ -262,6 +288,12 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
 <nav class="nav" aria-label="Main navigation"><a class="active" href="#home" data-nav="home">Home</a><a href="#calendar" data-nav="calendar">Calendar</a><a href="#results" data-nav="results">Results</a><a href="#standings" data-nav="standings">Standings</a></nav>
 <div class="top-actions"><button class="iconbtn" id="searchToggle" aria-label="Search races">⌕</button><a class="iconbtn" href="#calendar" aria-label="Open calendar" style="display:grid;place-items:center">▦</a><button class="iconbtn" id="installBtn" aria-label="Install app" title="Install app">↧</button></div>
 </header>
+<nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+<a class="mobile-nav-link active" href="#home" data-nav="home"><span aria-hidden="true">⌂</span><small>Home</small></a>
+<a class="mobile-nav-link" href="#calendar" data-nav="calendar"><span aria-hidden="true">▦</span><small>Calendar</small></a>
+<a class="mobile-nav-link" href="#results" data-nav="results"><span aria-hidden="true">↗</span><small>Results</small></a>
+<a class="mobile-nav-link" href="#standings" data-nav="standings"><span aria-hidden="true">≡</span><small>Standings</small></a>
+</nav>
 <main>
 <section class="home-hero" id="home" aria-label="CHICANE home">
 <a class="hero-tile next-race-tile" href="#calendar"><span class="tile-photo tile-photo-f1"></span><span class="tile-copy"><small>UP NEXT</small><strong>NEXT RACE</strong></span><span class="tile-arrow">›</span></a>
@@ -280,8 +312,16 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
 <section id="championships" aria-labelledby="champ-title">
 <div class="section-head"><div><div class="eyebrow">CHOOSE YOUR GRID</div><h2 id="champ-title">Championships</h2></div><a class="text-btn" href="#series">View all ↗</a></div>
 <div class="championship-chips" id="championshipChips" aria-label="Filter upcoming events by championship">
-<button class="champ-chip selected" data-champ="all">All series</button>
-<button class="champ-chip" data-champ="f1">F1</button><button class="champ-chip" data-champ="gt3">GT3</button><button class="champ-chip" data-champ="wec">WEC</button><button class="champ-chip" data-champ="nascar">NASCAR</button><button class="champ-chip" data-champ="wrc">WRC</button><button class="champ-chip" data-champ="indy">IndyCar</button><button class="champ-chip" data-champ="fe">Formula E</button><button class="champ-chip" data-champ="dakar">Dakar</button><button class="champ-chip" data-champ="motogp">MotoGP</button>
+<button class="champ-chip selected" data-champ="all" aria-pressed="true"><span class="chip-mark chip-all" aria-hidden="true">✳</span><span>All series</span></button>
+<button class="champ-chip" data-champ="f1" aria-pressed="false"><span class="chip-mark" aria-hidden="true">F1</span><span>F1</span></button>
+<button class="champ-chip" data-champ="gt3" aria-pressed="false"><span class="chip-mark" aria-hidden="true">GT</span><span>GT3</span></button>
+<button class="champ-chip" data-champ="wec" aria-pressed="false"><span class="chip-mark" aria-hidden="true">WEC</span><span>WEC</span></button>
+<button class="champ-chip" data-champ="nascar" aria-pressed="false"><span class="chip-mark" aria-hidden="true">N</span><span>NASCAR</span></button>
+<button class="champ-chip" data-champ="wrc" aria-pressed="false"><span class="chip-mark" aria-hidden="true">R</span><span>WRC</span></button>
+<button class="champ-chip" data-champ="indy" aria-pressed="false"><span class="chip-mark" aria-hidden="true">I</span><span>IndyCar</span></button>
+<button class="champ-chip" data-champ="fe" aria-pressed="false"><span class="chip-mark" aria-hidden="true">E</span><span>Formula E</span></button>
+<button class="champ-chip" data-champ="dakar" aria-pressed="false"><span class="chip-mark" aria-hidden="true">D</span><span>Dakar</span></button>
+<button class="champ-chip" data-champ="motogp" aria-pressed="false"><span class="chip-mark" aria-hidden="true">M</span><span>MotoGP</span></button>
 </div>
 </section>
 <section id="series" aria-labelledby="series-title">
@@ -390,7 +430,7 @@ function trackPath(series){const paths={f1:"M15 55 L30 22 Q36 14 48 23 L68 39 L9
 function eventImage(e){if(e.series==="f1")return {cls:"photo-f1",alt:"Formula racing car on a circuit"};if(e.series==="gtwc"||e.series==="gt3")return {cls:"photo-gt",alt:"GT racing cars at a circuit"};if(e.series==="nascar")return {cls:"photo-stock",alt:"Stock cars on a race track"};if(e.series==="wrc"||e.series==="dakar")return {cls:"photo-rally",alt:"Race circuit and rally terrain"};if(e.series==="motogp")return {cls:"photo-moto",alt:"Motorcycle racing circuit"};if(e.series==="fe")return {cls:"photo-fe",alt:"Electric single-seater race circuit"};return {cls:"photo-circuit",alt:"Motorsport circuit"}}
 $("#eventSearch").addEventListener("input",renderEvents);$("#eventFilter").addEventListener("change",()=>{const v=$("#eventFilter").value;$("#championshipChips").querySelectorAll("[data-champ]").forEach(x=>x.classList.toggle("selected",x.dataset.champ===v));showAllEvents=false;renderEvents()});$("#showAllEvents").addEventListener("click",()=>{showAllEvents=!showAllEvents;renderEvents()});
 $("#championshipChips").addEventListener("click",e=>{const b=e.target.closest("[data-champ]");if(!b)return;const value=b.dataset.champ;$("#championshipChips").querySelectorAll("[data-champ]").forEach(x=>x.classList.toggle("selected",x===b));$("#eventFilter").value=value;showAllEvents=false;renderEvents();$("#calendar").scrollIntoView({behavior:"smooth",block:"start"});document.querySelectorAll("[data-nav]").forEach(x=>x.classList.toggle("active",x.dataset.nav==="calendar"))});
-document.querySelectorAll("[data-nav]").forEach(a=>a.addEventListener("click",()=>{document.querySelectorAll("[data-nav]").forEach(x=>x.classList.toggle("active",x===a))}));
+document.querySelectorAll("[data-nav]").forEach(a=>a.addEventListener("click",()=>{document.querySelectorAll("[data-nav]").forEach(x=>x.classList.toggle("active",x.dataset.nav===a.dataset.nav))}));
 $("#searchToggle").addEventListener("click",()=>{$("#eventSearchWrap").scrollIntoView({behavior:"smooth",block:"center"});$("#eventSearch").focus()});
 
 $("#calendarBtn").addEventListener("click",()=>{const today=todayIST(),items=events.filter(e=>e.end>=today).sort((a,b)=>a.start.localeCompare(b.start));const esc=s=>s.replace(/\\/g,"\\\\").replace(/,/g,"\\,").replace(/;/g,"\\;").replace(/\n/g,"\\n");const dt=s=>s.replace(/-/g,"");const rows=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//CHICANE//Motorsport Hub//EN","CALSCALE:GREGORIAN","X-WR-CALNAME:CHICANE Motorsport"];for(const e of items){const end=new Date(e.end+"T12:00:00Z");end.setUTCDate(end.getUTCDate()+1);rows.push("BEGIN:VEVENT","UID:"+e.id+"@chicane-motorsport-hub","DTSTAMP:"+new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d{3}Z$/,"Z"),"DTSTART;VALUE=DATE:"+dt(e.start),"DTEND;VALUE=DATE:"+dt(end.toISOString().slice(0,10)),"SUMMARY:"+esc(e.name),"LOCATION:"+esc(e.venue),"DESCRIPTION:"+esc("Source: "+e.sourceName+" - "+e.source),"URL:"+e.source,"END:VEVENT")}rows.push("END:VCALENDAR");const blob=new Blob([rows.join("\r\n")+"\r\n"],{type:"text/calendar;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="chicane-upcoming-races.ics";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast("Calendar exported · "+items.length+" events")});
