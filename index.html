@@ -129,38 +129,175 @@ body{background:#000;color:#fff}
 .event-empty{padding:18px;border:1px dashed #333;border-radius:14px;color:#999;font-size:12px}
 @media(max-width:680px){.event-toolbar{display:grid;grid-template-columns:1fr 1fr}.event-search{grid-column:1/-1}.event-toolbar select{width:100%;min-width:0}.event-toolbar .btn{padding:10px 9px;font-size:10px}.event-grid{grid-template-columns:1fr;gap:8px}.event-card{padding:15px;border-radius:16px}.event-card h3{font-size:16px}.event-foot{align-items:flex-start;flex-direction:column}}
 
+
+/* Reference-matched CHICANE dashboard */
+:root{--bg:#000;--panel:#080808;--line:#242424;--text:#fff;--muted:#aaa;--lime:#fff}
+body{background:#000;color:#fff;letter-spacing:-.025em}
+.shell{max-width:1000px;padding:0 28px}
+.topbar{height:76px;border-bottom:1px solid #222}
+.brand{font-size:29px;letter-spacing:-.055em;font-weight:1000}
+.brand .mark{display:none}
+.brand small{display:none}
+.nav{gap:27px;font-size:14px;color:#aaa}
+.nav a{padding:25px 0 21px;border-bottom:2px solid transparent}
+.nav a.active{border-color:#fff;color:#fff}
+.top-actions{gap:8px}
+.iconbtn{width:38px;height:38px;font-size:19px;border-color:transparent;background:transparent}
+.home-hero{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0 30px}
+.hero-tile{position:relative;isolation:isolate;min-height:190px;border:1px solid #292929;border-radius:20px;overflow:hidden;display:flex;align-items:flex-end;padding:22px;background:#101010}
+.tile-photo{position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;filter:grayscale(100%);opacity:.85}
+.tile-photo:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#000 0%,#000c 35%,#0002 100%)}
+.tile-photo-f1{background-image:url('https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=1100&q=80')}
+.tile-photo-pit{background-image:url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=1100&q=80')}
+.tile-copy{display:flex;flex-direction:column;gap:6px}
+.tile-copy small{font-size:12px;font-weight:800;color:#ddd;letter-spacing:.05em}
+.tile-copy strong{font-size:clamp(25px,4vw,39px);line-height:1;font-weight:950;letter-spacing:-.06em}
+.tile-arrow{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:#ffffff1c;font-size:30px;line-height:1;margin-left:auto;flex-shrink:0}
+.section-head{margin:26px 0 14px;align-items:center}
+.section-head h2{font-size:24px;font-weight:900;letter-spacing:-.04em}
+.section-head .eyebrow{display:none}
+.date-chip{border:0;background:#171717;border-radius:99px;color:#ddd}
+.championship-chips{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0 30px}
+.champ-chip{min-height:46px;border:1px solid #282828;border-radius:999px;padding:0 18px;background:#050505;color:#f4f4f4;font-size:14px;font-weight:750;white-space:nowrap}
+.champ-chip.selected{background:#fff;color:#000;border-color:#fff}
+.champ-chip:focus-visible,.iconbtn:focus-visible,.btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+#calendar{scroll-margin-top:18px}
+.event-toolbar{display:grid;grid-template-columns:1fr auto auto;gap:10px;margin:12px 0 14px}
+.event-search input,.event-toolbar select{min-height:43px;background:#090909;border-color:#262626}
+.event-toolbar .btn{min-height:43px;padding:10px 13px;border-radius:11px}
+.event-grid{grid-template-columns:1fr;gap:10px}
+.event-card{display:grid;grid-template-columns:34% 1fr;gap:0;padding:0;overflow:hidden;border-radius:18px;background:#080808}
+.event-image{position:relative;min-height:168px;background:#141414 center/cover no-repeat;overflow:hidden;filter:grayscale(100%)}
+.event-image:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0001,#0003)}
+.photo-f1{background-image:url('https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=900&q=80')}
+.photo-gt{background-image:url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=900&q=80')}
+.photo-stock{background-image:url('https://images.unsplash.com/photo-1532906619279-a4b7267faa66?auto=format&fit=crop&w=900&q=80')}
+.photo-rally{background-image:url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80')}
+.photo-moto{background-image:url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=900&q=80')}
+.photo-fe{background-image:url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=900&q=80')}
+.photo-circuit{background-image:url('https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=900&q=80')}
+.event-date-badge{position:absolute;z-index:1;left:10px;top:10px;width:58px;padding:8px 5px;border-radius:12px;background:#050505ed;display:flex;flex-direction:column;align-items:center;line-height:1.2;color:#fff}
+.event-date-badge span{font-size:10px;color:#bbb;text-transform:uppercase}
+.event-date-badge strong{font-size:21px;font-weight:950;margin:3px 0}
+.event-date-badge small{font-size:10px;color:#bbb}
+.circuit-outline{position:absolute;right:8px;bottom:7px;width:42%;height:55%;z-index:1;opacity:.95;filter:drop-shadow(0 1px 1px #000)}
+.event-card-body{padding:15px 17px;min-width:0}
+.event-card-top{margin-bottom:8px}
+.event-series{background:#191919;border-radius:6px}
+.event-countdown{color:#aaa}
+.event-card h3{font-size:19px;line-height:1.15;margin:0 0 7px;font-weight:950}
+.event-venue{font-size:12px}
+.event-date{margin-top:10px;font-size:12px}
+.event-source{margin-top:10px;font-size:11px}
+.event-empty{display:flex;flex-direction:column;gap:9px;grid-column:1/-1;line-height:1.5}
+.event-empty strong{color:#fff;font-size:15px}
+.event-empty span{color:#aaa}
+.event-empty a{color:#fff;text-decoration:underline;text-underline-offset:4px;font-weight:800}
+.event-foot{margin-top:14px}
+#series{margin-top:32px}
+#series .section-head .eyebrow{display:none}
+#series .toolbar{margin:14px 0}
+.series-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.series-card{border-radius:16px;min-height:120px;padding:15px;background:#080808}
+.results-section{margin-top:34px}
+.result-card{display:flex;align-items:center;gap:14px;min-height:116px;padding:0 14px 0 0;margin-bottom:10px;border:1px solid #242424;border-radius:18px;overflow:hidden;background:#080808}
+.result-photo,.track-thumb{width:31%;align-self:stretch;min-height:116px;flex-shrink:0;background-size:cover;background-position:center;filter:grayscale(100%)}
+.result-photo{background-image:url('https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=800&q=80')}
+.result-photo-gt{background-image:url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?auto=format&fit=crop&w=800&q=80')}
+.track-thumb{background-image:url('https://images.unsplash.com/photo-1532906619279-a4b7267faa66?auto=format&fit=crop&w=800&q=80')}
+.track-thumb-moto{background-image:url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&w=800&q=80')}
+.result-copy{display:flex;flex-direction:column;gap:5px;min-width:0}
+.result-copy small{font-size:10px;color:#aaa;font-weight:850;letter-spacing:.08em}
+.result-copy strong{font-size:18px;line-height:1.1;font-weight:950}
+.result-copy span{font-size:12px;color:#aaa}
+.result-card .tile-arrow{width:34px;height:34px;font-size:25px}
+#tools{margin-top:34px}
+@media(max-width:680px){
+ .shell{padding:0 16px}
+ .topbar{height:64px}
+ .brand{font-size:25px}
+ .nav{display:flex;position:fixed;z-index:8;left:0;right:0;bottom:0;height:58px;justify-content:space-around;gap:0;background:#050505f5;border-top:1px solid #262626;padding:0 4px}
+ .nav a{display:flex;align-items:center;justify-content:center;padding:0 8px;border-bottom:2px solid transparent;font-size:12px}
+ .top-actions .iconbtn{width:32px;height:34px}
+ .home-hero{gap:10px;margin:16px 0 27px}
+ .hero-tile{min-height:154px;padding:14px;border-radius:18px}
+ .tile-copy{gap:7px}
+ .tile-copy strong{font-size:clamp(20px,6.2vw,28px);letter-spacing:-.055em}
+ .tile-copy small{font-size:10px}
+ .tile-arrow{width:30px;height:30px;font-size:23px}
+ .section-head{margin:24px 0 13px;flex-direction:row;align-items:center}
+ .section-head h2{font-size:22px}
+ .championship-chips{gap:8px;margin:13px 0 27px}
+ .champ-chip{min-height:43px;padding:0 15px;font-size:13px}
+ .event-toolbar{grid-template-columns:1fr 1fr;gap:8px}
+ .event-search{grid-column:1/-1}
+ .event-toolbar select{width:100%;min-width:0}
+ .event-toolbar .btn{font-size:11px}
+ .event-card{grid-template-columns:34% 1fr;border-radius:16px}
+ .event-image{min-height:160px}
+ .event-card-body{padding:12px 11px}
+ .event-card h3{font-size:16px}
+ .event-venue{font-size:11px;line-height:1.35}
+ .event-date{font-size:11px}
+ .event-source{font-size:10px}
+ .event-date-badge{left:7px;top:7px;width:48px;padding:6px 4px;border-radius:10px}
+ .event-date-badge strong{font-size:19px}
+ .event-date-badge span,.event-date-badge small{font-size:9px}
+ .circuit-outline{width:47%;height:43%;right:4px;bottom:4px}
+ .series-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .series-card{min-height:135px;padding:12px}
+ .result-card{gap:10px;min-height:104px;padding-right:9px}
+ .result-photo,.track-thumb{min-height:104px;width:30%}
+ .result-copy strong{font-size:15px}
+ .result-copy span{font-size:10px}
+ .result-card .tile-arrow{width:29px;height:29px;font-size:21px}
+ #tools{padding-bottom:70px}
+}
 </style>
 </head>
 <body>
 <div class="shell">
 <header class="topbar">
-<a class="brand" href="#" aria-label="Chicane home"><span class="mark">C</span><span>CHICANE<small>MOTORSPORT HUB</small></span></a>
-<nav class="nav" aria-label="Main navigation"><a class="active" href="#overview">Overview</a><a href="#series">Series</a><a href="#tools">My garage</a></nav>
-<div class="top-actions"><span class="pill">LOCAL TIME <strong id="clock">--:-- IST</strong></span><button class="iconbtn" id="installBtn" aria-label="Install app" title="Install app">↧</button></div>
+<a class="brand" href="#home" aria-label="CHICANE home"><span>CHICANE</span></a>
+<nav class="nav" aria-label="Main navigation"><a class="active" href="#home" data-nav="home">Home</a><a href="#calendar" data-nav="calendar">Calendar</a><a href="#results" data-nav="results">Results</a><a href="#standings" data-nav="standings">Standings</a></nav>
+<div class="top-actions"><button class="iconbtn" id="searchToggle" aria-label="Search races">⌕</button><a class="iconbtn" href="#calendar" aria-label="Open calendar" style="display:grid;place-items:center">▦</a><button class="iconbtn" id="installBtn" aria-label="Install app" title="Install app">↧</button></div>
 </header>
 <main>
-<section class="hero" id="overview">
-<div><div class="eyebrow"><span class="dot"></span> YOUR MOTORSPORT CONTROL ROOM</div><h1>Every race.<br><span>One place.</span></h1><p>A cleaner way to follow race weekends across the motorsport world. Find what's next, jump to official calendars, and keep your favourites close.</p></div>
-<div class="hero-art" aria-label="Abstract racing circuit illustration">
-<div class="art-number">01</div>
-<svg class="track" viewBox="0 0 500 300" fill="none" aria-hidden="true"><path d="M-20 195C40 195 44 83 126 83H205C252 83 255 130 220 150L172 177C136 198 158 235 201 235H355C405 235 415 194 390 165L350 120C324 91 342 53 385 53H525" stroke="#333943" stroke-width="37" stroke-linecap="round"/><path d="M-20 195C40 195 44 83 126 83H205C252 83 255 130 220 150L172 177C136 198 158 235 201 235H355C405 235 415 194 390 165L350 120C324 91 342 53 385 53H525" stroke="#747b86" stroke-width="1.5" stroke-dasharray="8 10" stroke-linecap="round"/><path d="M-20 195C40 195 44 83 126 83H205C252 83 255 130 220 150L172 177C136 198 158 235 201 235H355C405 235 415 194 390 165L350 120C324 91 342 53 385 53H525" stroke="#ffffff" stroke-width="2.5" stroke-dasharray="36 420 26 250" stroke-linecap="round"/></svg>
-<div class="art-label"><b>THE WORLD OF RACING</b><span>From grand prix to endurance</span></div></div>
+<section class="home-hero" id="home" aria-label="CHICANE home">
+<a class="hero-tile next-race-tile" href="#calendar"><span class="tile-photo tile-photo-f1"></span><span class="tile-copy"><small>UP NEXT</small><strong>NEXT RACE</strong></span><span class="tile-arrow">›</span></a>
+<a class="hero-tile all-series-tile" href="#championships"><span class="tile-photo tile-photo-pit"></span><span class="tile-copy"><small>BROWSE</small><strong>ALL SERIES</strong></span><span class="tile-arrow">›</span></a>
 </section>
-<section aria-labelledby="next-title">
-<div class="section-head"><div><div class="eyebrow">THE WEEKEND BOARD</div><h2 id="next-title">Upcoming races</h2></div><div class="date-chip" id="eventCount">— EVENTS</div></div>
+<section id="calendar" aria-labelledby="next-title">
+<div class="section-head"><div><div class="eyebrow">RACE WEEKEND</div><h2 id="next-title">Upcoming events</h2></div><div class="date-chip" id="eventCount">— EVENTS</div></div>
 <div class="event-toolbar">
-<label class="event-search"><span>⌕</span><input id="eventSearch" type="search" placeholder="Search races or series…" autocomplete="off" aria-label="Search upcoming races"></label>
-<select id="eventFilter" aria-label="Filter by series"><option value="all">All series</option><option value="f1">Formula 1</option><option value="nascar">NASCAR Cup</option><option value="motogp">MotoGP</option><option value="wec">WEC</option><option value="wrc">WRC</option><option value="fe">Formula E</option><option value="dakar">Dakar</option><option value="gtwc">GT World Challenge</option></select>
-<button class="btn secondary" id="calendarBtn">Export calendar (.ics)</button>
+<label class="event-search" id="eventSearchWrap"><span>⌕</span><input id="eventSearch" type="search" placeholder="Search events…" autocomplete="off" aria-label="Search upcoming races"></label>
+<select id="eventFilter" aria-label="Filter by series"><option value="all">All series</option><option value="f1">F1</option><option value="gt3">GT3</option><option value="wec">WEC</option><option value="nascar">NASCAR</option><option value="wrc">WRC</option><option value="indy">IndyCar</option><option value="fe">Formula E</option><option value="dakar">Dakar</option><option value="motogp">MotoGP</option></select>
+<button class="btn secondary" id="calendarBtn">Export .ics</button>
 </div>
 <div class="event-grid" id="eventGrid" aria-live="polite"></div>
-<div class="event-foot"><span>Dates only · official source links on every event</span><button class="text-btn" id="showAllEvents">Show all races ↓</button></div>
+<div class="event-foot"><span>Event dates · times only when confirmed</span><button class="text-btn" id="showAllEvents">Show all races ↓</button></div>
 </section>
-<section id="series">
-<div class="section-head"><div><div class="eyebrow">PICK YOUR GRID</div><h2>Championships & disciplines</h2><p>Browse series and jump to their official event calendars.</p></div><div class="date-chip"><span id="seriesCount">11</span> CHAMPIONSHIPS · GT3 CLASS INCLUDED</div></div>
-<div class="toolbar"><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Search series, discipline, or organizer…" autocomplete="off"><span class="sr-only">Search championships</span></label><div class="filter" id="filters"><button class="selected" data-filter="all">All</button><button data-filter="open-wheel">Open wheel</button><button data-filter="endurance">Endurance</button><button data-filter="stock-car">Stock car</button><button data-filter="rally-raid">Rally & raid</button><button data-filter="motorcycle">Motorcycle</button></div></div>
+<section id="championships" aria-labelledby="champ-title">
+<div class="section-head"><div><div class="eyebrow">CHOOSE YOUR GRID</div><h2 id="champ-title">Championships</h2></div><a class="text-btn" href="#series">View all ↗</a></div>
+<div class="championship-chips" id="championshipChips" aria-label="Filter upcoming events by championship">
+<button class="champ-chip selected" data-champ="all">All series</button>
+<button class="champ-chip" data-champ="f1">F1</button><button class="champ-chip" data-champ="gt3">GT3</button><button class="champ-chip" data-champ="wec">WEC</button><button class="champ-chip" data-champ="nascar">NASCAR</button><button class="champ-chip" data-champ="wrc">WRC</button><button class="champ-chip" data-champ="indy">IndyCar</button><button class="champ-chip" data-champ="fe">Formula E</button><button class="champ-chip" data-champ="dakar">Dakar</button><button class="champ-chip" data-champ="motogp">MotoGP</button>
+</div>
+</section>
+<section id="series" aria-labelledby="series-title">
+<div class="section-head"><div><div class="eyebrow">THE FULL GRID</div><h2 id="series-title">All series</h2></div><div class="date-chip"><span id="seriesCount">11</span> SERIES</div></div>
+<div class="toolbar"><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Search series…" autocomplete="off"><span class="sr-only">Search championships</span></label><div class="filter" id="filters"><button class="selected" data-filter="all">All</button><button data-filter="open-wheel">Open wheel</button><button data-filter="endurance">Endurance</button><button data-filter="stock-car">Stock car</button><button data-filter="rally-raid">Rally & raid</button><button data-filter="motorcycle">Motorcycle</button></div></div>
 <div class="series-grid" id="seriesGrid"></div>
-<p class="section-note">Dates and session times will only appear when confirmed against a trusted source. Official links open in a new tab.</p>
+</section>
+<section class="results-section" id="results" aria-labelledby="results-title">
+<div class="section-head"><div><div class="eyebrow">AFTER THE FLAG</div><h2 id="results-title">Latest race results</h2></div></div>
+<a class="result-card" href="https://www.formula1.com/en/results/2026/races" target="_blank" rel="noreferrer"><span class="result-photo"></span><span class="result-copy"><small>FORMULA 1</small><strong>Race results</strong><span>Official classifications and session results</span></span><span class="tile-arrow">›</span></a>
+<a class="result-card" href="https://www.gt-world-challenge.com/calendar" target="_blank" rel="noreferrer"><span class="result-photo result-photo-gt"></span><span class="result-copy"><small>GT WORLD CHALLENGE</small><strong>GT racing results</strong><span>Official event and results pages</span></span><span class="tile-arrow">›</span></a>
+</section>
+<section class="results-section" id="standings" aria-labelledby="standings-title">
+<div class="section-head"><div><div class="eyebrow">THE TITLE FIGHT</div><h2 id="standings-title">Championship standings</h2></div></div>
+<a class="result-card" href="https://www.formula1.com/en/results/2026/drivers" target="_blank" rel="noreferrer"><span class="track-thumb track-thumb-f1"></span><span class="result-copy"><small>FORMULA 1</small><strong>Drivers & teams</strong><span>Open official standings</span></span><span class="tile-arrow">›</span></a>
+<a class="result-card" href="https://www.motogp.com/en/standings" target="_blank" rel="noreferrer"><span class="track-thumb track-thumb-moto"></span><span class="result-copy"><small>MOTOGP</small><strong>Rider standings</strong><span>Open official standings</span></span><span class="tile-arrow">›</span></a>
 </section>
 <section class="lower-grid" id="tools">
 <div class="tool-card"><div class="eyebrow">YOUR GARAGE</div><h3>Keep your grid close.</h3><p>Star the series you follow. Your choices stay in this browser — no account needed.</p><div class="tool-row"><button class="btn secondary" id="showFaves">Show favourites</button><button class="btn secondary" id="resetFaves">Reset favourites</button></div><div id="faveMessage" class="empty-hint">No favourites selected yet. Tap the star on any series card.</div></div>
@@ -233,7 +370,8 @@ const events = [
 {id:"fe-tokyo-2027-r1",series:"fe",short:"FE",name:"Tokyo E-Prix · Round 1",venue:"Tokyo Street Circuit · Japan",start:"2027-07-24",end:"2027-07-24",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
 {id:"fe-tokyo-2027-r2",series:"fe",short:"FE",name:"Tokyo E-Prix · Round 2",venue:"Tokyo Street Circuit · Japan",start:"2027-07-25",end:"2027-07-25",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"}
 ];
-const seriesNames={f1:"Formula 1",nascar:"NASCAR Cup",motogp:"MotoGP",wec:"WEC",wrc:"WRC",fe:"Formula E",dakar:"Dakar",gtwc:"GT World Challenge"};
+const seriesNames={f1:"Formula 1",gt3:"GT3",gtwc:"GT World Challenge",nascar:"NASCAR Cup",motogp:"MotoGP",wec:"WEC",wrc:"WRC",indy:"IndyCar",fe:"Formula E",dakar:"Dakar"};
+const seriesLinks={f1:"https://www.formula1.com/en/racing/2026",gt3:"https://www.gt-world-challenge.com/calendar",gtwc:"https://www.gt-world-challenge.com/calendar",wec:"https://www.fiawec.com/en/calendar",nascar:"https://www.nascar.com/nascar-cup-series/2026/schedule/",wrc:"https://www.wrc.com/en/calendar",indy:"https://www.indycar.com/Schedule",fe:"https://www.fiaformulae.com/en/calendar",dakar:"https://www.dakar.com/en/overall-route",motogp:"https://www.motogp.com/en/calendar"};
 
 const $=s=>document.querySelector(s);let activeFilter="all",onlyFaves=false,installPrompt=null;
 function getFaves(){try{return JSON.parse(localStorage.getItem("chicane-faves")||"[]")}catch{return []}}
@@ -251,15 +389,23 @@ function todayIST(){const parts=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/
 function daysUntil(iso){return Math.round((Date.parse(iso+"T00:00:00Z")-Date.parse(todayIST()+"T00:00:00Z"))/86400000)}
 let showAllEvents=false;
 function renderEvents(){const today=todayIST(),q=$("#eventSearch").value.trim().toLowerCase(),filter=$("#eventFilter").value;
- const upcoming=events.filter(e=>e.end>=today&&(filter==="all"||e.series===filter)&&(!q||(e.name+" "+e.venue+" "+seriesNames[e.series]).toLowerCase().includes(q))).sort((a,b)=>a.start.localeCompare(b.start));
+ const eventFilter=filter==="gt3"?"gtwc":filter;
+ const upcoming=events.filter(e=>e.end>=today&&(eventFilter==="all"||e.series===eventFilter)&&(!q||(e.name+" "+e.venue+" "+(seriesNames[e.series]||"")).toLowerCase().includes(q))).sort((a,b)=>a.start.localeCompare(b.start));
  const visible=showAllEvents?upcoming:upcoming.slice(0,8);
- $("#eventCount").textContent=upcoming.length+" RACES";
- $("#eventGrid").innerHTML=visible.map(e=>{const d=daysUntil(e.start),when=d<0?"In progress":d===0?"Starts today":d===1?"Tomorrow":"In "+d+" days";return '<article class="event-card"><div class="event-card-top"><span class="event-series">'+e.short+'</span><span class="event-countdown">'+when+'</span></div><h3>'+e.name+'</h3><div class="event-venue">'+e.venue+'</div><div class="event-date">'+dateRange(e)+'</div><a class="event-source" href="'+e.source+'" target="_blank" rel="noreferrer">'+e.sourceName+' ↗</a></article>'}).join("");
- if(!visible.length)$("#eventGrid").innerHTML='<div class="event-empty">No upcoming races match that filter.</div>';
- $("#showAllEvents").hidden=upcoming.length<=8;$("#showAllEvents").textContent=showAllEvents?"Show fewer ↑":"Show all "+upcoming.length+" races ↓";
+ $("#eventCount").textContent=upcoming.length+" EVENTS";
+ $("#eventGrid").innerHTML=visible.map((e,i)=>{const d=daysUntil(e.start),when=d<0?"In progress":d===0?"Today":d===1?"Tomorrow":"In "+d+" days";const img=eventImage(e);return '<article class="event-card"><div class="event-image '+img.cls+'" role="img" aria-label="'+img.alt+'"><span class="event-date-badge">'+dateBadge(e.start)+'</span><svg class="circuit-outline" viewBox="0 0 160 100" aria-hidden="true"><path d="'+trackPath(e.series)+'" fill="none" stroke="white" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="event-card-body"><div class="event-card-top"><span class="event-series">'+(e.series==="gtwc"?"GT3 / GTWC":e.short)+'</span><span class="event-countdown">'+when+'</span></div><h3>'+e.name+'</h3><div class="event-venue">⌖ '+e.venue+'</div><div class="event-date">'+dateRange(e)+'</div><a class="event-source" href="'+e.source+'" target="_blank" rel="noreferrer">'+e.sourceName+' ↗</a></div></article>'}).join("");
+ if(!visible.length){const label=filter==="all"?"this calendar":(seriesNames[filter]||filter.toUpperCase());$("#eventGrid").innerHTML='<div class="event-empty"><strong>No upcoming dates listed for '+label+'.</strong><span>We won’t guess the schedule. Check the official calendar for announcements and updates.</span><a href="'+(seriesLinks[filter]||"https://www.formula1.com/en/racing/2026")+'" target="_blank" rel="noreferrer">Open official calendar ↗</a></div>'}
+ $("#showAllEvents").hidden=upcoming.length<=8;$("#showAllEvents").textContent=showAllEvents?"Show fewer ↑":"Show all "+upcoming.length+" events ↓";
 }
+function dateBadge(iso){const d=new Date(iso+"T12:00:00Z");return '<span>'+new Intl.DateTimeFormat("en-IN",{month:"short",timeZone:"UTC"}).format(d).toUpperCase()+'</span><strong>'+new Intl.DateTimeFormat("en-IN",{day:"2-digit",timeZone:"UTC"}).format(d)+'</strong><small>'+d.getUTCFullYear()+'</small>'}
+function trackPath(series){const paths={f1:"M15 55 L30 22 Q36 14 48 23 L68 39 L91 17 L130 20 Q146 26 132 39 L112 48 L125 69 L101 81 L74 70 L51 83 L34 65 Z",gtwc:"M14 62 Q10 39 30 31 L43 16 Q54 10 65 28 L83 40 L111 27 Q134 19 140 38 L126 56 L137 70 Q133 85 110 79 L88 65 L63 76 L39 66 Z",wec:"M18 24 L51 16 L71 33 L112 22 L137 42 L122 67 L91 80 L58 69 L31 80 L14 56 Z",nascar:"M35 15 Q80 3 122 18 Q148 32 141 60 Q131 85 80 85 Q28 85 17 61 Q8 34 35 15 Z",wrc:"M15 20 L45 34 L58 17 L80 48 L107 29 L139 39 L119 57 L129 79 L91 69 L66 84 L42 62 L20 66 Z",indy:"M22 17 Q76 2 127 18 Q147 35 137 61 Q122 84 76 82 Q25 83 15 58 Q9 33 22 17 Z",fe:"M17 58 L35 23 L59 32 L76 17 L97 44 L124 29 L141 52 L115 70 L84 64 L61 82 L37 68 Z",dakar:"M18 72 L33 41 L52 52 L64 19 L84 38 L99 15 L118 48 L142 35 L126 66 L96 83 L66 66 L43 83 Z",motogp:"M18 24 L47 14 L72 31 L93 20 L124 34 L140 56 L119 73 L91 63 L70 82 L43 68 L19 70 Z"};return paths[series]||paths.gt3}
+function eventImage(e){if(e.series==="f1")return {cls:"photo-f1",alt:"Formula racing car on a circuit"};if(e.series==="gtwc"||e.series==="gt3")return {cls:"photo-gt",alt:"GT racing cars at a circuit"};if(e.series==="nascar")return {cls:"photo-stock",alt:"Stock cars on a race track"};if(e.series==="wrc"||e.series==="dakar")return {cls:"photo-rally",alt:"Race circuit and rally terrain"};if(e.series==="motogp")return {cls:"photo-moto",alt:"Motorcycle racing circuit"};if(e.series==="fe")return {cls:"photo-fe",alt:"Electric single-seater race circuit"};return {cls:"photo-circuit",alt:"Motorsport circuit"}}
 $("#eventSearch").addEventListener("input",renderEvents);$("#eventFilter").addEventListener("change",renderEvents);$("#showAllEvents").addEventListener("click",()=>{showAllEvents=!showAllEvents;renderEvents()});
-$("#calendarBtn").addEventListener("click",()=>{const today=todayIST(),items=events.filter(e=>e.end>=today).sort((a,b)=>a.start.localeCompare(b.start));const esc=s=>s.replace(/\\/g,"\\\\").replace(/,/g,"\\,").replace(/;/g,"\\;").replace(/\n/g,"\\n");const dt=s=>s.replace(/-/g,"");const rows=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//CHICANE//Motorsport Hub//EN","CALSCALE:GREGORIAN","X-WR-CALNAME:CHICANE Motorsport"];for(const e of items){const end=new Date(e.end+"T12:00:00Z");end.setUTCDate(end.getUTCDate()+1);rows.push("BEGIN:VEVENT","UID:"+e.id+"@chicane-motorsport-hub","DTSTAMP:"+new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d{3}Z$/,"Z"),"DTSTART;VALUE=DATE:"+dt(e.start),"DTEND;VALUE=DATE:"+dt(end.toISOString().slice(0,10)),"SUMMARY:"+esc(e.name),"LOCATION:"+esc(e.venue),"DESCRIPTION:"+esc("Source: "+e.sourceName+" - "+e.source),"URL:"+e.source,"END:VEVENT")}rows.push("END:VCALENDAR");const blob=new Blob([rows.join("\r\n")+"\r\n"],{type:"text/calendar;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="chicane-upcoming-races.ics";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast("Exported "+items.length+" events with verified dates.")});
+$("#championshipChips").addEventListener("click",e=>{const b=e.target.closest("[data-champ]");if(!b)return;const value=b.dataset.champ;$("#championshipChips").querySelectorAll("[data-champ]").forEach(x=>x.classList.toggle("selected",x===b));$("#eventFilter").value=value;showAllEvents=false;renderEvents();$("#calendar").scrollIntoView({behavior:"smooth",block:"start"});document.querySelectorAll("[data-nav]").forEach(x=>x.classList.toggle("active",x.dataset.nav==="calendar"))});
+document.querySelectorAll("[data-nav]").forEach(a=>a.addEventListener("click",()=>{document.querySelectorAll("[data-nav]").forEach(x=>x.classList.toggle("active",x===a))}));
+$("#searchToggle").addEventListener("click",()=>{$("#eventSearchWrap").scrollIntoView({behavior:"smooth",block:"center"});$("#eventSearch").focus()});
+
+$("#calendarBtn").addEventListener("click",()=>{const today=todayIST(),items=events.filter(e=>e.end>=today).sort((a,b)=>a.start.localeCompare(b.start));const esc=s=>s.replace(/\\/g,"\\\\").replace(/,/g,"\\,").replace(/;/g,"\\;").replace(/\n/g,"\\n");const dt=s=>s.replace(/-/g,"");const rows=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//CHICANE//Motorsport Hub//EN","CALSCALE:GREGORIAN","X-WR-CALNAME:CHICANE Motorsport"];for(const e of items){const end=new Date(e.end+"T12:00:00Z");end.setUTCDate(end.getUTCDate()+1);rows.push("BEGIN:VEVENT","UID:"+e.id+"@chicane-motorsport-hub","DTSTAMP:"+new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d{3}Z$/,"Z"),"DTSTART;VALUE=DATE:"+dt(e.start),"DTEND;VALUE=DATE:"+dt(end.toISOString().slice(0,10)),"SUMMARY:"+esc(e.name),"LOCATION:"+esc(e.venue),"DESCRIPTION:"+esc("Source: "+e.sourceName+" - "+e.source),"URL:"+e.source,"END:VEVENT")}rows.push("END:VCALENDAR");const blob=new Blob([rows.join("\r\n")+"\r\n"],{type:"text/calendar;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="chicane-upcoming-races.ics";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast("Calendar exported · "+items.length+" events")});
 function install(){if(installPrompt){installPrompt.prompt();installPrompt.userChoice.finally(()=>installPrompt=null)}else toast("In Chrome, use the install icon in the address bar or browser menu when available.")}
 $("#installBtn").addEventListener("click",install);$("#installBtn2").addEventListener("click",install);window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e});
 if("serviceWorker"in navigator&&location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
