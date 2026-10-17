@@ -107,6 +107,28 @@ body{background:#000;color:#fff}
 }
 
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+/* Upcoming race calendar */
+.event-toolbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin:16px 0}
+.event-search{position:relative;flex:1;min-width:180px}
+.event-search span{position:absolute;left:13px;top:9px;color:#999}
+.event-search input,.event-toolbar select{width:100%;min-height:43px;padding:10px 12px 10px 35px;background:#080808;border:1px solid #292929;border-radius:11px;color:#fff;font:inherit;font-size:12px;outline:none}
+.event-toolbar select{width:auto;min-width:135px;padding-left:12px}
+.event-search input:focus,.event-toolbar select:focus{border-color:#fff}
+.event-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.event-card{background:#080808;border:1px solid #202020;border-radius:17px;padding:16px;min-width:0}
+.event-card-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:13px}
+.event-series{font-size:10px;font-weight:950;letter-spacing:.1em;color:#fff;background:#171717;border-radius:7px;padding:6px 8px}
+.event-countdown{font-size:10px;font-weight:800;color:#c9c9c9}
+.event-card h3{font-size:17px;line-height:1.2;font-weight:900;letter-spacing:-.035em;margin:0 0 8px}
+.event-venue{font-size:11px;color:#a3a3a3;line-height:1.45}
+.event-date{font-size:12px;font-weight:850;color:#fff;margin-top:13px}
+.event-source{display:inline-block;color:#aaa;font-size:10px;margin-top:13px;text-decoration:underline;text-decoration-color:#444;text-underline-offset:3px}
+.event-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:13px;color:#777;font-size:10px}
+.text-btn{border:0;background:none;color:#fff;font:inherit;font-size:11px;font-weight:850;cursor:pointer}
+.event-empty{padding:18px;border:1px dashed #333;border-radius:14px;color:#999;font-size:12px}
+@media(max-width:680px){.event-toolbar{display:grid;grid-template-columns:1fr 1fr}.event-search{grid-column:1/-1}.event-toolbar select{width:100%;min-width:0}.event-toolbar .btn{padding:10px 9px;font-size:10px}.event-grid{grid-template-columns:1fr;gap:8px}.event-card{padding:15px;border-radius:16px}.event-card h3{font-size:16px}.event-foot{align-items:flex-start;flex-direction:column}}
+
 </style>
 </head>
 <body>
@@ -125,15 +147,14 @@ body{background:#000;color:#fff}
 <div class="art-label"><b>THE WORLD OF RACING</b><span>From grand prix to endurance</span></div></div>
 </section>
 <section aria-labelledby="next-title">
-<div class="section-head"><div><div class="eyebrow">THE WEEKEND BOARD</div><h2 id="next-title">Up next</h2><p>Upcoming sessions in one simple view.</p></div><div class="date-chip" id="todayLabel">LOCAL DATE · —</div></div>
-<div class="race-feature">
-<div class="feature-card"><div class="feature-top"><span>START YOUR WEEKEND</span><span class="series-logo">CHICANE / 001</span></div><h3>Find your next race.</h3><p>Choose a championship to open its official schedule. Verified dates can be added to the shared calendar as each source is confirmed.</p><div class="feature-bottom"><a class="btn" href="#series">Explore championships ↗</a><button class="btn secondary" id="calendarBtn">Export calendar (.ics)</button></div></div>
-<div class="next-list" id="featuredSeries" aria-live="polite">
-<div class="next-card"><div class="series-badge">F1</div><div class="next-info"><b>Formula 1</b><span>Official season calendar</span></div><div class="next-right"><b>Open ↗</b><span>Schedule</span></div></div>
-<div class="next-card"><div class="series-badge">WEC</div><div class="next-info"><b>World Endurance</b><span>Official season calendar</span></div><div class="next-right"><b>Open ↗</b><span>Schedule</span></div></div>
-<div class="next-card"><div class="series-badge">MGP</div><div class="next-info"><b>MotoGP</b><span>Official season calendar</span></div><div class="next-right"><b>Open ↗</b><span>Schedule</span></div></div>
+<div class="section-head"><div><div class="eyebrow">THE WEEKEND BOARD</div><h2 id="next-title">Upcoming races</h2></div><div class="date-chip" id="eventCount">— EVENTS</div></div>
+<div class="event-toolbar">
+<label class="event-search"><span>⌕</span><input id="eventSearch" type="search" placeholder="Search races or series…" autocomplete="off" aria-label="Search upcoming races"></label>
+<select id="eventFilter" aria-label="Filter by series"><option value="all">All series</option><option value="f1">Formula 1</option><option value="nascar">NASCAR Cup</option><option value="motogp">MotoGP</option><option value="wec">WEC</option><option value="wrc">WRC</option><option value="fe">Formula E</option><option value="dakar">Dakar</option><option value="gtwc">GT World Challenge</option></select>
+<button class="btn secondary" id="calendarBtn">Export calendar (.ics)</button>
 </div>
-</div>
+<div class="event-grid" id="eventGrid" aria-live="polite"></div>
+<div class="event-foot"><span>Dates only · official source links on every event</span><button class="text-btn" id="showAllEvents">Show all races ↓</button></div>
 </section>
 <section id="series">
 <div class="section-head"><div><div class="eyebrow">PICK YOUR GRID</div><h2>Championships & disciplines</h2><p>Browse series and jump to their official event calendars.</p></div><div class="date-chip"><span id="seriesCount">11</span> CHAMPIONSHIPS · GT3 CLASS INCLUDED</div></div>
@@ -162,6 +183,32 @@ const series=[
 {id:"motogp",name:"MotoGP",short:"MGP",category:"motorcycle",desc:"Premier class of motorcycle grand prix racing",url:"https://www.motogp.com/en/calendar",accent:"MOTOGP"},
 {id:"gt3",name:"GT3 class",short:"GT3",category:"endurance",desc:"A racing car class featured across multiple series",url:"https://www.fia.com/regulation/category/123",accent:"CLASS"}
 ];
+const events = [
+{id:"nascar-phoenix-2026",series:"nascar",short:"NASCAR",name:"Freeway Insurance 500",venue:"Phoenix Raceway · Avondale, Arizona",start:"2026-10-18",end:"2026-10-18",source:"https://www.nascar.com/nascar-cup-series/2026/schedule/",sourceName:"NASCAR official schedule"},
+{id:"f1-us-2026",series:"f1",short:"F1",name:"United States Grand Prix",venue:"Circuit of The Americas · Austin, USA",start:"2026-10-23",end:"2026-10-25",source:"https://www.formula1.com/en/racing/2026",sourceName:"Formula 1 official calendar"},
+{id:"motogp-australia-2026",series:"motogp",short:"MGP",name:"Australian Grand Prix",venue:"Phillip Island · Australia",start:"2026-10-22",end:"2026-10-25",source:"https://www.motogp.com/en/calendar",sourceName:"MotoGP official calendar"},
+{id:"f1-mexico-2026",series:"f1",short:"F1",name:"Mexico City Grand Prix",venue:"Autódromo Hermanos Rodríguez · Mexico City",start:"2026-10-30",end:"2026-11-01",source:"https://www.formula1.com/en/racing/2026",sourceName:"Formula 1 official calendar"},
+{id:"motogp-malaysia-2026",series:"motogp",short:"MGP",name:"Malaysian Grand Prix",venue:"Sepang International Circuit · Malaysia",start:"2026-10-30",end:"2026-11-01",source:"https://www.motogp.com/en/calendar",sourceName:"MotoGP official calendar"},
+{id:"gtwc-shanghai-2026",series:"gtwc",short:"GTWC",name:"GT World Challenge Asia · Shanghai",venue:"Shanghai International Circuit · China",start:"2026-10-30",end:"2026-11-01",source:"https://www.gt-world-challenge.com/calendar",sourceName:"GT World Challenge official calendar"},
+{id:"f1-brazil-2026",series:"f1",short:"F1",name:"São Paulo Grand Prix",venue:"Interlagos · São Paulo, Brazil",start:"2026-11-06",end:"2026-11-08",source:"https://www.formula1.com/en/racing/2026",sourceName:"Formula 1 official calendar"},
+{id:"motogp-qatar-2026",series:"motogp",short:"MGP",name:"Qatar Grand Prix",venue:"Lusail International Circuit · Qatar",start:"2026-11-06",end:"2026-11-08",source:"https://www.motogp.com/en/calendar",sourceName:"MotoGP official calendar"},
+{id:"wec-monza-2026",series:"wec",short:"WEC",name:"6 Hours of Monza",venue:"Autodromo Nazionale Monza · Italy",start:"2026-11-06",end:"2026-11-08",source:"https://www.fiawec.com/en/page/homepage-world-endurance-championship",sourceName:"FIA WEC official calendar"},
+{id:"wrc-saudi-2026",series:"wrc",short:"WRC",name:"Rally Saudi Arabia",venue:"Saudi Arabia",start:"2026-11-11",end:"2026-11-14",source:"https://www.wrc.com/en/news/2026-fia-world-rally-championship-calendar",sourceName:"WRC official calendar"},
+{id:"f1-las-vegas-2026",series:"f1",short:"F1",name:"Las Vegas Grand Prix",venue:"Las Vegas Strip Circuit · USA",start:"2026-11-19",end:"2026-11-21",source:"https://www.formula1.com/en/racing/2026",sourceName:"Formula 1 official calendar"},
+{id:"motogp-portugal-2026",series:"motogp",short:"MGP",name:"Portuguese Grand Prix",venue:"Algarve International Circuit · Portugal",start:"2026-11-20",end:"2026-11-22",source:"https://www.motogp.com/en/calendar",sourceName:"MotoGP official calendar"},
+{id:"gtwc-adelaide-2026",series:"gtwc",short:"GTWC",name:"GT World Challenge Australia · Adelaide",venue:"Adelaide Parklands Circuit · Australia",start:"2026-11-26",end:"2026-11-29",source:"https://www.gt-world-challenge.com/calendar",sourceName:"GT World Challenge official calendar"},
+{id:"f1-qatar-2026",series:"f1",short:"F1",name:"Qatar Grand Prix",venue:"Lusail International Circuit · Qatar",start:"2026-11-27",end:"2026-11-29",source:"https://www.formula1.com/en/racing/2026",sourceName:"Formula 1 official calendar"},
+{id:"motogp-valencia-2026",series:"motogp",short:"MGP",name:"Valencia Grand Prix",venue:"Circuit Ricardo Tormo · Spain",start:"2026-11-27",end:"2026-11-29",source:"https://www.motogp.com/en/calendar",sourceName:"MotoGP official calendar"},
+{id:"f1-abu-dhabi-2026",series:"f1",short:"F1",name:"Abu Dhabi Grand Prix",venue:"Yas Marina Circuit · United Arab Emirates",start:"2026-12-04",end:"2026-12-06",source:"https://www.formula1.com/en/racing/2026",sourceName:"Formula 1 official calendar"},
+{id:"fe-jeddah-2026-r1",series:"fe",short:"FE",name:"Jeddah E-Prix · Round 1",venue:"Jeddah Corniche Circuit · Saudi Arabia",start:"2026-12-18",end:"2026-12-18",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
+{id:"fe-jeddah-2026-r2",series:"fe",short:"FE",name:"Jeddah E-Prix · Round 2",venue:"Jeddah Corniche Circuit · Saudi Arabia",start:"2026-12-19",end:"2026-12-19",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
+{id:"dakar-2027",series:"dakar",short:"DAKAR",name:"Dakar Rally 2027",venue:"Saudi Arabia",start:"2027-01-01",end:"2027-01-15",source:"https://www.dakar.com/en/",sourceName:"Dakar official website"},
+{id:"fe-mexico-2027",series:"fe",short:"FE",name:"Mexico City E-Prix",venue:"Autódromo Hermanos Rodríguez · Mexico City",start:"2027-01-16",end:"2027-01-16",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
+{id:"fe-austin-2027",series:"fe",short:"FE",name:"Austin E-Prix",venue:"Circuit of The Americas · USA",start:"2027-02-06",end:"2027-02-06",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
+{id:"fe-miami-2027",series:"fe",short:"FE",name:"Miami E-Prix",venue:"Miami International Autodrome · USA",start:"2027-02-20",end:"2027-02-20",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"}
+];
+const seriesNames={f1:"Formula 1",nascar:"NASCAR Cup",motogp:"MotoGP",wec:"WEC",wrc:"WRC",fe:"Formula E",dakar:"Dakar",gtwc:"GT World Challenge"};
+
 const $=s=>document.querySelector(s);let activeFilter="all",onlyFaves=false,installPrompt=null;
 function getFaves(){try{return JSON.parse(localStorage.getItem("chicane-faves")||"[]")}catch{return []}}
 function setFaves(v){try{localStorage.setItem("chicane-faves",JSON.stringify(v))}catch{}}
@@ -172,10 +219,24 @@ $("#search").addEventListener("input",render);$("#seriesGrid").addEventListener(
 $("#showFaves").addEventListener("click",()=>{onlyFaves=!onlyFaves;$("#showFaves").textContent=onlyFaves?"Show all series":"Show favourites";$("#series").scrollIntoView({behavior:"smooth"});render()});
 $("#resetFaves").addEventListener("click",()=>{setFaves([]);onlyFaves=false;$("#showFaves").textContent="Show favourites";render();toast("Favourites cleared")});
 function updateClock(){const now=new Date();$("#clock").textContent=new Intl.DateTimeFormat("en-IN",{timeZone:"Asia/Kolkata",hour:"2-digit",minute:"2-digit",hour12:false}).format(now)+" IST";$("#todayLabel").textContent="TODAY · "+new Intl.DateTimeFormat("en-IN",{timeZone:"Asia/Kolkata",day:"2-digit",month:"short",year:"numeric"}).format(now).toUpperCase();$("#year").textContent=now.getFullYear()}
-$("#calendarBtn").addEventListener("click",()=>{const stamp=new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");const ics="BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:-//CHICANE//Motorsport Hub//EN\r\nCALSCALE:GREGORIAN\r\nX-WR-CALNAME:CHICANE Motorsport\r\nEND:VCALENDAR\r\n";const blob=new Blob([ics],{type:"text/calendar;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="chicane-motorsport.ics";a.click();URL.revokeObjectURL(a.href);toast("Calendar file created — verified event dates will be added in a later step.")});
+function dateLabel(iso){return new Intl.DateTimeFormat("en-IN",{day:"numeric",month:"short",year:"numeric",timeZone:"UTC"}).format(new Date(iso+"T12:00:00Z"))}
+function dateRange(e){return e.start===e.end?dateLabel(e.start):dateLabel(e.start)+" – "+dateLabel(e.end)}
+function todayIST(){const parts=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Kolkata",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());const p={};parts.forEach(x=>p[x.type]=x.value);return p.year+"-"+p.month+"-"+p.day}
+function daysUntil(iso){return Math.round((Date.parse(iso+"T00:00:00Z")-Date.parse(todayIST()+"T00:00:00Z"))/86400000)}
+let showAllEvents=false;
+function renderEvents(){const today=todayIST(),q=$("#eventSearch").value.trim().toLowerCase(),filter=$("#eventFilter").value;
+ const upcoming=events.filter(e=>e.end>=today&&(filter==="all"||e.series===filter)&&(!q||(e.name+" "+e.venue+" "+seriesNames[e.series]).toLowerCase().includes(q))).sort((a,b)=>a.start.localeCompare(b.start));
+ const visible=showAllEvents?upcoming:upcoming.slice(0,8);
+ $("#eventCount").textContent=upcoming.length+" RACES";
+ $("#eventGrid").innerHTML=visible.map(e=>{const d=daysUntil(e.start),when=d<0?"In progress":d===0?"Starts today":d===1?"Tomorrow":"In "+d+" days";return '<article class="event-card"><div class="event-card-top"><span class="event-series">'+e.short+'</span><span class="event-countdown">'+when+'</span></div><h3>'+e.name+'</h3><div class="event-venue">'+e.venue+'</div><div class="event-date">'+dateRange(e)+'</div><a class="event-source" href="'+e.source+'" target="_blank" rel="noreferrer">'+e.sourceName+' ↗</a></article>'}).join("");
+ if(!visible.length)$("#eventGrid").innerHTML='<div class="event-empty">No upcoming races match that filter.</div>';
+ $("#showAllEvents").hidden=upcoming.length<=8;$("#showAllEvents").textContent=showAllEvents?"Show fewer ↑":"Show all "+upcoming.length+" races ↓";
+}
+$("#eventSearch").addEventListener("input",renderEvents);$("#eventFilter").addEventListener("change",renderEvents);$("#showAllEvents").addEventListener("click",()=>{showAllEvents=!showAllEvents;renderEvents()});
+$("#calendarBtn").addEventListener("click",()=>{const today=todayIST(),items=events.filter(e=>e.end>=today).sort((a,b)=>a.start.localeCompare(b.start));const esc=s=>s.replace(/\\/g,"\\\\").replace(/,/g,"\\,").replace(/;/g,"\\;").replace(/\n/g,"\\n");const dt=s=>s.replace(/-/g,"");const rows=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//CHICANE//Motorsport Hub//EN","CALSCALE:GREGORIAN","X-WR-CALNAME:CHICANE Motorsport"];for(const e of items){const end=new Date(e.end+"T12:00:00Z");end.setUTCDate(end.getUTCDate()+1);rows.push("BEGIN:VEVENT","UID:"+e.id+"@chicane-motorsport-hub","DTSTAMP:"+new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"")+"Z","DTSTART;VALUE=DATE:"+dt(e.start),"DTEND;VALUE=DATE:"+dt(end.toISOString().slice(0,10)),"SUMMARY:"+esc(e.name),"LOCATION:"+esc(e.venue),"DESCRIPTION:"+esc("Source: "+e.sourceName+" - "+e.source),"URL:"+e.source,"END:VEVENT")}rows.push("END:VCALENDAR");const blob=new Blob([rows.join("\r\n")+"\r\n"],{type:"text/calendar;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="chicane-upcoming-races.ics";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast("Exported "+items.length+" events with verified dates.")});
 function install(){if(installPrompt){installPrompt.prompt();installPrompt.userChoice.finally(()=>installPrompt=null)}else toast("In Chrome, use the install icon in the address bar or browser menu when available.")}
 $("#installBtn").addEventListener("click",install);$("#installBtn2").addEventListener("click",install);window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e});
 if("serviceWorker"in navigator&&location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
-render();updateClock();setInterval(updateClock,30000);
+render();renderEvents();updateClock();setInterval(()=>{updateClock();renderEvents()},30000);
 </script>
 </body></html>
