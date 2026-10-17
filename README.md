@@ -1,29 +1,30 @@
 # CHICANE Motorsport Hub
 
-**A minimal, mobile-first motorsport calendar.** Black-first interface, bold typography, no account, and a ₹0 target.
+**A mobile-first motorsport hub.** Monochrome black-and-white card UI, bold typography, no account, and a ₹0 target.
 
 ## Current preview milestone
 
-- Responsive dashboard with series search, filters, and browser-local favourites
-- Upcoming race board with search and series filtering
-- Date-only race weekends linked to official series calendars
-- Real `.ics` export of the curated upcoming event list (all-day events; no guessed session times)
-- India Standard Time clock/date
+- Reference-matched dashboard with two image-led hero cards, rounded race cards, circuit-outline silhouettes, and bottom navigation on mobile
+- Championship chips filter the upcoming-event board; categories with no confirmed upcoming date show a clear empty state and official calendar link
+- Series directory with search, category filters, and browser-local favourites
+- Race cards with date badges, IST-aware countdown labels, venue, and official-source links
+- `.ics` export for listed upcoming events (all-day events; no guessed session times)
+- India Standard Time clock
 - Installable-app foundation and versioned shell cache where supported
 
 ## Current schedule coverage
 
-The preview contains manually curated dates verified against official public calendars as of **17 October 2026** for:
+The preview includes manually curated upcoming dates confirmed against official public calendars checked on **18 October 2026** for:
 - Formula 1
 - NASCAR Cup Series
 - MotoGP
-- FIA World Endurance Championship (WEC)
-- World Rally Championship (WRC)
-- Formula E
-- Dakar Rally
-- GT World Challenge
+- Formula E (2026/27)
+- Dakar Rally 2027
+- GT World Challenge regional calendars
 
-Dates are weekend/event ranges, not session start times. Each event links to the source calendar. Race dates can change; verify details on the linked official source before travel or viewing. This is a curated static snapshot, not yet an automatically refreshed live feed. The event list will roll forward only when the dataset is updated.
+WEC, WRC and IndyCar remain available as championship filters and official links, but no unconfirmed upcoming dates are displayed for them in this snapshot. The 2026 WRC Saudi Arabia round was removed after the championship announced it would not count toward the WRC season. Speculative 2027 WEC dates were removed rather than presented as confirmed.
+
+Dates are event ranges, not session start times. Each listed event links to an official source. Calendars can change; verify details on the linked official source before travel or viewing. This is a curated static snapshot, not an automatically refreshed live feed.
 
 ## Data integrity
 
@@ -39,11 +40,11 @@ Dates are weekend/event ranges, not session start times. Each event links to the
 - [Formula 1 2026 calendar](https://www.formula1.com/en/racing/2026)
 - [NASCAR Cup Series 2026 schedule](https://www.nascar.com/nascar-cup-series/2026/schedule/)
 - [MotoGP 2026 calendar](https://www.motogp.com/en/calendar)
-- [FIA WEC official calendar](https://www.fiawec.com/en/page/homepage-world-endurance-championship)
-- [WRC 2026 calendar](https://www.wrc.com/en/news/2026-fia-world-rally-championship-calendar)
-- [Formula E calendar](https://www.fiaformulae.com/en/calendar)
-- [Dakar official website](https://www.dakar.com/en/)
-- [GT World Challenge calendar](https://www.gt-world-challenge.com/calendar)
+- [MotoGP 2026 calendar](https://www.motogp.com/en/calendar)
+- [Formula E 2026/27 calendar announcement](https://www.fiaformulae.com/en/news/races/the-202627-formula-e-calendar-is-here)
+- [Dakar 2027 route and dates](https://www.dakar.com/en/news//2027-route-the-art-of-illusion/208293)
+- [GT World Challenge 2026 calendar](https://www.gt-world-challenge.com/calendar)
+- [WRC 2026 calendar update / cancellation notice](https://www.wrc.com/en/news/fia-and-wrc-promoter-confirm-final-round-of-the-2026-wrc-season)
 
 ## Run locally
 
@@ -59,4 +60,4 @@ CHICANE is an unofficial fan companion. Series names and trademarks belong to th
 
 ## Status
 
-**Preview milestone:** curated upcoming race board and calendar export. Not production-ready. Automatic schedule refresh, verified session times, five-season historical data, results/standings and reminder delivery remain future work.
+**Preview milestone:** image-led dashboard, functioning championship filters, curated event board and calendar export. Not production-ready. Automatic schedule refresh, verified session times, five-season historical data, integrated live results/standings and reminder delivery remain future work. Results and standings cards currently link to official pages rather than inventing values.
