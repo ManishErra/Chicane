@@ -13,6 +13,39 @@ button,input{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:
 @media(max-width:1000px){.shell{padding:0 22px}.hero{grid-template-columns:1fr}.hero-art{min-height:210px}.series-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.nav{gap:14px}.race-feature{grid-template-columns:1fr}.next-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:680px){.shell{padding:0 15px}.topbar{height:65px}.nav{display:none}.brand{font-size:15px}.pill{display:none}.hero{padding-top:35px}.hero h1{font-size:51px}.hero-art{min-height:185px}.section-head{align-items:start;flex-direction:column}.series-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.series-card{padding:13px;min-height:145px}.next-list{grid-template-columns:1fr}.lower-grid{grid-template-columns:1fr}.feature-card{padding:19px}.feature-card h3{font-size:27px}.footer{flex-direction:column}.date-chip{white-space:normal}}
 
+
+/* Typography + minimal content pass */
+:root{--font-heavy:850}
+body{font-weight:500}
+.brand,.brand small,.eyebrow,.section-head h2,.hero h1,.feature-card h3,
+.next-info b,.next-right b,.series-card h3,.tool-card h3,.feature-top,
+.series-logo,.mini-logo,.card-link,.btn,.filter button{font-weight:850}
+.hero h1{letter-spacing:-.065em}
+.section-head h2{letter-spacing:-.045em}
+.series-card h3,.next-info b,.tool-card h3{letter-spacing:-.025em}
+.hero>div:first-child>p,
+.section-head p,
+.feature-card>p,
+.series-card>p,
+.tool-card>p,
+.art-label span,
+.next-info span,
+.next-right span,
+.section-note{display:none!important}
+.art-label b{font-weight:900}
+.feature-card h3{margin-top:42px}
+.series-card{min-height:125px}
+.card-link{margin-top:12px}
+@media(max-width:680px){
+ .hero>div:first-child>p{display:none!important}
+ .hero h1{font-size:clamp(44px,13vw,58px);font-weight:950}
+ .section-head{margin:24px 0 12px}
+ .feature-card h3{margin-top:30px;font-size:27px;font-weight:900}
+ .series-card{min-height:118px}
+ .series-card h3{font-size:14px;font-weight:900}
+ .tool-card h3{font-weight:900}
+}
+
 /* Design revision: monochrome, card-first, mobile-first */
 :root{color-scheme:dark;--bg:#000;--panel:#080808;--panel2:#171717;--line:#202020;--text:#fff;--muted:#a3a3a3;--lime:#fff;--orange:#fff;--radius:20px}
 body{background:#000;color:#fff}
