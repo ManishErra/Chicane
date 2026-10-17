@@ -5,10 +5,10 @@
 ## Current preview milestone
 
 - Reference-matched dashboard with two image-led hero cards, rounded race cards, circuit-outline silhouettes, and bottom navigation on mobile
-- Reference-matched championship selector buttons with monochrome circular marks, clear selected states, and synchronised event filtering
+- Reference-matched championship selector buttons with recognisable series marks, clear selected states, and synchronised event filtering
 - Fixed mobile bottom navigation for Home, Calendar, Results and Standings with active states
 - Championship chips filter the upcoming-event board; categories with no confirmed upcoming date show a clear empty state and official calendar link
-- Series directory with search, category filters, and browser-local favourites
+- Image-led series directory with motorsport photography, brand identifiers, search, category filters, and browser-local favourites
 - Race cards with date badges, IST-aware countdown labels, venue, and official-source links
 - `.ics` export for listed upcoming events (all-day events; no guessed session times)
 - India Standard Time clock
@@ -27,6 +27,13 @@ The preview includes manually curated upcoming dates confirmed against official 
 WEC, WRC and IndyCar remain available as championship filters and official links, but no unconfirmed upcoming dates are displayed for them in this snapshot. The 2026 WRC Saudi Arabia round was removed after the championship announced it would not count toward the WRC season. Speculative 2027 WEC dates were removed rather than presented as confirmed.
 
 Dates are event ranges, not session start times. Each listed event links to an official source. Calendars can change; verify details on the linked official source before travel or viewing. This is a curated static snapshot, not an automatically refreshed live feed.
+
+## Latest visual refinement (October 2026)
+
+- Added the current MotoGP wordmark from Wikimedia Commons and the IndyCar Series wordmark to championship chips and the image-led series cards. These are used as brand identifiers; their marks remain the property of their respective owners. Sources: [MotoGP logo (2024)](https://commons.wikimedia.org/wiki/File:MotoGP_logo_(2024).svg) and [IndyCar Series text logo](https://commons.wikimedia.org/wiki/File:IndyCar_Series_textlogo.svg).
+- Reworked the Dakar mark into a more intentional orange wordmark treatment rather than the previous generic “D” icon. The official Dakar cheich/logo is trademark-protected and the organiser restricts use; use an official asset only with the required authorisation. See [Dakar communication tools and logo terms](https://competitors.dakar.com/en/communication/communication-tools).
+- Kept the approved black UI, full-colour race photos, event card layout and circuit silhouettes unchanged.
+- The current preview has passed JavaScript syntax and duplicate-ID checks. Remote SVG loading still depends on the source host and should be visually confirmed on the target phone.
 
 ## Next features / backlog
 
