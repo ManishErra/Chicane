@@ -26,6 +26,28 @@ WEC, WRC and IndyCar remain available as championship filters and official links
 
 Dates are event ranges, not session start times. Each listed event links to an official source. Calendars can change; verify details on the linked official source before travel or viewing. This is a curated static snapshot, not an automatically refreshed live feed.
 
+## Next features / backlog
+
+The current UX/UI direction is approved and should be preserved. Do not redesign the layout while implementing these follow-up items.
+
+### 1. Event-matched motorsport imagery (requested)
+
+- Replace the current generic/reused stock photos with imagery that actually matches the event and series shown on each card.
+- Follow the supplied CHICANE reference: realistic race photography, the right category of vehicle, recognisable event/venue context, dark monochrome treatment where appropriate, and consistent crops that work on mobile.
+- Give each upcoming-event card a relevant image rather than reusing one image across F1, GT3, WEC, NASCAR, rally raid and MotoGP.
+- Keep the hand-drawn circuit-outline element as a separate visual; use the correct circuit outline only when it can be verified.
+- Add graceful fallbacks for events without a suitable image; never show a misleading venue, car class or race.
+- Use only images with clear permission for reuse (for example, appropriately licensed/open-licensed photography or original generated artwork). Do not copy official series photos, logos or circuit artwork without permission. Formula 1's published IP guidelines specifically identify still images and circuit IP as protected material. See [Formula 1 IP guidelines](https://www.formula1.com/en/information/guidelines.4EOKE9RRqevL4niTK9kWyt) and the [NASCAR brand portal](https://brand.nascar.com/).
+- Keep the existing card layout, typography, spacing, navigation and black-and-white visual style unchanged unless a separate UI change is requested.
+
+### 2. Schedule and data improvements
+
+- Automatically refresh schedules from sources whose reuse terms permit it, and surface the source and last-updated date.
+- Add verified session times converted to IST only when an authoritative source publishes them.
+- Add historical results and championship standings (target: five seasons) where a permitted source exists.
+- Add reminders using calendar export first, then optional free browser notifications.
+- Continue to hide unverified dates/results/standings rather than filling gaps with guesses.
+
 ## Data integrity
 
 - Never invent schedules, results, standings, or session times.
@@ -60,4 +82,4 @@ CHICANE is an unofficial fan companion. Series names and trademarks belong to th
 
 ## Status
 
-**Preview milestone:** image-led dashboard, functioning championship filters, curated event board and calendar export. Not production-ready. Automatic schedule refresh, verified session times, five-season historical data, integrated live results/standings and reminder delivery remain future work. Results and standings cards currently link to official pages rather than inventing values.
+**Preview milestone:** image-led dashboard, functioning championship filters, curated event board and calendar export. Not production-ready. Automatic schedule refresh, verified session times, five-season historical data, integrated live results/standings, reminder delivery, and event-matched/licensed imagery remain future work. Results and standings cards currently link to official pages rather than inventing values.
