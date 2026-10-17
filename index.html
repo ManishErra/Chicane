@@ -279,6 +279,61 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
 }
 @media(min-width:681px){.mobile-bottom-nav{display:none!important}}
 
+
+/* Screenshot-aligned layout correction */
+@media(max-width:680px){
+ body{padding-bottom:0!important}
+ .shell{padding:0 25px}
+ .topbar{height:auto;min-height:76px;display:grid;grid-template-columns:1fr auto;grid-template-areas:"brand actions" "nav nav";gap:0;padding-top:8px;align-items:center}
+ .brand{grid-area:brand;font-size:clamp(24px,7vw,31px);letter-spacing:-.06em;line-height:1.05}
+ .top-actions{grid-area:actions;gap:4px}
+ .iconbtn{width:37px;height:37px;font-size:20px}
+ .nav{grid-area:nav;display:flex;justify-content:space-between;gap:0;width:100%;overflow:visible;margin-top:7px}
+ .nav a{flex:1;text-align:center;padding:12px 2px 11px;font-size:12px;white-space:nowrap;border-bottom:2px solid transparent}
+ .nav a.active{border-color:#fff}
+ .home-hero{grid-template-columns:1fr 1fr;gap:11px;margin:18px 0 25px}
+ .hero-tile{min-width:0;min-height:145px;padding:13px;border-radius:17px}
+ .tile-copy{gap:5px}
+ .tile-copy small{font-size:10px}
+ .tile-copy strong{font-size:clamp(19px,5.5vw,28px);line-height:1.02}
+ .tile-arrow{width:29px;height:29px;font-size:24px}
+ .section-head{display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:10px;margin:25px 0 13px}
+ .section-head h2{font-size:clamp(19px,5.3vw,24px);letter-spacing:-.035em;text-transform:uppercase}
+ #champ-title{font-size:clamp(19px,5.2vw,23px)}
+ .championship-chips{display:flex;flex-wrap:wrap;overflow:visible;gap:8px;margin:12px 0 26px;padding:0}
+ .champ-chip{min-height:49px;gap:8px;padding:0 12px;border-radius:17px;font-size:12px;flex:0 0 auto}
+ .chip-mark{width:23px;height:23px;flex-basis:23px;border:0;border-radius:0;background:transparent;font-size:9px}
+ .champ-chip.selected .chip-mark{background:transparent;color:#000}
+ .champ-chip.selected{border-radius:17px}
+ #calendar .section-head{margin-top:27px}
+ .calendar-view-toggle{white-space:nowrap;font-size:12px}
+ .event-count-chip{display:none}
+ .event-toolbar{display:none;grid-template-columns:1fr auto auto}
+ .event-toolbar.is-open{display:grid}
+ .event-grid{gap:10px}
+ .event-card{grid-template-columns:34% minmax(0,1fr);border-radius:17px}
+ .event-image{min-height:132px}
+ .event-card-body{padding:12px 12px;min-width:0}
+ .event-card-top{gap:5px;flex-wrap:wrap}
+ .event-series{font-size:9px;padding:5px 7px}
+ .event-countdown{font-size:9px}
+ .event-card h3{font-size:clamp(14px,4.1vw,18px);line-height:1.05;letter-spacing:-.025em}
+ .event-venue{font-size:10px;line-height:1.25}
+ .event-date{font-size:10px;line-height:1.25}
+ .event-source{font-size:9px;margin-top:8px}
+ .event-date-badge{left:6px;top:7px;width:45px;padding:6px 3px;border-radius:9px}
+ .event-date-badge strong{font-size:17px}
+ .event-date-badge span,.event-date-badge small{font-size:8px}
+ .circuit-outline{width:45%;height:42%;right:3px;bottom:3px}
+ .event-foot{flex-direction:row;align-items:center;font-size:9px;margin-top:13px}
+ #series{margin-top:38px}
+ .results-section .section-head{margin-top:27px}
+}
+@media(min-width:681px){
+ .event-count-chip{display:inline-flex}
+ .event-toolbar{display:grid}
+}
+
 </style>
 </head>
 <body>
@@ -288,26 +343,11 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
 <nav class="nav" aria-label="Main navigation"><a class="active" href="#home" data-nav="home">Home</a><a href="#calendar" data-nav="calendar">Calendar</a><a href="#results" data-nav="results">Results</a><a href="#standings" data-nav="standings">Standings</a></nav>
 <div class="top-actions"><button class="iconbtn" id="searchToggle" aria-label="Search races">⌕</button><a class="iconbtn" href="#calendar" aria-label="Open calendar" style="display:grid;place-items:center">▦</a><button class="iconbtn" id="installBtn" aria-label="Install app" title="Install app">↧</button></div>
 </header>
-<nav class="mobile-bottom-nav" aria-label="Mobile navigation">
-<a class="mobile-nav-link active" href="#home" data-nav="home"><span aria-hidden="true">⌂</span><small>Home</small></a>
-<a class="mobile-nav-link" href="#calendar" data-nav="calendar"><span aria-hidden="true">▦</span><small>Calendar</small></a>
-<a class="mobile-nav-link" href="#results" data-nav="results"><span aria-hidden="true">↗</span><small>Results</small></a>
-<a class="mobile-nav-link" href="#standings" data-nav="standings"><span aria-hidden="true">≡</span><small>Standings</small></a>
-</nav>
+
 <main>
 <section class="home-hero" id="home" aria-label="CHICANE home">
 <a class="hero-tile next-race-tile" href="#calendar"><span class="tile-photo tile-photo-f1"></span><span class="tile-copy"><small>UP NEXT</small><strong>NEXT RACE</strong></span><span class="tile-arrow">›</span></a>
 <a class="hero-tile all-series-tile" href="#championships"><span class="tile-photo tile-photo-pit"></span><span class="tile-copy"><small>BROWSE</small><strong>ALL SERIES</strong></span><span class="tile-arrow">›</span></a>
-</section>
-<section id="calendar" aria-labelledby="next-title">
-<div class="section-head"><div><div class="eyebrow">RACE WEEKEND</div><h2 id="next-title">Upcoming events</h2></div><div class="date-chip" id="eventCount">— EVENTS</div></div>
-<div class="event-toolbar">
-<label class="event-search" id="eventSearchWrap"><span>⌕</span><input id="eventSearch" type="search" placeholder="Search events…" autocomplete="off" aria-label="Search upcoming races"></label>
-<select id="eventFilter" aria-label="Filter by series"><option value="all">All series</option><option value="f1">F1</option><option value="gt3">GT3</option><option value="wec">WEC</option><option value="nascar">NASCAR</option><option value="wrc">WRC</option><option value="indy">IndyCar</option><option value="fe">Formula E</option><option value="dakar">Dakar</option><option value="motogp">MotoGP</option></select>
-<button class="btn secondary" id="calendarBtn">Export .ics</button>
-</div>
-<div class="event-grid" id="eventGrid" aria-live="polite"></div>
-<div class="event-foot"><span>Event dates · times only when confirmed</span><button class="text-btn" id="showAllEvents">Show all races ↓</button></div>
 </section>
 <section id="championships" aria-labelledby="champ-title">
 <div class="section-head"><div><div class="eyebrow">CHOOSE YOUR GRID</div><h2 id="champ-title">Championships</h2></div><a class="text-btn" href="#series">View all ↗</a></div>
@@ -323,6 +363,16 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
 <button class="champ-chip" data-champ="dakar" aria-pressed="false"><span class="chip-mark" aria-hidden="true">D</span><span>Dakar</span></button>
 <button class="champ-chip" data-champ="motogp" aria-pressed="false"><span class="chip-mark" aria-hidden="true">M</span><span>MotoGP</span></button>
 </div>
+</section>
+<section id="calendar" aria-labelledby="next-title">
+<div class="section-head"><div><div class="eyebrow">RACE WEEKEND</div><h2 id="next-title">Upcoming events</h2></div><button class="text-btn calendar-view-toggle" id="calendarViewToggle" aria-expanded="false">View calendar ›</button></div><div class="date-chip event-count-chip" id="eventCount">— EVENTS</div>
+<div class="event-toolbar">
+<label class="event-search" id="eventSearchWrap"><span>⌕</span><input id="eventSearch" type="search" placeholder="Search events…" autocomplete="off" aria-label="Search upcoming races"></label>
+<select id="eventFilter" aria-label="Filter by series"><option value="all">All series</option><option value="f1">F1</option><option value="gt3">GT3</option><option value="wec">WEC</option><option value="nascar">NASCAR</option><option value="wrc">WRC</option><option value="indy">IndyCar</option><option value="fe">Formula E</option><option value="dakar">Dakar</option><option value="motogp">MotoGP</option></select>
+<button class="btn secondary" id="calendarBtn">Export .ics</button>
+</div>
+<div class="event-grid" id="eventGrid" aria-live="polite"></div>
+<div class="event-foot"><span>Event dates · times only when confirmed</span><button class="text-btn" id="showAllEvents">Show all races ↓</button></div>
 </section>
 <section id="series" aria-labelledby="series-title">
 <div class="section-head"><div><div class="eyebrow">THE FULL GRID</div><h2 id="series-title">All series</h2></div><div class="date-chip"><span id="seriesCount">11</span> SERIES</div></div>
@@ -428,8 +478,9 @@ function renderEvents(){const today=todayIST(),q=$("#eventSearch").value.trim().
 function dateBadge(iso){const d=new Date(iso+"T12:00:00Z");return '<span>'+new Intl.DateTimeFormat("en-IN",{month:"short",timeZone:"UTC"}).format(d).toUpperCase()+'</span><strong>'+new Intl.DateTimeFormat("en-IN",{day:"2-digit",timeZone:"UTC"}).format(d)+'</strong><small>'+d.getUTCFullYear()+'</small>'}
 function trackPath(series){const paths={f1:"M15 55 L30 22 Q36 14 48 23 L68 39 L91 17 L130 20 Q146 26 132 39 L112 48 L125 69 L101 81 L74 70 L51 83 L34 65 Z",gtwc:"M14 62 Q10 39 30 31 L43 16 Q54 10 65 28 L83 40 L111 27 Q134 19 140 38 L126 56 L137 70 Q133 85 110 79 L88 65 L63 76 L39 66 Z",wec:"M18 24 L51 16 L71 33 L112 22 L137 42 L122 67 L91 80 L58 69 L31 80 L14 56 Z",nascar:"M35 15 Q80 3 122 18 Q148 32 141 60 Q131 85 80 85 Q28 85 17 61 Q8 34 35 15 Z",wrc:"M15 20 L45 34 L58 17 L80 48 L107 29 L139 39 L119 57 L129 79 L91 69 L66 84 L42 62 L20 66 Z",indy:"M22 17 Q76 2 127 18 Q147 35 137 61 Q122 84 76 82 Q25 83 15 58 Q9 33 22 17 Z",fe:"M17 58 L35 23 L59 32 L76 17 L97 44 L124 29 L141 52 L115 70 L84 64 L61 82 L37 68 Z",dakar:"M18 72 L33 41 L52 52 L64 19 L84 38 L99 15 L118 48 L142 35 L126 66 L96 83 L66 66 L43 83 Z",motogp:"M18 24 L47 14 L72 31 L93 20 L124 34 L140 56 L119 73 L91 63 L70 82 L43 68 L19 70 Z"};return paths[series]||paths.gt3}
 function eventImage(e){if(e.series==="f1")return {cls:"photo-f1",alt:"Formula racing car on a circuit"};if(e.series==="gtwc"||e.series==="gt3")return {cls:"photo-gt",alt:"GT racing cars at a circuit"};if(e.series==="nascar")return {cls:"photo-stock",alt:"Stock cars on a race track"};if(e.series==="wrc"||e.series==="dakar")return {cls:"photo-rally",alt:"Race circuit and rally terrain"};if(e.series==="motogp")return {cls:"photo-moto",alt:"Motorcycle racing circuit"};if(e.series==="fe")return {cls:"photo-fe",alt:"Electric single-seater race circuit"};return {cls:"photo-circuit",alt:"Motorsport circuit"}}
+$("#calendarViewToggle").addEventListener("click",()=>{const bar=document.querySelector(".event-toolbar"),open=bar.classList.toggle("is-open");$("#calendarViewToggle").setAttribute("aria-expanded",String(open));$("#calendarViewToggle").textContent=open?"Hide calendar tools ↑":"View calendar ›";if(open)$("#eventSearch").focus()});
 $("#eventSearch").addEventListener("input",renderEvents);$("#eventFilter").addEventListener("change",()=>{const v=$("#eventFilter").value;$("#championshipChips").querySelectorAll("[data-champ]").forEach(x=>{const selected=x.dataset.champ===v;x.classList.toggle("selected",selected);x.setAttribute("aria-pressed",String(selected))});showAllEvents=false;renderEvents()});$("#showAllEvents").addEventListener("click",()=>{showAllEvents=!showAllEvents;renderEvents()});
-$("#championshipChips").addEventListener("click",e=>{const b=e.target.closest("[data-champ]");if(!b)return;const value=b.dataset.champ;$("#championshipChips").querySelectorAll("[data-champ]").forEach(x=>{const selected=x===b;x.classList.toggle("selected",selected);x.setAttribute("aria-pressed",String(selected))});$("#eventFilter").value=value;showAllEvents=false;renderEvents();$("#calendar").scrollIntoView({behavior:"smooth",block:"start"});document.querySelectorAll("[data-nav]").forEach(x=>x.classList.toggle("active",x.dataset.nav==="calendar"))});
+$("#championshipChips").addEventListener("click",e=>{const b=e.target.closest("[data-champ]");if(!b)return;const value=b.dataset.champ;$("#championshipChips").querySelectorAll("[data-champ]").forEach(x=>{const selected=x===b;x.classList.toggle("selected",selected);x.setAttribute("aria-pressed",String(selected))});$("#eventFilter").value=value;showAllEvents=false;renderEvents();document.querySelectorAll("[data-nav]").forEach(x=>x.classList.toggle("active",x.dataset.nav==="calendar"))});
 document.querySelectorAll("[data-nav]").forEach(a=>a.addEventListener("click",()=>{document.querySelectorAll("[data-nav]").forEach(x=>x.classList.toggle("active",x.dataset.nav===a.dataset.nav))}));
 $("#searchToggle").addEventListener("click",()=>{$("#eventSearchWrap").scrollIntoView({behavior:"smooth",block:"center"});$("#eventSearch").focus()});
 
