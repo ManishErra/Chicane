@@ -1,51 +1,62 @@
 # CHICANE Motorsport Hub
 
-**A unified, dark-mode home for upcoming motorsport weekends.**
+**A minimal, mobile-first motorsport calendar.** Black-first interface, bold typography, no account, and a ₹0 target.
 
-CHICANE's first milestone is a fast, responsive series directory that helps fans reach official race calendars without fabricating dates or session times.
+## Current preview milestone
 
-## Current prototype
+- Responsive dashboard with series search, filters, and browser-local favourites
+- Upcoming race board with search and series filtering
+- Date-only race weekends linked to official series calendars
+- Real `.ics` export of the curated upcoming event list (all-day events; no guessed session times)
+- India Standard Time clock/date
+- Installable-app foundation and versioned shell cache where supported
 
-- Responsive desktop and mobile layout
-- Series directory and discipline filters
-- Search across series and disciplines
-- Browser-local favourites (no account)
-- India Standard Time clock and date
-- Official calendar / series links
-- Installable-app foundation and basic shell caching where supported
-- Calendar export foundation (event records will be added only after source verification)
+## Current schedule coverage
 
-## Coverage model
+The preview contains manually curated dates verified against official public calendars as of **17 October 2026** for:
+- Formula 1
+- NASCAR Cup Series
+- MotoGP
+- FIA World Endurance Championship (WEC)
+- World Rally Championship (WRC)
+- Formula E
+- Dakar Rally
+- GT World Challenge
 
-The directory has 11 championship/discipline entries. GT3 is represented as a **class**, not a standalone championship. Le Mans 24 Hours is part of WEC; Dakar is represented as rally raid. We will avoid duplicate championship entries when we add event data.
+Dates are weekend/event ranges, not session start times. Each event links to the source calendar. Race dates can change; verify details on the linked official source before travel or viewing. This is a curated static snapshot, not yet an automatically refreshed live feed. The event list will roll forward only when the dataset is updated.
 
 ## Data integrity
 
-- Do not invent schedules, results, standings, or session times.
-- The current prototype links to official series pages; it does **not** claim to have integrated or verified a live multi-series schedule feed.
-- Before displaying event dates in-app, validate the source, timezone, publication terms, attribution requirements, and update method.
-- Hide empty data sections instead of presenting prominent “unavailable” cards.
-- Source and freshness details should be available without dominating the interface.
+- Never invent schedules, results, standings, or session times.
+- Hide unsupported data rather than showing empty placeholders.
+- GT3 is a class, not a standalone championship. Le Mans 24 Hours is part of WEC; Dakar is rally raid.
+- Keep source links visible and dates-only where exact session times are not verified.
+- Before adding more data sources, check reuse terms, attribution, timezone and update method.
+- Results, standings, full historical seasons, and reminders are not part of this milestone yet.
 
-## Planned milestones
+## Sources used for the current date snapshot
 
-1. **Core UI:** series directory, filters, favourites, mobile layout, PWA shell.
-2. **Verified schedule layer:** add confirmed event data and timezone-aware session listings; preserve season rollover and last-good data.
-3. **Results and standings:** only for sources with verified fields and compatible reuse terms.
-4. **Reminders:** assess calendar exports first; browser push only if a reliable free delivery mechanism is feasible.
+- [Formula 1 2026 calendar](https://www.formula1.com/en/racing/2026)
+- [NASCAR Cup Series 2026 schedule](https://www.nascar.com/nascar-cup-series/2026/schedule/)
+- [MotoGP 2026 calendar](https://www.motogp.com/en/calendar)
+- [FIA WEC official calendar](https://www.fiawec.com/en/page/homepage-world-endurance-championship)
+- [WRC 2026 calendar](https://www.wrc.com/en/news/2026-fia-world-rally-championship-calendar)
+- [Formula E calendar](https://www.fiaformulae.com/en/calendar)
+- [Dakar official website](https://www.dakar.com/en/)
+- [GT World Challenge calendar](https://www.gt-world-challenge.com/calendar)
 
 ## Run locally
 
-This is a static prototype. Open `index.html` in a browser. For service-worker/PWA behavior, serve the directory over localhost or HTTPS.
+Open `index.html` for the core interface. For service-worker/PWA behavior, serve the folder on localhost or HTTPS.
 
 ## Hosting and costs
 
-Designed to stay within a ₹0 budget. No paid API keys, analytics, or third-party runtime dependencies are included.
+Designed to stay within ₹0. No paid APIs, analytics, or third-party runtime dependencies are included.
 
 ## Credits and trademarks
 
-CHICANE is an unofficial fan companion. Championship names, logos, and trademarks belong to their respective owners. This prototype uses text labels and an original abstract circuit illustration rather than official championship logos.
+CHICANE is an unofficial fan companion. Series names and trademarks belong to their respective owners. This prototype uses text labels and an original abstract circuit illustration rather than official championship logos.
 
 ## Status
 
-Early prototype — not production-ready. Schedule integration and cross-device reminder delivery remain future work.
+**Preview milestone:** curated upcoming race board and calendar export. Not production-ready. Automatic schedule refresh, verified session times, five-season historical data, results/standings and reminder delivery remain future work.
