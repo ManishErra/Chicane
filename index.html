@@ -361,6 +361,42 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
  .chip-fe{font-size:22px}
 }
 
+
+/* User feedback pass: colour photography + reference-shaped championship controls */
+.tile-photo,.event-image,.result-photo,.track-thumb{filter:none!important}
+.tile-photo{opacity:.94}
+.tile-photo:after{background:linear-gradient(0deg,#000 0%,#0009 30%,#0001 100%)}
+.event-image:after{background:linear-gradient(90deg,#0000,#0002)}
+.result-photo,.track-thumb{background-color:#111}
+.championship-chips{display:flex;flex-wrap:wrap;overflow:visible;gap:8px}
+.champ-chip{
+ display:inline-flex;align-items:center;justify-content:center;gap:8px;
+ min-height:45px;padding:0 14px;border:1px solid #292929;border-radius:15px;
+ background:#050505;color:#f4f4f4;font-size:12px;font-weight:800;
+ letter-spacing:-.015em;white-space:nowrap;flex:0 0 auto;
+}
+.champ-chip:hover{border-color:#696969;background:#101010}
+.champ-chip.selected{background:#fff;color:#000;border-color:#fff;border-radius:15px}
+.chip-mark{
+ width:auto;height:auto;min-width:18px;flex:0 0 auto;display:inline-grid;place-items:center;
+ border:0;border-radius:0;background:transparent;color:inherit;
+ font-size:10px;font-weight:950;letter-spacing:-.04em;line-height:1;
+}
+.champ-chip.selected .chip-mark{background:transparent;color:#000;border:0}
+.chip-mark.chip-all{font-size:14px}
+.chip-mark.chip-f1{font-style:italic;font-size:11px}
+.chip-mark.chip-gt3{font-style:italic}
+.chip-mark.chip-fe{font-style:italic;font-size:15px}
+@media(max-width:680px){
+ .championship-chips{flex-wrap:wrap;overflow:visible;gap:7px;margin:12px 0 26px;padding:0}
+ .champ-chip{min-height:45px;padding:0 13px;gap:7px;border-radius:15px;font-size:12px}
+ .champ-chip.selected{border-radius:15px}
+ .chip-mark{width:auto;height:auto;min-width:18px;flex-basis:auto;border:0;border-radius:0;background:transparent;font-size:10px}
+ .champ-chip.selected .chip-mark{background:transparent;color:#000}
+ .tile-photo{opacity:.96}
+ .event-image,.result-photo,.track-thumb{filter:none!important}
+}
+
 </style>
 </head>
 <body>
