@@ -334,6 +334,33 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
  .event-toolbar{display:grid}
 }
 
+
+/* Fine-tune championship controls to the supplied reference */
+.championship-chips{gap:9px}
+.champ-chip{border-radius:17px;min-height:48px;padding:0 16px;gap:10px}
+.chip-mark{width:auto;min-width:26px;height:26px;flex:0 0 auto;border:0;border-radius:0;background:transparent;color:#fff;font-size:11px;font-weight:950;letter-spacing:-.06em}
+.champ-chip.selected .chip-mark{background:transparent;color:#000}
+.chip-f1{font-style:italic;font-weight:1000;letter-spacing:-.12em;transform:skew(-13deg)}
+.chip-gt3{font-style:italic;font-weight:1000;letter-spacing:-.1em}
+.chip-wec{font-style:italic;color:#69baff}
+.chip-nascar{font-size:12px;letter-spacing:-.2em;color:#ee5968}
+.chip-wrc{font-style:italic;letter-spacing:-.1em}
+.chip-indy{font-size:17px;transform:skew(-18deg)}
+.chip-fe{font-size:23px;font-style:italic;font-weight:1000;color:#4ca9ff}
+.chip-dakar{font-size:20px}
+.chip-motogp{font-size:14px;letter-spacing:-.3em}
+@media(max-width:680px){
+ .championship-chips{gap:8px}
+ .champ-chip{min-height:49px;border-radius:17px;padding:0 12px;gap:8px}
+ .chip-mark{width:auto;height:26px;min-width:23px;flex-basis:auto;border:0;border-radius:0;background:transparent;font-size:10px}
+ .champ-chip.selected .chip-mark{background:transparent;color:#000}
+ .chip-f1{font-size:15px}
+ .chip-gt3{font-size:12px}
+ .chip-wec{font-size:10px}
+ .chip-nascar{font-size:11px}
+ .chip-fe{font-size:22px}
+}
+
 </style>
 </head>
 <body>
@@ -341,7 +368,7 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
 <header class="topbar">
 <a class="brand" href="#home" aria-label="CHICANE home"><span>CHICANE</span></a>
 <nav class="nav" aria-label="Main navigation"><a class="active" href="#home" data-nav="home">Home</a><a href="#calendar" data-nav="calendar">Calendar</a><a href="#results" data-nav="results">Results</a><a href="#standings" data-nav="standings">Standings</a></nav>
-<div class="top-actions"><button class="iconbtn" id="searchToggle" aria-label="Search races">⌕</button><a class="iconbtn" href="#calendar" aria-label="Open calendar" style="display:grid;place-items:center">▦</a><button class="iconbtn" id="installBtn" aria-label="Install app" title="Install app">↧</button></div>
+<div class="top-actions"><button class="iconbtn" id="searchToggle" aria-label="Search races">⌕</button><a class="iconbtn" href="#calendar" aria-label="Open calendar" style="display:grid;place-items:center">▦</a><button class="iconbtn" id="settingsBtn" aria-label="Settings" title="Settings">⚙</button></div>
 </header>
 
 <main>
@@ -353,15 +380,15 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
 <div class="section-head"><div><div class="eyebrow">CHOOSE YOUR GRID</div><h2 id="champ-title">Championships</h2></div><a class="text-btn" href="#series">View all ↗</a></div>
 <div class="championship-chips" id="championshipChips" aria-label="Filter upcoming events by championship">
 <button class="champ-chip selected" data-champ="all" aria-pressed="true"><span class="chip-mark chip-all" aria-hidden="true">✳</span><span>All series</span></button>
-<button class="champ-chip" data-champ="f1" aria-pressed="false"><span class="chip-mark" aria-hidden="true">F1</span><span>F1</span></button>
-<button class="champ-chip" data-champ="gt3" aria-pressed="false"><span class="chip-mark" aria-hidden="true">GT</span><span>GT3</span></button>
-<button class="champ-chip" data-champ="wec" aria-pressed="false"><span class="chip-mark" aria-hidden="true">WEC</span><span>WEC</span></button>
-<button class="champ-chip" data-champ="nascar" aria-pressed="false"><span class="chip-mark" aria-hidden="true">N</span><span>NASCAR</span></button>
-<button class="champ-chip" data-champ="wrc" aria-pressed="false"><span class="chip-mark" aria-hidden="true">R</span><span>WRC</span></button>
-<button class="champ-chip" data-champ="indy" aria-pressed="false"><span class="chip-mark" aria-hidden="true">I</span><span>IndyCar</span></button>
-<button class="champ-chip" data-champ="fe" aria-pressed="false"><span class="chip-mark" aria-hidden="true">E</span><span>Formula E</span></button>
-<button class="champ-chip" data-champ="dakar" aria-pressed="false"><span class="chip-mark" aria-hidden="true">D</span><span>Dakar</span></button>
-<button class="champ-chip" data-champ="motogp" aria-pressed="false"><span class="chip-mark" aria-hidden="true">M</span><span>MotoGP</span></button>
+<button class="champ-chip" data-champ="f1" aria-pressed="false"><span class="chip-mark chip-f1" aria-hidden="true">F1</span><span>F1</span></button>
+<button class="champ-chip" data-champ="gt3" aria-pressed="false"><span class="chip-mark chip-gt3" aria-hidden="true">GT3</span><span>GT3</span></button>
+<button class="champ-chip" data-champ="wec" aria-pressed="false"><span class="chip-mark chip-wec" aria-hidden="true">WEC</span><span>WEC</span></button>
+<button class="champ-chip" data-champ="nascar" aria-pressed="false"><span class="chip-mark chip-nascar" aria-hidden="true">///</span><span>NASCAR</span></button>
+<button class="champ-chip" data-champ="wrc" aria-pressed="false"><span class="chip-mark chip-wrc" aria-hidden="true">WRC</span><span>WRC</span></button>
+<button class="champ-chip" data-champ="indy" aria-pressed="false"><span class="chip-mark chip-indy" aria-hidden="true">▰</span><span>IndyCar</span></button>
+<button class="champ-chip" data-champ="fe" aria-pressed="false"><span class="chip-mark chip-fe" aria-hidden="true">e</span><span>Formula E</span></button>
+<button class="champ-chip" data-champ="dakar" aria-pressed="false"><span class="chip-mark chip-dakar" aria-hidden="true">D</span><span>Dakar</span></button>
+<button class="champ-chip" data-champ="motogp" aria-pressed="false"><span class="chip-mark chip-motogp" aria-hidden="true">▰▰</span><span>MotoGP</span></button>
 </div>
 </section>
 <section id="calendar" aria-labelledby="next-title">
@@ -374,11 +401,7 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
 <div class="event-grid" id="eventGrid" aria-live="polite"></div>
 <div class="event-foot"><span>Event dates · times only when confirmed</span><button class="text-btn" id="showAllEvents">Show all races ↓</button></div>
 </section>
-<section id="series" aria-labelledby="series-title">
-<div class="section-head"><div><div class="eyebrow">THE FULL GRID</div><h2 id="series-title">All series</h2></div><div class="date-chip"><span id="seriesCount">11</span> SERIES</div></div>
-<div class="toolbar"><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Search series…" autocomplete="off"><span class="sr-only">Search championships</span></label><div class="filter" id="filters"><button class="selected" data-filter="all">All</button><button data-filter="open-wheel">Open wheel</button><button data-filter="endurance">Endurance</button><button data-filter="stock-car">Stock car</button><button data-filter="rally-raid">Rally & raid</button><button data-filter="motorcycle">Motorcycle</button></div></div>
-<div class="series-grid" id="seriesGrid"></div>
-</section>
+
 <section class="results-section" id="results" aria-labelledby="results-title">
 <div class="section-head"><div><div class="eyebrow">AFTER THE FLAG</div><h2 id="results-title">Latest race results</h2></div></div>
 <a class="result-card" href="https://www.formula1.com/en/results/2026/races" target="_blank" rel="noreferrer"><span class="result-photo"></span><span class="result-copy"><small>FORMULA 1</small><strong>Race results</strong><span>Official classifications and session results</span></span><span class="tile-arrow">›</span></a>
@@ -388,6 +411,11 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
 <div class="section-head"><div><div class="eyebrow">THE TITLE FIGHT</div><h2 id="standings-title">Championship standings</h2></div></div>
 <a class="result-card" href="https://www.formula1.com/en/results/2026/drivers" target="_blank" rel="noreferrer"><span class="track-thumb track-thumb-f1"></span><span class="result-copy"><small>FORMULA 1</small><strong>Drivers & teams</strong><span>Open official standings</span></span><span class="tile-arrow">›</span></a>
 <a class="result-card" href="https://www.motogp.com/en/standings" target="_blank" rel="noreferrer"><span class="track-thumb track-thumb-moto"></span><span class="result-copy"><small>MOTOGP</small><strong>Rider standings</strong><span>Open official standings</span></span><span class="tile-arrow">›</span></a>
+</section>
+<section id="series" aria-labelledby="series-title">
+<div class="section-head"><div><div class="eyebrow">THE FULL GRID</div><h2 id="series-title">All series</h2></div><div class="date-chip"><span id="seriesCount">11</span> SERIES</div></div>
+<div class="toolbar"><label class="search"><span>⌕</span><input id="search" type="search" placeholder="Search series…" autocomplete="off"><span class="sr-only">Search championships</span></label><div class="filter" id="filters"><button class="selected" data-filter="all">All</button><button data-filter="open-wheel">Open wheel</button><button data-filter="endurance">Endurance</button><button data-filter="stock-car">Stock car</button><button data-filter="rally-raid">Rally & raid</button><button data-filter="motorcycle">Motorcycle</button></div></div>
+<div class="series-grid" id="seriesGrid"></div>
 </section>
 <section class="lower-grid" id="tools">
 <div class="tool-card"><div class="eyebrow">YOUR GARAGE</div><h3>Keep your grid close.</h3><p>Star the series you follow. Your choices stay in this browser — no account needed.</p><div class="tool-row"><button class="btn secondary" id="showFaves">Show favourites</button><button class="btn secondary" id="resetFaves">Reset favourites</button></div><div id="faveMessage" class="empty-hint">No favourites selected yet. Tap the star on any series card.</div></div>
@@ -486,7 +514,7 @@ $("#searchToggle").addEventListener("click",()=>{$("#eventSearchWrap").scrollInt
 
 $("#calendarBtn").addEventListener("click",()=>{const today=todayIST(),items=events.filter(e=>e.end>=today).sort((a,b)=>a.start.localeCompare(b.start));const esc=s=>s.replace(/\\/g,"\\\\").replace(/,/g,"\\,").replace(/;/g,"\\;").replace(/\n/g,"\\n");const dt=s=>s.replace(/-/g,"");const rows=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//CHICANE//Motorsport Hub//EN","CALSCALE:GREGORIAN","X-WR-CALNAME:CHICANE Motorsport"];for(const e of items){const end=new Date(e.end+"T12:00:00Z");end.setUTCDate(end.getUTCDate()+1);rows.push("BEGIN:VEVENT","UID:"+e.id+"@chicane-motorsport-hub","DTSTAMP:"+new Date().toISOString().replace(/[-:]/g,"").replace(/\.\d{3}Z$/,"Z"),"DTSTART;VALUE=DATE:"+dt(e.start),"DTEND;VALUE=DATE:"+dt(end.toISOString().slice(0,10)),"SUMMARY:"+esc(e.name),"LOCATION:"+esc(e.venue),"DESCRIPTION:"+esc("Source: "+e.sourceName+" - "+e.source),"URL:"+e.source,"END:VEVENT")}rows.push("END:VCALENDAR");const blob=new Blob([rows.join("\r\n")+"\r\n"],{type:"text/calendar;charset=utf-8"});const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="chicane-upcoming-races.ics";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast("Calendar exported · "+items.length+" events")});
 function install(){if(installPrompt){installPrompt.prompt();installPrompt.userChoice.finally(()=>installPrompt=null)}else toast("In Chrome, use the install icon in the address bar or browser menu when available.")}
-$("#installBtn").addEventListener("click",install);$("#installBtn2").addEventListener("click",install);window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e});
+$("#settingsBtn").addEventListener("click",()=>$("#tools").scrollIntoView({behavior:"smooth",block:"start"}));$("#installBtn2").addEventListener("click",install);window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e});
 if("serviceWorker"in navigator&&location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
 render();renderEvents();updateClock();setInterval(()=>{updateClock();renderEvents()},30000);
 </script>
