@@ -79,6 +79,20 @@ The current UX/UI direction is approved and should be preserved. Do not redesign
 - [GT World Challenge 2026 calendar](https://www.gt-world-challenge.com/calendar)
 - [WRC 2026 calendar update / cancellation notice](https://www.wrc.com/en/news/fia-and-wrc-promoter-confirm-final-round-of-the-2026-wrc-season)
 
+## Image credits
+
+The current preview uses representative motorsport-series photography from Wikimedia Commons. These images are **series-relevant examples, not verified photographs of each listed event or venue**. They are displayed in grayscale and must not be interpreted as event-specific imagery.
+
+- Formula racing: [2022 Formula One car at the 2021 British Grand Prix](https://commons.wikimedia.org/wiki/File:2022_Formula_One_car_at_the_2021_British_Grand_Prix_(51350002179).jpg) — Jen Ross, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+- GT racing: [GT3 and GT4 race one](https://commons.wikimedia.org/wiki/File:GT3_and_GT4_race_one_-_McLaren_leading_a_Lamborghini_and_an_Aston_Martin_(51372326297).jpg) — 35mmMan, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+- NASCAR: [NASCAR Cup Series at Daytona Speedweeks](https://commons.wikimedia.org/wiki/File:Nascar_cup_series_(49562235351).jpg) — Zach Catanzareti Photo, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+- Rally: [Škoda rally car](https://commons.wikimedia.org/wiki/File:Skoda_Fabia_rally_car.jpg) — Collard, [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/).
+- MotoGP: [MotoGP final race](https://commons.wikimedia.org/wiki/File:MotoGP_final_race.jpg) — Robert Scoble, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+- Endurance racing: [2021 FIA WEC 8 Hours of Bahrain](https://commons.wikimedia.org/wiki/File:2021_FIA_WEC_8_Hours_of_Bahrain_Alpine_A480_Alpine_Elf_Matmut.jpg) — Kobokem2021, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+- Formula E: [Nio Formula E car](https://commons.wikimedia.org/wiki/File:Nio_Formula_E_car.jpg) — Rivera0997, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+
+Image crops and grayscale treatment are modifications. The event-specific photo pass remains open work: use a verified venue/event image where available, retain license/author credits, and use a non-misleading fallback otherwise.
+
 ## Run locally
 
 Open `index.html` for the core interface. For service-worker/PWA behavior, serve the folder on localhost or HTTPS.
