@@ -5,6 +5,8 @@
 ## Current preview milestone
 
 - Reference-matched dashboard with two image-led hero cards, rounded race cards, circuit-outline silhouettes, and bottom navigation on mobile
+- Reference-matched championship selector buttons with monochrome circular marks, clear selected states, and synchronised event filtering
+- Fixed mobile bottom navigation for Home, Calendar, Results and Standings with active states
 - Championship chips filter the upcoming-event board; categories with no confirmed upcoming date show a clear empty state and official calendar link
 - Series directory with search, category filters, and browser-local favourites
 - Race cards with date badges, IST-aware countdown labels, venue, and official-source links
@@ -40,14 +42,14 @@ The current UX/UI direction is approved and should be preserved. Do not redesign
 - Use only images with clear permission for reuse (for example, appropriately licensed/open-licensed photography or original generated artwork). Do not copy official series photos, logos or circuit artwork without permission. Formula 1's published IP guidelines specifically identify still images and circuit IP as protected material. See [Formula 1 IP guidelines](https://www.formula1.com/en/information/guidelines.4EOKE9RRqevL4niTK9kWyt) and the [NASCAR brand portal](https://brand.nascar.com/).
 - Keep the existing card layout, typography, spacing, navigation and black-and-white visual style unchanged unless a separate UI change is requested.
 
-### 2. Reference-matched buttons and controls (requested)
+### 2. Reference-matched buttons and controls (implemented in preview)
 
-- Match the buttons and filter controls to the supplied screenshot, including the championship selector buttons in the Upcoming Races area.
-- Reproduce the reference's shape, sizing, spacing, typography, border weight, monochrome colors, and selected/unselected states as closely as practical.
-- Keep the top navigation and mobile bottom navigation visually consistent with the screenshot; preserve clear active states and comfortable touch targets on mobile.
-- Keep every championship button functional and synchronised with the event list; selecting a series must update the active button state and the visible events together.
-- Avoid emoji or unrelated placeholder icons where the reference uses a specific logo/icon treatment. Use only assets that are permitted for reuse; otherwise use a restrained original text/icon treatment that fits the reference.
-- Preserve the approved layout and do not implement this as a redesign. This is a targeted visual-fidelity improvement for the next development pass, alongside event-matched imagery.
+- Implemented: monochrome pill-shaped championship buttons with circular original marks, clear selected/unselected states, and horizontally scrollable mobile controls.
+- Implemented: button sizing, spacing, typography, borders and black/white selected state tuned toward the supplied reference.
+- Implemented: mobile bottom navigation for Home, Calendar, Results and Standings with active-state synchronisation and safe-area spacing.
+- Implemented: selecting a championship updates the selected button and event list together; accessible `aria-pressed` state follows the selection.
+- Used restrained original lettermarks instead of copying protected series logos. The final design can use licensed assets if needed.
+- Preserve the approved layout; this is a targeted visual-fidelity pass, not a redesign. Remaining visual work: event-matched imagery.
 
 ### 3. Schedule and data improvements
 
@@ -91,4 +93,4 @@ CHICANE is an unofficial fan companion. Series names and trademarks belong to th
 
 ## Status
 
-**Preview milestone:** image-led dashboard, functioning championship filters, curated event board and calendar export. Not production-ready. Automatic schedule refresh, verified session times, five-season historical data, integrated live results/standings, reminder delivery, and event-matched/licensed imagery and screenshot-matched button/control styling remain future work. Results and standings cards currently link to official pages rather than inventing values.
+**Preview milestone:** image-led dashboard, functioning championship filters, curated event board and calendar export. Not production-ready. Automatic schedule refresh, verified session times, five-season historical data, integrated live results/standings, reminder delivery, and event-matched/licensed imagery remains future work; screenshot-matched championship controls and mobile navigation are implemented in the latest preview. Results and standings cards currently link to official pages rather than inventing values.
