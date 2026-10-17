@@ -1,0 +1,10 @@
+{
+  "name": "CHICANE Motorsport Hub",
+  "short_name": "CHICANE",
+  "description": "Your calm, unified view of motorsport championships and official race calendars.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#090a0c",
+  "theme_color": "#090a0c",
+  "icons": []
+}
