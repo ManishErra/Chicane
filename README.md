@@ -4,7 +4,7 @@
 
 ## Current preview milestone
 
-- Reference-matched dashboard with two image-led hero cards, rounded race cards, circuit-outline silhouettes, and bottom navigation on mobile
+- Reference-matched dashboard with two image-led hero cards, rounded race cards, and bottom navigation on mobile
 - Reference-matched championship selector buttons with recognisable series marks, clear selected states, and synchronised event filtering
 - Fixed mobile bottom navigation for Home, Calendar, Results and Standings with active states
 - Championship chips filter the upcoming-event board; categories with no confirmed upcoming date show a clear empty state and official calendar link
@@ -39,24 +39,20 @@ Dates are event ranges, not session start times. Each listed event links to an o
 
 - Restored full-colour photography across hero, series, result and event-card images while preserving the approved black layout and card proportions.
 - Added event/venue-specific licensed image treatments for the Phoenix race weekend, Circuit of The Americas, Mexico City, Phillip Island, Lusail and the Dakar Rally. These are venue- or series-relevant images, not necessarily photographs from the upcoming 2026 event; card titles and dates remain grounded in the linked official schedules.
-- Expanded the verified circuit-map mapping for selected events, including COTA, Mexico City, Phillip Island, Sepang, Shanghai, Interlagos, Lusail and Yas Marina. Other events still use the existing stylised fallback silhouette; they are not represented as exact circuit maps.
 - Removed the GT World Challenge Australia · Adelaide entry because its date was not independently confirmed on an event-specific official page during this pass. The confirmed GT World Challenge Asia Shanghai finale remains listed for 30 October–1 November 2026. See the [official Shanghai event page](https://www.gt-world-challenge-asia.com/event/90/shanghai-international-circuit) and [calendar announcement](https://www.gt-world-challenge-asia.com/news/985/shanghai-returns-as-2026-season-finale).
 - Rechecked the nearest race dates against primary sources: [F1 2026 calendar](https://www.formula1.com/en/racing/2026), [MotoGP 2026 calendar](https://www.motogp.com/en/calendar), [NASCAR Cup schedule](https://www.nascar.com/nascar-cup-series/2026/schedule/), and the [Formula E 2026/27 calendar](https://www.fiaformulae.com/en/calendar).
 - Dates remain all-day event ranges, not session times. CHICANE still uses a curated static snapshot and does not claim automatic schedule refresh.
 
-## Reusable circuit silhouette registry (18 October 2026)
+## Circuit silhouettes (deferred)
 
-- Replaced event-ID-only circuit mapping with a reusable venue-name registry. Events that use a known circuit can reuse its silhouette when future calendar entries are added, even if the event ID or season changes.
-- Registry currently covers 20 venues across permanent circuits, street circuits and oval racing, including COTA, Mexico City, Phillip Island, Sepang, Shanghai, Interlagos, Lusail, Yas Marina, Monaco, Brands Hatch, Zandvoort, Fuji, Bahrain, Imola, Silverstone, Spa-Francorchamps, Le Mans, Algarve, Valencia and Phoenix.
-- Venue matching is based on the event's venue/name text, so this avoids having to add a separate mapping for each new year's event ID. It does **not** automatically fetch future calendars or add new venues to the registry.
-- Rally and rally-raid events are not assigned a fake permanent-circuit outline; they use no circuit silhouette until a separate route/stage visual can be sourced.
-- Circuit assets are loaded from Wikimedia Commons file URLs. The registry is intentionally reusable, but every remote file's availability and licence/attribution still needs to be checked before treating the entire library as fully verified. An unknown circuit retains a stylised fallback only for circuit-racing categories.
+- Removed the unused local SVG pilot and its renderer because the silhouettes were not visible in the target preview.
+- Event cards now render without circuit overlays. The feature can be revisited only if a reliably visible, venue-accurate implementation is practical.
 
 ## Latest visual refinement (October 2026)
 
 - Added the current MotoGP wordmark from Wikimedia Commons and the IndyCar Series wordmark to championship chips and the image-led series cards. These are used as brand identifiers; their marks remain the property of their respective owners. Sources: [MotoGP logo (2024)](https://commons.wikimedia.org/wiki/File:MotoGP_logo_(2024).svg) and [IndyCar Series text logo](https://commons.wikimedia.org/wiki/File:IndyCar_Series_textlogo.svg).
 - Reworked the Dakar mark into a more intentional orange wordmark treatment rather than the previous generic “D” icon. The official Dakar cheich/logo is trademark-protected and the organiser restricts use; use an official asset only with the required authorisation. See [Dakar communication tools and logo terms](https://competitors.dakar.com/en/communication/communication-tools).
-- Kept the approved black UI, full-colour race photos, event card layout and circuit silhouettes unchanged.
+- Kept the approved black UI, full-colour race photos and event card layout unchanged. Circuit overlays have since been removed because they were not visible in the target preview.
 - The current preview has passed JavaScript syntax and duplicate-ID checks. Remote SVG loading still depends on the source host and should be visually confirmed on the target phone.
 
 ## Next features / backlog
@@ -68,7 +64,6 @@ The current UX/UI direction is approved and should be preserved. Do not redesign
 - Replace the current generic/reused stock photos with imagery that actually matches the event and series shown on each card.
 - Follow the supplied CHICANE reference: realistic race photography, the right category of vehicle, recognisable event/venue context, dark monochrome treatment where appropriate, and consistent crops that work on mobile.
 - Give each upcoming-event card a relevant image rather than reusing one image across F1, GT3, WEC, NASCAR, rally raid and MotoGP.
-- Keep the hand-drawn circuit-outline element as a separate visual; use the correct circuit outline only when it can be verified.
 - Add graceful fallbacks for events without a suitable image; never show a misleading venue, car class or race.
 - Use only images with clear permission for reuse (for example, appropriately licensed/open-licensed photography or original generated artwork). Do not copy official series photos, logos or circuit artwork without permission. Formula 1's published IP guidelines specifically identify still images and circuit IP as protected material. See [Formula 1 IP guidelines](https://www.formula1.com/en/information/guidelines.4EOKE9RRqevL4niTK9kWyt) and the [NASCAR brand portal](https://brand.nascar.com/).
 - Keep the existing card layout, typography, spacing, navigation and black-and-white visual style unchanged unless a separate UI change is requested.
@@ -146,4 +141,4 @@ CHICANE is an unofficial fan companion. Series names and trademarks belong to th
 
 ## Status
 
-**Preview milestone:** image-led dashboard, functioning championship filters, curated event board and calendar export. Not production-ready. Automatic schedule refresh, verified session times, five-season historical data, integrated live results/standings, reminder delivery, and event-matched/licensed imagery remains future work; screenshot-matched championship controls and mobile navigation are implemented in the latest preview. Results and standings cards currently link to official pages rather than inventing values.
+**Preview milestone:** image-led dashboard, functioning championship filters, curated event board and calendar export. Circuit-silhouette files and rendering have been removed pending a viable visible implementation. Not production-ready. Automatic schedule refresh, verified session times, five-season historical data, integrated live results/standings, reminder delivery, and event-matched/licensed imagery remains future work; screenshot-matched championship controls and mobile navigation are implemented in the latest preview. Results and standings cards currently link to official pages rather than inventing values.
