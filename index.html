@@ -180,7 +180,6 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
 .event-date-badge span{font-size:10px;color:#bbb;text-transform:uppercase}
 .event-date-badge strong{font-size:21px;font-weight:950;margin:3px 0}
 .event-date-badge small{font-size:10px;color:#bbb}
-.circuit-outline{position:absolute;right:8px;bottom:7px;width:46%;height:58%;z-index:3;opacity:1;filter:drop-shadow(0 1px 2px #000);pointer-events:none}
 .event-card-body{padding:15px 17px;min-width:0}
 .event-card-top{margin-bottom:8px}
 .event-series{background:#191919;border-radius:6px}
@@ -243,7 +242,6 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
  .event-date-badge{left:7px;top:7px;width:48px;padding:6px 4px;border-radius:10px}
  .event-date-badge strong{font-size:19px}
  .event-date-badge span,.event-date-badge small{font-size:9px}
- .circuit-outline{width:47%;height:43%;right:4px;bottom:4px}
  .series-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
  .series-card{min-height:135px;padding:12px}
  .result-card{gap:10px;min-height:104px;padding-right:9px}
@@ -324,7 +322,6 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
  .event-date-badge{left:6px;top:7px;width:45px;padding:6px 3px;border-radius:9px}
  .event-date-badge strong{font-size:17px}
  .event-date-badge span,.event-date-badge small{font-size:8px}
- .circuit-outline{width:45%;height:42%;right:3px;bottom:3px}
  .event-foot{flex-direction:row;align-items:center;font-size:9px;margin-top:13px}
  #series{margin-top:38px}
  .results-section .section-head{margin-top:27px}
@@ -430,7 +427,6 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
 .series-image-fe .series-card-photo{background-image:url('https://commons.wikimedia.org/wiki/Special:Redirect/file/Nio_Formula_E_car.jpg?width=900')}
 .series-image-gtwc .series-card-photo,.series-image-gt3 .series-card-photo{background-image:url('https://commons.wikimedia.org/wiki/Special:Redirect/file/GT3_and_GT4_race_one_-_McLaren_leading_a_Lamborghini_and_an_Aston_Martin_(51372326297).jpg?width=900')}
 .series-image-motogp .series-card-photo{background-image:url('https://commons.wikimedia.org/wiki/Special:Redirect/file/MotoGP_final_race.jpg?width=900')}
-.circuit-outline-img{object-fit:contain;mix-blend-mode:screen;filter:invert(1) brightness(1.7) contrast(1.5);opacity:1;background:#ffffff05;border-radius:8px}
 @media(max-width:680px){.series-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.series-card,.series-card-content{min-height:188px}.series-card-content{padding:11px}.series-card-copy{margin-top:43px}.series-card h3{font-size:14px}.series-card p{font-size:10px}.series-card .mini-logo{min-width:38px;height:25px}.top-actions .iconbtn{width:34px;height:36px}.top-actions svg{width:21px;height:21px}}
 
 
@@ -613,30 +609,11 @@ function renderEvents(){const today=todayIST(),q=$("#eventSearch").value.trim().
  const upcoming=events.filter(e=>e.end>=today&&(eventFilter==="all"||e.series===eventFilter)&&(!q||(e.name+" "+e.venue+" "+(seriesNames[e.series]||"")).toLowerCase().includes(q))).sort((a,b)=>a.start.localeCompare(b.start));
  const visible=showAllEvents?upcoming:upcoming.slice(0,8);
  $("#eventCount").textContent=upcoming.length+" EVENTS";
- $("#eventGrid").innerHTML=visible.map((e,i)=>{const d=daysUntil(e.start),when=d<0?"In progress":d===0?"Today":d===1?"Tomorrow":"In "+d+" days";const img=eventImage(e),track=circuitAsset(e);return '<article class="event-card"><div class="event-image '+img.cls+' event-photo-'+e.id+'" role="img" aria-label="'+img.alt+'"><span class="event-date-badge">'+dateBadge(e.start)+'</span>'+(track?'<img class="circuit-outline circuit-outline-img" src="'+track+'" alt="" loading="lazy" aria-hidden="true" onerror="this.remove()">':'')+'</div><div class="event-card-body"><div class="event-card-top"><span class="event-series">'+(e.series==="gtwc"?"GT3 / GTWC":e.short)+'</span><span class="event-countdown">'+when+'</span></div><h3>'+e.name+'</h3><div class="event-venue">⌖ '+e.venue+'</div><div class="event-date">'+dateRange(e)+'</div><a class="event-source" href="'+e.source+'" target="_blank" rel="noreferrer">'+e.sourceName+'</a></div></article>'}).join("");
+ $("#eventGrid").innerHTML=visible.map((e,i)=>{const d=daysUntil(e.start),when=d<0?"In progress":d===0?"Today":d===1?"Tomorrow":"In "+d+" days";const img=eventImage(e);return '<article class="event-card"><div class="event-image '+img.cls+' event-photo-'+e.id+'" role="img" aria-label="'+img.alt+'"><span class="event-date-badge">'+dateBadge(e.start)+'</span>'+'</div><div class="event-card-body"><div class="event-card-top"><span class="event-series">'+(e.series==="gtwc"?"GT3 / GTWC":e.short)+'</span><span class="event-countdown">'+when+'</span></div><h3>'+e.name+'</h3><div class="event-venue">⌖ '+e.venue+'</div><div class="event-date">'+dateRange(e)+'</div><a class="event-source" href="'+e.source+'" target="_blank" rel="noreferrer">'+e.sourceName+'</a></div></article>'}).join("");
  if(!visible.length){const label=filter==="all"?"this calendar":(seriesNames[filter]||filter.toUpperCase());$("#eventGrid").innerHTML='<div class="event-empty"><strong>No upcoming dates listed for '+label+'.</strong><span>We won’t guess the schedule. Check the official calendar for announcements and updates.</span><a href="'+(seriesLinks[filter]||"https://www.formula1.com/en/racing/2026")+'" target="_blank" rel="noreferrer">Open official calendar</a></div>'}
  $("#showAllEvents").hidden=upcoming.length<=8;$("#showAllEvents").textContent=showAllEvents?"Show fewer ↑":"Show all "+upcoming.length+" events ↓";
 }
 function dateBadge(iso){const d=new Date(iso+"T12:00:00Z");return '<span>'+new Intl.DateTimeFormat("en-IN",{month:"short",timeZone:"UTC"}).format(d).toUpperCase()+'</span><strong>'+new Intl.DateTimeFormat("en-IN",{day:"2-digit",timeZone:"UTC"}).format(d)+'</strong><small>'+d.getUTCFullYear()+'</small>'}
-function trackPath(id,series){const paths={nascar:"M24 22 Q80 3 136 22 Q151 50 136 76 Q80 96 24 76 Q9 50 24 22 Z",motogp:"M18 22 L39 15 L54 30 L77 25 L93 12 L112 26 L140 34 L133 51 L115 59 L119 78 L94 84 L77 68 L58 77 L43 61 L22 65 L14 45 Z",f1:"M18 56 L25 33 L40 22 L55 34 L67 50 L82 25 L108 20 L125 29 L113 43 L126 58 L115 74 L91 68 L75 81 L54 69 L36 78 Z",gtwc:"M18 60 L15 42 L32 31 L45 15 L62 27 L72 44 L98 36 L119 22 L140 38 L130 53 L139 67 L116 80 L91 66 L69 78 L47 66 L32 74 Z"};return paths[id]||paths[series]||paths.gtwc}
-const CIRCUITS=[
-{key:"cota",names:["circuit of the americas"],asset:"./assets/circuits/cota.svg",source:"Local SVG; CC0 1.0"},
-{key:"mexico",names:["autódromo hermanos rodríguez","autodromo hermanos rodriguez"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez.svg?width=300",source:"Wikimedia Commons"},
-{key:"phillip-island",names:["phillip island"],asset:"./assets/circuits/phillip-island.svg",source:"Local SVG; CC BY-SA 3.0"},
-{key:"sepang",names:["sepang international circuit"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Sepang.svg?width=300",source:"Wikimedia Commons"},
-{key:"shanghai",names:["shanghai international circuit"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Shanghai_International_Racing_Circuit_track_map.svg?width=300",source:"Wikimedia Commons"},
-{key:"interlagos",names:["interlagos"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Circuit_Interlagos.svg?width=300",source:"Wikimedia Commons"},
-{key:"lusail",names:["lusail international circuit"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Lusail_International_Circuit_2023.svg?width=300",source:"Wikimedia Commons"},
-{key:"yas-marina",names:["yas marina"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/F1_circuits_2014-2018_-_Yas_Marina_Circuit_(version_2).svg?width=300",source:"CC0 OpenClipart"},
-{key:"monaco",names:["circuit de monaco"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Circuit_Monaco.svg?width=300",source:"Public domain, Wikimedia Commons"},
-{key:"brands-hatch",names:["brands hatch"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Brands_Hatch.svg?width=300",source:"Wikimedia Commons"},
-{key:"zandvoort",names:["zandvoort"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Zandvoort.svg?width=300",source:"Public domain, Wikimedia Commons; legacy layout"},
-{key:"fuji",names:["fuji speedway"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Circuit_Fuji.svg?width=300",source:"Public domain, Wikimedia Commons"},
-{key:"bahrain",names:["bahrain international circuit"],asset:"./assets/circuits/bahrain.svg",source:"Local SVG; CC BY-SA 3.0"},
-{key:"imola",names:["autodromo enzo e dino ferrari","imola"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Imola_2009.svg?width=300",source:"Wikimedia Commons; modern layout"},
-{key:"silverstone",names:["silverstone"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Circuit_Silverstone_2011.svg?width=300",source:"Wikimedia Commons; GP layout since 2011"}
-];
-function circuitAsset(e){const text=(e.venue+" "+e.name).normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").toLowerCase();const found=CIRCUITS.find(c=>c.names.some(n=>text.includes(n.normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").toLowerCase())));return found?found.asset:null}
 function eventImage(e){if(e.series==="f1")return {cls:"photo-f1",alt:"Formula racing car on a circuit"};if(e.series==="gtwc"||e.series==="gt3")return {cls:"photo-gt",alt:"GT racing cars at a circuit"};if(e.series==="nascar")return {cls:"photo-stock",alt:"Stock cars on a race track"};if(e.series==="wrc"||e.series==="dakar")return {cls:"photo-rally",alt:"Race circuit and rally terrain"};if(e.series==="motogp")return {cls:"photo-moto",alt:"Motorcycle racing circuit"};if(e.series==="fe")return {cls:"photo-fe",alt:"Electric single-seater race circuit"};return {cls:"photo-circuit",alt:"Motorsport circuit"}}
 $("#calendarViewToggle").addEventListener("click",()=>{const bar=document.querySelector(".event-toolbar"),open=bar.classList.toggle("is-open");$("#calendarViewToggle").setAttribute("aria-expanded",String(open));$("#calendarViewToggle").textContent=open?"Hide calendar tools ↑":"View calendar ›";if(open)$("#eventSearch").focus()});
 $("#eventSearch").addEventListener("input",renderEvents);$("#eventFilter").addEventListener("change",()=>{const v=$("#eventFilter").value;$("#championshipChips").querySelectorAll("[data-champ]").forEach(x=>{const selected=x.dataset.champ===v;x.classList.toggle("selected",selected);x.setAttribute("aria-pressed",String(selected))});showAllEvents=false;renderEvents()});$("#showAllEvents").addEventListener("click",()=>{showAllEvents=!showAllEvents;renderEvents()});
