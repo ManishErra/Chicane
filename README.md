@@ -28,6 +28,13 @@ WEC, WRC and IndyCar remain available as championship filters and official links
 
 Dates are event ranges, not session start times. Each listed event links to an official source. Calendars can change; verify details on the linked official source before travel or viewing. This is a curated static snapshot, not an automatically refreshed live feed.
 
+## All Series card simplification (18 October 2026)
+
+- Removed the explanatory description line from each All Series card.
+- Removed the “Official calendar” text link from each card for a cleaner, more premium presentation.
+- Kept series names, marks, photography, category filters, search, and device-local favourites unchanged.
+- No changes to the approved page layout or event calendar.
+
 ## Visual + schedule verification pass (18 October 2026)
 
 - Restored full-colour photography across hero, series, result and event-card images while preserving the approved black layout and card proportions.
