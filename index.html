@@ -115,7 +115,7 @@ body{background:#000;color:#fff}
 .event-search input,.event-toolbar select{width:100%;min-height:43px;padding:10px 12px 10px 35px;background:#080808;border:1px solid #292929;border-radius:11px;color:#fff;font:inherit;font-size:12px;outline:none}
 .event-toolbar select{width:auto;min-width:135px;padding-left:12px}
 .event-search input:focus,.event-toolbar select:focus{border-color:#fff}
-.event-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.calendar-data-status{margin:8px 0 12px;color:#858585;font-size:11px;line-height:1.5}.event-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
 .event-card{background:#080808;border:1px solid #202020;border-radius:17px;padding:16px;min-width:0}
 .event-card-top{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:13px}
 .event-series{font-size:10px;font-weight:950;letter-spacing:.1em;color:#fff;background:#171717;border-radius:7px;padding:6px 8px}
@@ -503,7 +503,7 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
 </div>
 </section>
 <section id="calendar" aria-labelledby="next-title">
-<div class="section-head"><div><div class="eyebrow">RACE WEEKEND</div><h2 id="next-title">Upcoming events</h2></div><button class="text-btn calendar-view-toggle" id="calendarViewToggle" aria-expanded="false">View calendar ›</button></div><div class="date-chip event-count-chip" id="eventCount">— EVENTS</div>
+<div class="section-head"><div><div class="eyebrow">RACE WEEKEND</div><h2 id="next-title">Upcoming events</h2></div><button class="text-btn calendar-view-toggle" id="calendarViewToggle" aria-expanded="false">View calendar ›</button></div><div class="date-chip event-count-chip" id="eventCount">— EVENTS</div><p id="calendarDataStatus" class="calendar-data-status" role="status">Loading calendar data…</p>
 <div class="event-toolbar">
 <label class="event-search" id="eventSearchWrap"><span>⌕</span><input id="eventSearch" type="search" placeholder="Search events…" autocomplete="off" aria-label="Search upcoming races"></label>
 <select id="eventFilter" aria-label="Filter by series"><option value="all">All series</option><option value="f1">F1</option><option value="gt3">GT3</option><option value="wec">WEC</option><option value="nascar">NASCAR</option><option value="wrc">WRC</option><option value="indy">IndyCar</option><option value="fe">Formula E</option><option value="dakar">Dakar</option><option value="motogp">MotoGP</option></select>
@@ -549,43 +549,7 @@ const series=[
 {id:"motogp",name:"MotoGP",short:"MGP",category:"motorcycle",desc:"Premier class of motorcycle grand prix racing",url:"https://www.motogp.com/en/calendar",accent:"MOTOGP"},
 {id:"gt3",name:"GT3 class",short:"GT3",category:"endurance",desc:"A racing car class featured across multiple series",url:"https://www.fia.com/regulation/category/123",accent:"CLASS"}
 ];
-const events = [
-{id:"nascar-phoenix-2026",series:"nascar",short:"NASCAR",name:"Freeway Insurance 500",venue:"Phoenix Raceway · Avondale, Arizona",start:"2026-10-18",end:"2026-10-18",source:"https://www.nascar.com/nascar-cup-series/2026/schedule/",sourceName:"NASCAR official schedule"},
-{id:"f1-us-2026",series:"f1",short:"F1",name:"United States Grand Prix",venue:"Circuit of The Americas · Austin, USA",start:"2026-10-23",end:"2026-10-25",source:"https://www.formula1.com/en/racing/2026",sourceName:"Formula 1 official calendar"},
-{id:"motogp-australia-2026",series:"motogp",short:"MGP",name:"Australian Grand Prix",venue:"Phillip Island · Australia",start:"2026-10-22",end:"2026-10-25",source:"https://www.motogp.com/en/calendar",sourceName:"MotoGP official calendar"},
-{id:"f1-mexico-2026",series:"f1",short:"F1",name:"Mexico City Grand Prix",venue:"Autódromo Hermanos Rodríguez · Mexico City",start:"2026-10-30",end:"2026-11-01",source:"https://www.formula1.com/en/racing/2026",sourceName:"Formula 1 official calendar"},
-{id:"motogp-malaysia-2026",series:"motogp",short:"MGP",name:"Malaysian Grand Prix",venue:"Sepang International Circuit · Malaysia",start:"2026-10-30",end:"2026-11-01",source:"https://www.motogp.com/en/calendar",sourceName:"MotoGP official calendar"},
-{id:"gtwc-shanghai-2026",series:"gtwc",short:"GTWC",name:"GT World Challenge Asia · Shanghai",venue:"Shanghai International Circuit · China",start:"2026-10-30",end:"2026-11-01",source:"https://www.gt-world-challenge.com/calendar",sourceName:"GT World Challenge official calendar"},
-{id:"f1-brazil-2026",series:"f1",short:"F1",name:"São Paulo Grand Prix",venue:"Interlagos · São Paulo, Brazil",start:"2026-11-06",end:"2026-11-08",source:"https://www.formula1.com/en/racing/2026",sourceName:"Formula 1 official calendar"},
-{id:"motogp-qatar-2026",series:"motogp",short:"MGP",name:"Qatar Grand Prix",venue:"Lusail International Circuit · Qatar",start:"2026-11-06",end:"2026-11-08",source:"https://www.motogp.com/en/calendar",sourceName:"MotoGP official calendar"},
-{id:"f1-las-vegas-2026",series:"f1",short:"F1",name:"Las Vegas Grand Prix",venue:"Las Vegas Strip Circuit · USA",start:"2026-11-19",end:"2026-11-21",source:"https://www.formula1.com/en/racing/2026",sourceName:"Formula 1 official calendar"},
-{id:"motogp-portugal-2026",series:"motogp",short:"MGP",name:"Portuguese Grand Prix",venue:"Algarve International Circuit · Portugal",start:"2026-11-20",end:"2026-11-22",source:"https://www.motogp.com/en/calendar",sourceName:"MotoGP official calendar"},
-{id:"f1-qatar-2026",series:"f1",short:"F1",name:"Qatar Grand Prix",venue:"Lusail International Circuit · Qatar",start:"2026-11-27",end:"2026-11-29",source:"https://www.formula1.com/en/racing/2026",sourceName:"Formula 1 official calendar"},
-{id:"motogp-valencia-2026",series:"motogp",short:"MGP",name:"Valencia Grand Prix",venue:"Circuit Ricardo Tormo · Spain",start:"2026-11-27",end:"2026-11-29",source:"https://www.motogp.com/en/calendar",sourceName:"MotoGP official calendar"},
-{id:"f1-abu-dhabi-2026",series:"f1",short:"F1",name:"Abu Dhabi Grand Prix",venue:"Yas Marina Circuit · United Arab Emirates",start:"2026-12-04",end:"2026-12-06",source:"https://www.formula1.com/en/racing/2026",sourceName:"Formula 1 official calendar"},
-{id:"fe-jeddah-2026-r1",series:"fe",short:"FE",name:"Jeddah E-Prix · Round 1",venue:"Jeddah Corniche Circuit · Saudi Arabia",start:"2026-12-18",end:"2026-12-18",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-jeddah-2026-r2",series:"fe",short:"FE",name:"Jeddah E-Prix · Round 2",venue:"Jeddah Corniche Circuit · Saudi Arabia",start:"2026-12-19",end:"2026-12-19",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"dakar-2027",series:"dakar",short:"DAKAR",name:"Dakar Rally 2027",venue:"Saudi Arabia",start:"2027-01-01",end:"2027-01-15",source:"https://www.dakar.com/en/",sourceName:"Dakar official website"},
-{id:"fe-mexico-2027",series:"fe",short:"FE",name:"Mexico City E-Prix",venue:"Autódromo Hermanos Rodríguez · Mexico City",start:"2027-01-16",end:"2027-01-16",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-austin-2027",series:"fe",short:"FE",name:"Austin E-Prix",venue:"Circuit of The Americas · USA",start:"2027-02-06",end:"2027-02-06",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-miami-2027",series:"fe",short:"FE",name:"Miami E-Prix",venue:"Miami International Autodrome · USA",start:"2027-02-20",end:"2027-02-20",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-sao-paulo-2027",series:"fe",short:"FE",name:"São Paulo E-Prix",venue:"Anhembi Sambadrome Circuit · Brazil",start:"2027-03-13",end:"2027-03-13",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-sanya-2027",series:"fe",short:"FE",name:"Sanya E-Prix",venue:"Haitang Bay Circuit · China",start:"2027-04-17",end:"2027-04-17",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-monaco-2027-r1",series:"fe",short:"FE",name:"Monaco E-Prix · Round 1",venue:"Circuit de Monaco · Monaco",start:"2027-05-01",end:"2027-05-01",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-monaco-2027-r2",series:"fe",short:"FE",name:"Monaco E-Prix · Round 2",venue:"Circuit de Monaco · Monaco",start:"2027-05-02",end:"2027-05-02",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-berlin-2027-r1",series:"fe",short:"FE",name:"Berlin E-Prix · Round 1",venue:"Tempelhof Airport Street Circuit · Germany",start:"2027-05-08",end:"2027-05-08",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-berlin-2027-r2",series:"fe",short:"FE",name:"Berlin E-Prix · Round 2",venue:"Tempelhof Airport Street Circuit · Germany",start:"2027-05-09",end:"2027-05-09",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-london-2027-r1",series:"fe",short:"FE",name:"London E-Prix · Round 1",venue:"Brands Hatch · United Kingdom",start:"2027-05-29",end:"2027-05-29",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-london-2027-r2",series:"fe",short:"FE",name:"London E-Prix · Round 2",venue:"Brands Hatch · United Kingdom",start:"2027-05-30",end:"2027-05-30",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-zandvoort-2027-r1",series:"fe",short:"FE",name:"Zandvoort E-Prix · Round 1",venue:"MASCOT Zandvoort Circuit · Netherlands",start:"2027-06-18",end:"2027-06-18",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-zandvoort-2027-r2",series:"fe",short:"FE",name:"Zandvoort E-Prix · Round 2",venue:"MASCOT Zandvoort Circuit · Netherlands",start:"2027-06-19",end:"2027-06-19",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-madrid-2027-r1",series:"fe",short:"FE",name:"Madrid E-Prix · Round 1",venue:"Circuito de Madrid Jarama-RACE · Spain",start:"2027-06-26",end:"2027-06-26",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-madrid-2027-r2",series:"fe",short:"FE",name:"Madrid E-Prix · Round 2",venue:"Circuito de Madrid Jarama-RACE · Spain",start:"2027-06-27",end:"2027-06-27",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-shanghai-2027-r1",series:"fe",short:"FE",name:"Shanghai E-Prix · Round 1",venue:"Shanghai International Circuit · China",start:"2027-07-10",end:"2027-07-10",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-shanghai-2027-r2",series:"fe",short:"FE",name:"Shanghai E-Prix · Round 2",venue:"Shanghai International Circuit · China",start:"2027-07-11",end:"2027-07-11",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-tokyo-2027-r1",series:"fe",short:"FE",name:"Tokyo E-Prix · Round 1",venue:"Tokyo Street Circuit · Japan",start:"2027-07-24",end:"2027-07-24",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"},
-{id:"fe-tokyo-2027-r2",series:"fe",short:"FE",name:"Tokyo E-Prix · Round 2",venue:"Tokyo Street Circuit · Japan",start:"2027-07-25",end:"2027-07-25",source:"https://www.fiaformulae.com/en/calendar",sourceName:"Formula E official calendar"}
-];
+let events = [];
 const seriesNames={f1:"Formula 1",gt3:"GT3",gtwc:"GT World Challenge",nascar:"NASCAR Cup",motogp:"MotoGP",wec:"WEC",wrc:"WRC",indy:"IndyCar",fe:"Formula E",dakar:"Dakar"};
 const seriesLinks={f1:"https://www.formula1.com/en/racing/2026",gt3:"https://www.gt-world-challenge.com/calendar",gtwc:"https://www.gt-world-challenge.com/calendar",wec:"https://www.fiawec.com/en/calendar",nascar:"https://www.nascar.com/nascar-cup-series/2026/schedule/",wrc:"https://www.wrc.com/en/calendar",indy:"https://www.indycar.com/Schedule",fe:"https://www.fiaformulae.com/en/calendar",dakar:"https://www.dakar.com/en/overall-route",motogp:"https://www.motogp.com/en/calendar"};
 
@@ -625,6 +589,27 @@ $("#calendarBtn").addEventListener("click",()=>{const today=todayIST(),items=eve
 function install(){if(installPrompt){installPrompt.prompt();installPrompt.userChoice.finally(()=>installPrompt=null)}else toast("In Chrome, use the install icon in the address bar or browser menu when available.")}
 $("#settingsBtn").addEventListener("click",()=>$("#tools").scrollIntoView({behavior:"smooth",block:"start"}));$("#installBtn2").addEventListener("click",install);window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e});
 if("serviceWorker"in navigator&&location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
-render();renderEvents();updateClock();setInterval(()=>{updateClock();renderEvents()},30000);
+render();loadCalendarData();updateClock();setInterval(()=>{updateClock();renderEvents()},30000);
+async function loadCalendarData(){
+ const status=$("#calendarDataStatus");
+ try{
+  const response=await fetch("./data/calendar.json",{cache:"no-cache"});
+  if(!response.ok)throw new Error("HTTP "+response.status);
+  const payload=await response.json();
+  if(payload.schemaVersion!==1||!Array.isArray(payload.events))throw new Error("Unsupported calendar data");
+  events=payload.events;
+  const snapshot=new Date(payload.snapshotDate+"T12:00:00Z");
+  const checked=new Intl.DateTimeFormat("en-IN",{day:"numeric",month:"short",year:"numeric",timeZone:"UTC"}).format(snapshot);
+  const age=Math.floor((Date.parse(todayIST()+"T00:00:00Z")-Date.parse(payload.snapshotDate+"T00:00:00Z"))/86400000);
+  status.textContent="Curated snapshot · last checked "+checked+" · "+(age>14?"may be outdated; verify dates with official sources":"not automatically refreshed");
+  status.dataset.stale=String(age>14);
+  renderEvents();
+ }catch(error){
+  status.textContent="Calendar data could not be loaded. Please reload and try again.";
+  $("#eventCount").textContent="CALENDAR UNAVAILABLE";
+  $("#eventGrid").innerHTML='<div class="event-empty">The local calendar data could not be loaded. Try reloading the page.</div>';
+  console.error("CHICANE calendar data load failed",error);
+ }
+}
 </script>
 </body></html>
