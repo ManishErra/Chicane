@@ -14,6 +14,14 @@
 - India Standard Time clock
 - Installable-app foundation and versioned shell cache where supported
 
+## Calendar data foundation (18 October 2026)
+
+- Moved curated event records into `data/calendar.json` with an explicit schema version, snapshot date and `curated-static` update mode.
+- The client loads the JSON data separately and displays its last-checked date and a stale-data warning when the snapshot is older than 14 days. This is a freshness indicator, not an automatic schedule feed.
+- Added `npm test` / `npm run validate:calendar` to validate required fields, unique event IDs, supported series IDs, date ranges and HTTPS source links.
+- Service-worker shell cache updated to `chicane-shell-v24` and includes the calendar JSON.
+- Automatic provider adapters are still a subsequent phase; the app does not claim schedules refresh automatically.
+
 ## Current schedule coverage
 
 The preview includes manually curated upcoming dates confirmed against official public calendars checked on **18 October 2026** for:
