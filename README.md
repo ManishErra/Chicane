@@ -44,6 +44,14 @@ Dates are event ranges, not session start times. Each listed event links to an o
 - Rechecked the nearest race dates against primary sources: [F1 2026 calendar](https://www.formula1.com/en/racing/2026), [MotoGP 2026 calendar](https://www.motogp.com/en/calendar), [NASCAR Cup schedule](https://www.nascar.com/nascar-cup-series/2026/schedule/), and the [Formula E 2026/27 calendar](https://www.fiaformulae.com/en/calendar).
 - Dates remain all-day event ranges, not session times. CHICANE still uses a curated static snapshot and does not claim automatic schedule refresh.
 
+## Reusable circuit silhouette registry (18 October 2026)
+
+- Replaced event-ID-only circuit mapping with a reusable venue-name registry. Events that use a known circuit can reuse its silhouette when future calendar entries are added, even if the event ID or season changes.
+- Registry currently covers 20 venues across permanent circuits, street circuits and oval racing, including COTA, Mexico City, Phillip Island, Sepang, Shanghai, Interlagos, Lusail, Yas Marina, Monaco, Brands Hatch, Zandvoort, Fuji, Bahrain, Imola, Silverstone, Spa-Francorchamps, Le Mans, Algarve, Valencia and Phoenix.
+- Venue matching is based on the event's venue/name text, so this avoids having to add a separate mapping for each new year's event ID. It does **not** automatically fetch future calendars or add new venues to the registry.
+- Rally and rally-raid events are not assigned a fake permanent-circuit outline; they use no circuit silhouette until a separate route/stage visual can be sourced.
+- Circuit assets are loaded from Wikimedia Commons file URLs. The registry is intentionally reusable, but every remote file's availability and licence/attribution still needs to be checked before treating the entire library as fully verified. An unknown circuit retains a stylised fallback only for circuit-racing categories.
+
 ## Latest visual refinement (October 2026)
 
 - Added the current MotoGP wordmark from Wikimedia Commons and the IndyCar Series wordmark to championship chips and the image-led series cards. These are used as brand identifiers; their marks remain the property of their respective owners. Sources: [MotoGP logo (2024)](https://commons.wikimedia.org/wiki/File:MotoGP_logo_(2024).svg) and [IndyCar Series text logo](https://commons.wikimedia.org/wiki/File:IndyCar_Series_textlogo.svg).
