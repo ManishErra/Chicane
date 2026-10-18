@@ -620,9 +620,9 @@ function renderEvents(){const today=todayIST(),q=$("#eventSearch").value.trim().
 function dateBadge(iso){const d=new Date(iso+"T12:00:00Z");return '<span>'+new Intl.DateTimeFormat("en-IN",{month:"short",timeZone:"UTC"}).format(d).toUpperCase()+'</span><strong>'+new Intl.DateTimeFormat("en-IN",{day:"2-digit",timeZone:"UTC"}).format(d)+'</strong><small>'+d.getUTCFullYear()+'</small>'}
 function trackPath(id,series){const paths={nascar:"M24 22 Q80 3 136 22 Q151 50 136 76 Q80 96 24 76 Q9 50 24 22 Z",motogp:"M18 22 L39 15 L54 30 L77 25 L93 12 L112 26 L140 34 L133 51 L115 59 L119 78 L94 84 L77 68 L58 77 L43 61 L22 65 L14 45 Z",f1:"M18 56 L25 33 L40 22 L55 34 L67 50 L82 25 L108 20 L125 29 L113 43 L126 58 L115 74 L91 68 L75 81 L54 69 L36 78 Z",gtwc:"M18 60 L15 42 L32 31 L45 15 L62 27 L72 44 L98 36 L119 22 L140 38 L130 53 L139 67 L116 80 L91 66 L69 78 L47 66 L32 74 Z"};return paths[id]||paths[series]||paths.gtwc}
 const CIRCUITS=[
-{key:"cota",names:["circuit of the americas"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/F1_circuits_2014-2018_-_Circuit_of_the_Americas_(version_2).svg?width=300",source:"CC0 OpenClipart"},
+{key:"cota",names:["circuit of the americas"],asset:"./assets/circuits/cota.svg",source:"Local SVG; CC0 1.0"},
 {key:"mexico",names:["autódromo hermanos rodríguez","autodromo hermanos rodriguez"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez.svg?width=300",source:"Wikimedia Commons"},
-{key:"phillip-island",names:["phillip island"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Phillip_Island_Grand_Prix_Circuit.svg?width=300",source:"Wikimedia Commons"},
+{key:"phillip-island",names:["phillip island"],asset:"./assets/circuits/phillip-island.svg",source:"Local SVG; CC BY-SA 3.0"},
 {key:"sepang",names:["sepang international circuit"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Sepang.svg?width=300",source:"Wikimedia Commons"},
 {key:"shanghai",names:["shanghai international circuit"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Shanghai_International_Racing_Circuit_track_map.svg?width=300",source:"Wikimedia Commons"},
 {key:"interlagos",names:["interlagos"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Circuit_Interlagos.svg?width=300",source:"Wikimedia Commons"},
@@ -632,7 +632,7 @@ const CIRCUITS=[
 {key:"brands-hatch",names:["brands hatch"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Brands_Hatch.svg?width=300",source:"Wikimedia Commons"},
 {key:"zandvoort",names:["zandvoort"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Zandvoort.svg?width=300",source:"Public domain, Wikimedia Commons; legacy layout"},
 {key:"fuji",names:["fuji speedway"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Circuit_Fuji.svg?width=300",source:"Public domain, Wikimedia Commons"},
-{key:"bahrain",names:["bahrain international circuit"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Circuit_Bahrain.svg?width=300",source:"Wikimedia Commons"},
+{key:"bahrain",names:["bahrain international circuit"],asset:"./assets/circuits/bahrain.svg",source:"Local SVG; CC BY-SA 3.0"},
 {key:"imola",names:["autodromo enzo e dino ferrari","imola"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Imola_2009.svg?width=300",source:"Wikimedia Commons; modern layout"},
 {key:"silverstone",names:["silverstone"],asset:"https://commons.wikimedia.org/wiki/Special:Redirect/file/Circuit_Silverstone_2011.svg?width=300",source:"Wikimedia Commons; GP layout since 2011"}
 ];
