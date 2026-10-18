@@ -28,6 +28,15 @@ WEC, WRC and IndyCar remain available as championship filters and official links
 
 Dates are event ranges, not session start times. Each listed event links to an official source. Calendars can change; verify details on the linked official source before travel or viewing. This is a curated static snapshot, not an automatically refreshed live feed.
 
+## Visual + schedule verification pass (18 October 2026)
+
+- Restored full-colour photography across hero, series, result and event-card images while preserving the approved black layout and card proportions.
+- Added event/venue-specific licensed image treatments for the Phoenix race weekend, Circuit of The Americas, Mexico City, Phillip Island, Lusail and the Dakar Rally. These are venue- or series-relevant images, not necessarily photographs from the upcoming 2026 event; card titles and dates remain grounded in the linked official schedules.
+- Expanded the verified circuit-map mapping for selected events, including COTA, Mexico City, Phillip Island, Sepang, Shanghai, Interlagos, Lusail and Yas Marina. Other events still use the existing stylised fallback silhouette; they are not represented as exact circuit maps.
+- Removed the GT World Challenge Australia · Adelaide entry because its date was not independently confirmed on an event-specific official page during this pass. The confirmed GT World Challenge Asia Shanghai finale remains listed for 30 October–1 November 2026. See the [official Shanghai event page](https://www.gt-world-challenge-asia.com/event/90/shanghai-international-circuit) and [calendar announcement](https://www.gt-world-challenge-asia.com/news/985/shanghai-returns-as-2026-season-finale).
+- Rechecked the nearest race dates against primary sources: [F1 2026 calendar](https://www.formula1.com/en/racing/2026), [MotoGP 2026 calendar](https://www.motogp.com/en/calendar), [NASCAR Cup schedule](https://www.nascar.com/nascar-cup-series/2026/schedule/), and the [Formula E 2026/27 calendar](https://www.fiaformulae.com/en/calendar).
+- Dates remain all-day event ranges, not session times. CHICANE still uses a curated static snapshot and does not claim automatic schedule refresh.
+
 ## Latest visual refinement (October 2026)
 
 - Added the current MotoGP wordmark from Wikimedia Commons and the IndyCar Series wordmark to championship chips and the image-led series cards. These are used as brand identifiers; their marks remain the property of their respective owners. Sources: [MotoGP logo (2024)](https://commons.wikimedia.org/wiki/File:MotoGP_logo_(2024).svg) and [IndyCar Series text logo](https://commons.wikimedia.org/wiki/File:IndyCar_Series_textlogo.svg).
@@ -98,7 +107,15 @@ The current preview uses representative motorsport-series photography from Wikim
 - Endurance racing: [2021 FIA WEC 8 Hours of Bahrain](https://commons.wikimedia.org/wiki/File:2021_FIA_WEC_8_Hours_of_Bahrain_Alpine_A480_Alpine_Elf_Matmut.jpg) — Kobokem2021, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 - Formula E: [Nio Formula E car](https://commons.wikimedia.org/wiki/File:Nio_Formula_E_car.jpg) — Rivera0997, [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
 
-Image crops and grayscale treatment are modifications. The event-specific photo pass remains open work: use a verified venue/event image where available, retain license/author credits, and use a non-misleading fallback otherwise.
+- Phoenix Raceway venue photo: [Phoenix raceway](https://commons.wikimedia.org/wiki/File:Phoenix_raceway_(50582495326).jpg) — Zach Catanzareti Photo, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+- Circuit of The Americas venue photo: [Circuit of the Americas](https://commons.wikimedia.org/wiki/File:Circuit_of_the_Americas_(35888112245).jpg) — [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+- Mexico City venue photo: [Autódromo Hermanos Rodríguez Semaphore — Mexican Grand Prix](https://commons.wikimedia.org/wiki/File:Aut%C3%B3dromo_Hermanos_Rodr%C3%ADguez_Semaphore_-_Mexican_Grand_Prix_24.JPG) — [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+- Phillip Island motorcycle photo: [Dani Pedrosa at Phillip Island (2008)](https://commons.wikimedia.org/wiki/File:Dani_Pedrosa_2008_Phillip_Island.jpg) — [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+- Sepang venue photo: [Sepang International Circuit grandstand tower](https://commons.wikimedia.org/wiki/File:Sepang_International_Circuit_Grandstand_Tower_2016_Malaysian_GP.jpg) — [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
+- Lusail MotoGP grid photo: [MotoGP 2019 grid at Lusail](https://commons.wikimedia.org/wiki/File:MotoGP_2019_Grid._Circuito_de_Lusail.jpg) — [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+- Dakar Rally photo: [Dakar Rally 2021 — Stage 01](https://commons.wikimedia.org/wiki/File:Dakar_Rally_2021_-_Stage_01_(50795645798).jpg) — EKSRX, [CC BY 2.0](https://creativecommons.org/licenses/by/2.0/).
+
+Image crops are modifications. The event-specific photo pass remains open work: use a verified venue/event image where available, retain license/author credits, and use a non-misleading fallback otherwise.
 
 ## Run locally
 
