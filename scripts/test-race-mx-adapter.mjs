@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { normalizeRaceMxCalendar, mergeRaceMxEvents } from "../race-mx-adapter.mjs";
 
+// Fixed test clock makes feed freshness assertions deterministic.
 const payload = {
   license: "CC BY 4.0 — attribute Race.mx and link to https://race.mx",
   updated: "2026-10-18T13:55:37+00:00",
