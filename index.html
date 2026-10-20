@@ -562,7 +562,7 @@ $("#filters").addEventListener("click",e=>{const b=e.target.closest("button[data
 $("#search").addEventListener("input",render);$("#seriesGrid").addEventListener("click",e=>{const b=e.target.closest("[data-fav]");if(!b)return;const id=b.dataset.fav,f=getFaves();setFaves(f.includes(id)?f.filter(x=>x!==id):[...f,id]);render();toast(f.includes(id)?"Favourite removed":"Added to favourites")});
 $("#showFaves").addEventListener("click",()=>{onlyFaves=!onlyFaves;$("#showFaves").textContent=onlyFaves?"Show all series":"Show favourites";$("#series").scrollIntoView({behavior:"smooth"});render()});
 $("#resetFaves").addEventListener("click",()=>{setFaves([]);onlyFaves=false;$("#showFaves").textContent="Show favourites";render();toast("Favourites cleared")});
-function updateClock(){const now=new Date();$("#clock").textContent=new Intl.DateTimeFormat("en-IN",{timeZone:"Asia/Kolkata",hour:"2-digit",minute:"2-digit",hour12:false}).format(now)+" IST"}
+function updateClock(){const clock=$("#clock");if(!clock)return;const now=new Date();clock.textContent=new Intl.DateTimeFormat("en-IN",{timeZone:"Asia/Kolkata",hour:"2-digit",minute:"2-digit",hour12:false}).format(now)+" IST"}
 function dateLabel(iso){return new Intl.DateTimeFormat("en-IN",{day:"numeric",month:"short",year:"numeric",timeZone:"UTC"}).format(new Date(iso+"T12:00:00Z"))}
 function dateRange(e){return e.start===e.end?dateLabel(e.start):dateLabel(e.start)+" – "+dateLabel(e.end)}
 function todayIST(){const parts=new Intl.DateTimeFormat("en-CA",{timeZone:"Asia/Kolkata",year:"numeric",month:"2-digit",day:"2-digit"}).formatToParts(new Date());const p={};parts.forEach(x=>p[x.type]=x.value);return p.year+"-"+p.month+"-"+p.day}
