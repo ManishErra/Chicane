@@ -13,7 +13,7 @@ export default async function handler(req, res) {
       return res.status(502).json({ error: "Race.mx upstream returned HTTP " + upstream.status });
     }
     const payload = await upstream.json();
-    if (!payload || !Array.isArray(payload.events) || !/CC BY 4\\.0/i.test(String(payload.license || ""))) {
+    if (!payload || !Array.isArray(payload.events) || !/CC BY 4\.0/i.test(String(payload.license || ""))) {
       return res.status(502).json({ error: "Race.mx returned an invalid or unlicensed calendar" });
     }
     res.setHeader("Cache-Control", "public, s-maxage=300, stale-while-revalidate=600");
