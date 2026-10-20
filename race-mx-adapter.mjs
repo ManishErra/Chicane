@@ -13,7 +13,7 @@ export function normalizeRaceMxCalendar(payload){
  if(!payload||typeof payload!=="object")throw new Error("Race.mx payload must be an object");
  if(!/CC BY 4\.0/i.test(String(payload.license||"")))throw new Error("Race.mx licence is missing or is not CC BY 4.0");
  if(!validDate(String(payload.updated||"").slice(0,10)))throw new Error("Race.mx updated timestamp is invalid");
- if(!Array.isArray(payload.events))throw new Error("Race.mx events must be an array");
+ if(!Array.isArray(payload.events)||payload.events.length===0)throw new Error("Race.mx events must be a non-empty array");
  const events=[],ids=new Set();let skippedUnsupportedSeries=0;
  for(const [i,item] of payload.events.entries()){
   const at="Race.mx events["+i+"]";
