@@ -602,7 +602,7 @@ async function loadCalendarData(){
   let liveStatus="";
   try{
    const {normalizeRaceMxCalendar,mergeRaceMxEvents}=await import("./race-mx-adapter.mjs");
-   const liveResponse=await fetch("https://race.mx/data/calendar.json",{cache:"no-cache",headers:{Accept:"application/json"}});
+   const liveResponse=await fetch("/api/race-mx",{cache:"no-cache",headers:{Accept:"application/json"}});
    if(!liveResponse.ok)throw new Error("Race.mx HTTP "+liveResponse.status);
    const livePayload=await liveResponse.json();
    const normalized=normalizeRaceMxCalendar(livePayload);
