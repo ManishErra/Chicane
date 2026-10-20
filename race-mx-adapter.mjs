@@ -37,7 +37,6 @@ export function mergeRaceMxEvents(baseEvents,providerEvents){
   const n=canonical(incoming.name),v=canonical(incoming.venue);
   let i=merged.findIndex(e=>!matched.has(e.id)&&e.series===incoming.series&&e.start===incoming.start&&e.end===incoming.end);
   if(i<0)i=merged.findIndex(e=>{if(matched.has(e.id)||e.series!==incoming.series)return false;const en=canonical(e.name);return n&&en&&(n.includes(en)||en.includes(n))});
-  if(i<0&&v)i=merged.findIndex(e=>{if(matched.has(e.id)||e.series!==incoming.series)return false;const ev=canonical(e.venue);return ev&&(ev.includes(v)||v.includes(ev))});
   if(i>=0){const old=merged[i];merged[i]={...old,...incoming,id:old.id,name:old.name,short:old.short,venue:incoming.venue||old.venue};matched.add(old.id);updatedExisting++}
   else{merged.push({...incoming});matched.add(incoming.id);added++}
  }
