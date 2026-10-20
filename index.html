@@ -598,10 +598,30 @@ async function loadCalendarData(){
   const payload=await response.json();
   if(payload.schemaVersion!==1||!Array.isArray(payload.events))throw new Error("Unsupported calendar data");
   events=payload.events;
+  const curatedEvents=events;
+  let liveStatus="";
+  try{
+   const {normalizeRaceMxCalendar,mergeRaceMxEvents}=await import("./race-mx-adapter.mjs");
+   const liveResponse=await fetch("https://race.mx/data/calendar.json",{cache:"no-cache",headers:{Accept:"application/json"}});
+   if(!liveResponse.ok)throw new Error("Race.mx HTTP "+liveResponse.status);
+   const livePayload=await liveResponse.json();
+   const normalized=normalizeRaceMxCalendar(livePayload);
+   // First rollout is deliberately limited to F1 and Formula E. The feed covers
+   // Mexican events, not the whole global calendar; never map NASCAR Mexico or
+   // SCORE into unrelated CHICANE championships.
+   const supported=normalized.events.filter(e=>e.series==="f1"||e.series==="fe");
+   const merged=mergeRaceMxEvents(curatedEvents,supported);
+   events=merged.events;
+   liveStatus=" · Live check "+new Intl.DateTimeFormat("en-IN",{hour:"2-digit",minute:"2-digit",timeZone:"Asia/Kolkata",hour12:false}).format(new Date())+" IST · Data via Race.mx";
+  }catch(liveError){
+   events=curatedEvents;
+   liveStatus=" · Live refresh unavailable; curated calendar retained";
+   console.warn("CHICANE Race.mx refresh failed; keeping curated calendar",liveError);
+  }
   const snapshot=new Date(payload.snapshotDate+"T12:00:00Z");
   const checked=new Intl.DateTimeFormat("en-IN",{day:"numeric",month:"short",year:"numeric",timeZone:"UTC"}).format(snapshot);
   const age=Math.floor((Date.parse(todayIST()+"T00:00:00Z")-Date.parse(payload.snapshotDate+"T00:00:00Z"))/86400000);
-  status.textContent="Curated snapshot · last checked "+checked+" · "+(age>14?"may be outdated; verify dates with official sources":"not automatically refreshed");
+  status.textContent="Curated snapshot · last checked "+checked+liveStatus+" · Race.mx covers selected Mexico-linked events only";
   status.dataset.stale=String(age>14);
   renderEvents();
  }catch(error){
