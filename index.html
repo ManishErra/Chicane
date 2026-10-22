@@ -621,7 +621,8 @@ async function loadCalendarData(){
   const snapshot=new Date(payload.snapshotDate+"T12:00:00Z");
   const checked=new Intl.DateTimeFormat("en-IN",{day:"numeric",month:"short",year:"numeric",timeZone:"UTC"}).format(snapshot);
   const age=Math.floor((Date.parse(todayIST()+"T00:00:00Z")-Date.parse(payload.snapshotDate+"T00:00:00Z"))/86400000);
-  status.textContent="Curated snapshot · last checked "+checked+liveStatus+" · Race.mx covers selected Mexico-linked events only";
+  const refreshed=new Intl.DateTimeFormat("en-IN",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit",timeZone:"Asia/Kolkata",hour12:false}).format(new Date());
+  status.textContent="Curated calendar snapshot: "+checked+" · Checked: "+refreshed+" IST"+liveStatus+" · Global calendar coverage is curated; Race.mx covers selected Mexico-linked events only";
   status.dataset.stale=String(age>14);
   renderEvents();
  }catch(error){
