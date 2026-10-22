@@ -1,5 +1,5 @@
 const CACHE = "chicane-shell-v26";
-const FILES = ["./", "./index.html", "./manifest.webmanifest", "./data/calendar.json];
+const FILES = ["./", "./index.html", "./manifest.webmanifest", "./data/calendar.json"];
 
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES)).then(() => self.skipWaiting()));
