@@ -589,7 +589,7 @@ $("#calendarBtn").addEventListener("click",()=>{const today=todayIST(),items=eve
 function install(){if(installPrompt){installPrompt.prompt();installPrompt.userChoice.finally(()=>installPrompt=null)}else toast("In Chrome, use the install icon in the address bar or browser menu when available.")}
 $("#settingsBtn").addEventListener("click",()=>$("#tools").scrollIntoView({behavior:"smooth",block:"start"}));$("#installBtn2").addEventListener("click",install);window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e});
 if("serviceWorker"in navigator&&location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
-render();loadCalendarData();updateClock();setInterval(()=>{updateClock();renderEvents()},30000);
+render();loadCalendarData();updateClock();document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")loadCalendarData()});setInterval(()=>{updateClock();renderEvents()},30000);
 async function loadCalendarData(){
  const status=$("#calendarDataStatus");
  try{
