@@ -25,7 +25,7 @@ function validateProviderEvent(event,index,options){
  const at="Race.mx normalized events["+index+"]";
  if(!event||typeof event!=="object")throw new Error(at+" must be an object");
  for(const field of ["id","series","short","name","start","end","status","source","sourceName","providerUpdated","provider","license","dataOrigin","freshness"])if(typeof event[field]!=="string"||!event[field].trim())throw new Error(at+"."+field+" is required");
- if(event.provider!=="Race.mx"||!/CC BY 4\\.0/i.test(event.license)||!event.sourceName.includes("Race.mx"))throw new Error(at+" has invalid provider attribution");
+ if(event.provider!=="Race.mx"||!/CC BY 4\.0/i.test(event.license)||!event.sourceName.includes("Race.mx"))throw new Error(at+" has invalid provider attribution");
  if(event.dataOrigin!=="live-provider")throw new Error(at+" has invalid data origin");
  if(!validDate(event.start)||!validDate(event.end)||event.end<event.start)throw new Error(at+" has an invalid date range");
  if(!STATUSES.has(event.status))throw new Error(at+" has an unsupported status");
