@@ -595,7 +595,7 @@ async function loadCalendarData(){
  const storageKey="chicane-calendar-live-snapshot-v1";
  const dateLabel=iso=>new Intl.DateTimeFormat("en-IN",{day:"numeric",month:"short",year:"numeric",timeZone:"UTC"}).format(new Date(iso+"T12:00:00Z"));
  const nowLabel=()=>new Intl.DateTimeFormat("en-IN",{day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit",timeZone:"Asia/Kolkata",hour12:false}).format(new Date());
- const signature=list=>JSON.stringify(list.map(e=>({id:e.id,series:e.series,name:e.name,start:e.start,end:e.end,status:e.status,venue:e.venue,source:e.source})).sort((a,b)=>String(a.id).localeCompare(String(b.id))));
+ const {calendarSignature,persistCalendarSnapshot}=await import("./calendar-snapshot.mjs");
  let checkLabel=nowLabel(),liveStatus=" · Live refresh unavailable; curated calendar retained";
  try{
   const response=await fetch("./data/calendar.json",{cache:"no-store"});
@@ -621,7 +621,7 @@ async function loadCalendarData(){
     }
    }
   }
-  const before=signature(events);
+  const beforeEvents=events.slice();
   let successfulLiveCheck=false;
   try{
    const {normalizeRaceMxCalendar,mergeRaceMxEvents}=await import("./race-mx-adapter.mjs");
@@ -637,21 +637,14 @@ async function loadCalendarData(){
   }catch(liveError){
    console.warn("CHICANE live refresh failed; retaining the last valid calendar",liveError);
   }
-  const after=signature(events);
-  const changed=before!==after;
-  const priorSnapshot=previous&&/^\d{4}-\d{2}-\d{2}$/.test(previous.snapshotDate||"")?previous.snapshotDate:payload.snapshotDate;
-  // Only advance the snapshot date after the changed event data is successfully
-  // persisted. If storage is unavailable, keep the previous date and say so.
-  const proposedSnapshotDate=changed?todayIST():priorSnapshot;
   const storedAt=new Date().toISOString();
-  let saved=true,snapshotDate=priorSnapshot;
-  try{
-   localStorage.setItem(storageKey,JSON.stringify({schemaVersion:1,snapshotDate:proposedSnapshotDate,checkedAt:storedAt,events}));
-   snapshotDate=proposedSnapshotDate;
-  }catch(storageError){
-   saved=false;
-   console.warn("CHICANE could not persist this device's calendar snapshot",storageError);
-  }
+  const persistence=persistCalendarSnapshot({
+   storage:localStorage,storageKey,events,baselineEvents:beforeEvents,
+   previousSnapshotDate:previous&&previous.snapshotDate,
+   curatedSnapshotDate:payload.snapshotDate,today:todayIST(),checkedAt:storedAt
+  });
+  const changed=persistence.changed,saved=persistence.saved,snapshotDate=persistence.snapshotDate;
+  if(!saved)console.warn("CHICANE could not persist this device's calendar snapshot",persistence.error);
   const age=Math.floor((Date.parse(todayIST()+"T00:00:00Z")-Date.parse(snapshotDate+"T00:00:00Z"))/86400000);
   const savedSnapshot=!saved?" · Snapshot not saved; previous snapshot date retained":changed?" · Snapshot updated on this device":" · No calendar changes detected";
   status.textContent="Calendar snapshot: "+dateLabel(snapshotDate)+" · Checked: "+checkLabel+" IST"+liveStatus+savedSnapshot+" · Worldwide calendar remains curated; Race.mx covers selected Mexico-linked events only";
