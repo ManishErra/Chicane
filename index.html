@@ -610,15 +610,20 @@ async function loadCalendarData(){
   // never make the entire calendar unavailable.
   events=curatedEvents;
   if(previous&&previous.schemaVersion===1&&Array.isArray(previous.events)&&/^\d{4}-\d{2}-\d{2}$/.test(previous.snapshotDate||"")){
-   const priorLive=previous.events.filter(e=>e&&e.dataOrigin==="live-provider");
-   if(priorLive.length){
-    try{
-     const {mergeRaceMxEvents}=await import("./race-mx-adapter.mjs");
-     events=mergeRaceMxEvents(curatedEvents,priorLive).events;
-    }catch(storageMergeError){
-     console.warn("Ignoring incompatible saved live events; using curated calendar",storageMergeError);
-     events=curatedEvents;
+   const priorRaceMx=previous.events.filter(e=>e&&e.dataOrigin==="live-provider"&&e.provider==="Race.mx");
+   const priorJolpica=previous.events.filter(e=>e&&e.dataOrigin==="live-provider"&&e.provider==="Jolpica F1");
+   try{
+    if(priorJolpica.length){
+     const {mergeJolpicaSchedule}=await import("./jolpica-f1-adapter.mjs");
+     events=mergeJolpicaSchedule(events,priorJolpica).events;
     }
+    if(priorRaceMx.length){
+     const {mergeRaceMxEvents}=await import("./race-mx-adapter.mjs");
+     events=mergeRaceMxEvents(events,priorRaceMx).events;
+    }
+   }catch(storageMergeError){
+    console.warn("Ignoring incompatible saved live events; using known-good calendar",storageMergeError);
+    events=curatedEvents;
    }
   }
   const beforeEvents=events.slice();
@@ -635,7 +640,20 @@ async function loadCalendarData(){
    successfulLiveCheck=true;
    liveStatus=" · Race.mx check succeeded · "+supported.length+" supported live events";
   }catch(liveError){
-   console.warn("CHICANE live refresh failed; retaining the last valid calendar",liveError);
+   console.warn("CHICANE Race.mx refresh failed; retaining the last valid calendar",liveError);
+  }
+  try{
+   const f1Response=await fetch("/api/f1-schedule",{cache:"no-store",headers:{Accept:"application/json"}});
+   if(!f1Response.ok)throw new Error("Jolpica F1 HTTP "+f1Response.status);
+   const f1Payload=await f1Response.json();
+   const {normalizeJolpicaSchedule,mergeJolpicaSchedule}=await import("./jolpica-f1-adapter.mjs");
+   const incomingF1=normalizeJolpicaSchedule(f1Payload);
+   const mergedF1=mergeJolpicaSchedule(events,incomingF1);
+   events=mergedF1.events;
+   liveStatus+=" · Jolpica F1 check succeeded · "+incomingF1.length+" races";
+  }catch(f1Error){
+   console.warn("CHICANE Jolpica F1 refresh failed; retaining prior F1 schedule",f1Error);
+   liveStatus+=" · Jolpica F1 unavailable; previous schedule retained";
   }
   const storedAt=new Date().toISOString();
   const persistence=persistCalendarSnapshot({
