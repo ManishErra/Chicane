@@ -4,6 +4,6 @@
   "type": "module",
   "scripts": {
     "validate:calendar": "node scripts/validate-calendar.mjs",
-    "test": "npm run validate:calendar && node scripts/test-race-mx-adapter.mjs"
+    "test": "npm run validate:calendar && node scripts/test-race-mx-adapter.mjs && node scripts/test-calendar-snapshot.mjs"
   }
 }
