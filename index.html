@@ -173,6 +173,36 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
 .photo-gt{background-image:url('https://commons.wikimedia.org/wiki/Special:Redirect/file/GT3_and_GT4_race_one_-_McLaren_leading_a_Lamborghini_and_an_Aston_Martin_(51372326297).jpg?width=960')}
 
 /* GTWC event-specific visual treatment: distinct venue colourways and a track-outline motif. */
+
+/* Strongly differentiate GTWC cards: the base CSS applies grayscale to all event art,
+   so override it here and make each venue's palette visible. */
+.event-image[class*="event-photo-gtwc-"]{filter:none!important;background-blend-mode:normal!important;background-image:linear-gradient(135deg,var(--track-a,#16343a) 0%,#101010 80%),url('https://commons.wikimedia.org/wiki/Special:Redirect/file/GT3_and_GT4_race_one_-_McLaren_leading_a_Lamborghini_and_an_Aston_Martin_(51372326297).jpg?width=960')!important;background-size:cover!important;background-position:center!important}
+.event-image[class*="event-photo-gtwc-"]:before{inset:8% 6%;opacity:.92;background-size:82% auto;background-position:center;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 150'%3E%3Cpath d='M34 94 C18 74 34 43 62 49 L88 23 Q103 13 116 32 L135 51 L177 43 Q203 37 211 60 L247 63 Q273 65 265 88 L245 108 Q230 120 210 103 L177 91 L145 116 Q126 128 111 110 L87 91 L60 109 Q44 113 34 94Z' fill='none' stroke='%23fff' stroke-width='4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.event-image[class*="event-photo-gtwc-"]:after{background:linear-gradient(180deg,#0000 20%,#0009 100%)}
+.event-image[class*="event-photo-gtwc-"] .event-date-badge{z-index:3}
+.event-photo-gtwc-shanghai-2026{--track-a:#0e5575}
+.event-photo-gtwc-australia-adelaide-2026{--track-a:#874222}
+.event-photo-gtwc-us-2027-sonoma{--track-a:#36754b}
+.event-photo-gtwc-asia-2027-sepang{--track-a:#167e83}
+.event-photo-gtwc-eu-2027-paul-ricard{--track-a:#394fa5}
+.event-photo-gtwc-au-2027-phillip-island{--track-a:#168276}
+.event-photo-gtwc-eu-2027-brands-hatch{--track-a:#8a622a}
+.event-photo-gtwc-asia-2027-chang{--track-a:#9b3939}
+.event-photo-gtwc-us-2027-cota{--track-a:#814aa4}
+.event-photo-gtwc-eu-2027-imola{--track-a:#318052}
+.event-photo-gtwc-us-2027-watkins-glen{--track-a:#27794a}
+.event-photo-gtwc-au-2027-the-bend{--track-a:#92752a}
+.event-photo-gtwc-asia-2027-suzuka{--track-a:#2865a0}
+.event-photo-gtwc-us-2027-road-atlanta{--track-a:#9a4141}
+.event-photo-gtwc-eu-2027-spa{--track-a:#1e8269}
+.event-photo-gtwc-asia-2027-fuji{--track-a:#2677a5}
+.event-photo-gtwc-eu-2027-misano{--track-a:#a04791}
+.event-photo-gtwc-au-2027-sydney{--track-a:#746363}
+.event-photo-gtwc-eu-2027-magny-cours{--track-a:#a18135}
+.event-photo-gtwc-eu-2027-nurburgring{--track-a:#4b8050}
+.event-photo-gtwc-eu-2027-zandvoort{--track-a:#25829b}
+.event-photo-gtwc-eu-2027-hungaroring{--track-a:#9c4e2d}
+.event-photo-gtwc-eu-2027-barcelona{--track-a:#525ba7}
 .event-image[class*="event-photo-gtwc-"]{background-image:linear-gradient(135deg,var(--track-a,#101010),var(--track-b,#252525)),url('https://commons.wikimedia.org/wiki/Special:Redirect/file/GT3_and_GT4_race_one_-_McLaren_leading_a_Lamborghini_and_an_Aston_Martin_(51372326297).jpg?width=960');background-blend-mode:screen,normal}
 .event-image[class*="event-photo-gtwc-"]:before{content:"";position:absolute;inset:12% 8%;z-index:1;opacity:.78;background-repeat:no-repeat;background-position:center;background-size:contain;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 150'%3E%3Cpath d='M34 94 C18 74 34 43 62 49 L88 23 Q103 13 116 32 L135 51 L177 43 Q203 37 211 60 L247 63 Q273 65 265 88 L245 108 Q230 120 210 103 L177 91 L145 116 Q126 128 111 110 L87 91 L60 109 Q44 113 34 94Z' fill='none' stroke='%23fff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
 .event-image[class*="event-photo-gtwc-"]:after{z-index:2;background:linear-gradient(90deg,#0002,#0007)}
