@@ -590,6 +590,51 @@ function install(){if(installPrompt){installPrompt.prompt();installPrompt.userCh
 $("#settingsBtn").addEventListener("click",()=>$("#tools").scrollIntoView({behavior:"smooth",block:"start"}));$("#installBtn2").addEventListener("click",install);window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();installPrompt=e});
 if("serviceWorker"in navigator&&location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}));
 render();loadCalendarData();updateClock();document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")loadCalendarData()});setInterval(()=>{updateClock();renderEvents()},30000);
+async function loadCommunitySchedules(currentEvents){
+ // MotoDB is a CC0 community-maintained schedule dataset hosted on GitHub.
+ // Only validated future records are merged; the curated calendar remains the fallback.
+ const base="https://raw.githubusercontent.com/vishwapramuditha/moto-db/main/data/";
+ const today=todayIST();
+ const specs=[
+  {path:"wec/2026/schedule.json",series:"wec",short:"WEC",source:"https://www.fiawec.com/en/season/2026",sourceName:"FIA WEC schedule",rows:p=>p.races||[],name:r=>r.name,start:r=>r.startDate||r.date,end:r=>r.endDate||r.startDate,venue:r=>[r.location?.venue,r.location?.address].filter(Boolean).join(" · ")},
+  {path:"indycar/2026/schedule.json",series:"indy",short:"INDY",source:"https://www.indycar.com/Schedule",sourceName:"IndyCar schedule",rows:p=>p.races||[],name:r=>r.name||r.short_name,start:r=>r.date,end:r=>r.date,venue:r=>[r.track_name,r.location].filter(Boolean).join(" · ")},
+  {path:"nascar/2026/schedule.json",series:"nascar",short:"NASCAR",source:"https://www.nascar.com/nascar-cup-series/2026/schedule/",sourceName:"NASCAR Cup schedule",rows:p=>p.series?.cup||[],name:r=>r.race_name||r.name,start:r=>r.date_scheduled||r.race_date,end:r=>r.date_scheduled||r.race_date,venue:r=>r.track_name||""},
+  {path:"motogp/2026/schedule.json",series:"motogp",short:"MGP",source:"https://www.motogp.com/en/calendar",sourceName:"MotoGP calendar",rows:p=>p.events||[],name:r=>r.sponsored_name||r.name,start:r=>r.date_start,end:r=>r.date_end,venue:r=>[r.circuit?.name,r.circuit?.place,r.country?.name].filter(Boolean).join(" · ")},
+  {path:"wrc/2026/schedule.json",series:"wrc",short:"WRC",source:"https://www.wrc.com/en/calendar",sourceName:"WRC calendar",rows:p=>p.races||[],name:r=>r.name,start:r=>r.start_date,end:r=>r.finish_date,venue:r=>r.location||r.country||""}
+ ];
+ const parseDate=value=>{
+  if(!value)return null;
+  const s=String(value).trim();
+  if(/^\d{4}-\d{2}-\d{2}/.test(s)){const d=s.slice(0,10);return /^\d{4}-\d{2}-\d{2}$/.test(d)&&!Number.isNaN(Date.parse(d+"T00:00:00Z"))?d:null}
+  const d=new Date(s);return Number.isNaN(d.getTime())?null:d.toISOString().slice(0,10)
+ };
+ const settled=await Promise.allSettled(specs.map(async spec=>{
+  const response=await fetch(base+spec.path,{cache:"no-store",headers:{Accept:"application/json"}});
+  if(!response.ok)throw new Error(spec.series+" feed HTTP "+response.status);
+  const payload=await response.json();
+  const rows=spec.rows(payload);
+  if(!Array.isArray(rows))throw new Error(spec.series+" feed has invalid shape");
+  return rows.map((r,i)=>{
+   let start=parseDate(spec.start(r)),end=parseDate(spec.end(r))||start;
+   if(spec.series==="wrc"&&start&&!/^\d{4}-/.test(String(spec.start(r)))){const y=2026;start=parseDate(String(spec.start(r))+" "+y);end=parseDate(String(spec.end(r))+" "+y)}
+   if(!start||!end||end<start||!spec.name(r))return null;
+   return {id:"community-"+spec.series+"-"+String(r.race_id||r.event_id||r.round||r.slug||i)+"-2026",series:spec.series,short:spec.short,name:String(spec.name(r)).trim(),venue:String(spec.venue(r)||"").trim()||"Venue to be confirmed",start,end,source:spec.source,sourceName:spec.sourceName,provider:"MotoDB CC0",dataOrigin:"live-provider",freshness:"checked",providerUpdated:payload.updated_at||null};
+  }).filter(e=>e&&e.end>=today);
+ }));
+ let merged=currentEvents.slice(),counts=[];
+ for(let i=0;i<settled.length;i++){
+  const result=settled[i],spec=specs[i];
+  if(result.status!=="fulfilled"){console.warn("CHICANE community schedule unavailable:",spec.series,result.reason);continue}
+  let added=0;
+  for(const event of result.value){
+   const duplicate=merged.some(old=>old.series===event.series&&(old.id===event.id||(old.start===event.start&&old.end===event.end)||(String(old.name).toLowerCase()===event.name.toLowerCase())));
+   if(!duplicate){merged.push(event);added++}
+  }
+  counts.push(spec.series+":"+result.value.length+" checked/"+added+" added");
+ }
+ return {events:merged,summary:counts.join(", ")};
+}
+
 async function loadCalendarData(){
  const status=$("#calendarDataStatus");
  const storageKey="chicane-calendar-live-snapshot-v1";
@@ -655,6 +700,11 @@ async function loadCalendarData(){
    console.warn("CHICANE Jolpica F1 refresh failed; retaining prior F1 schedule",f1Error);
    liveStatus+=" · Jolpica F1 unavailable; previous schedule retained";
   }
+  try{
+   const community=await loadCommunitySchedules(events);
+   events=community.events;
+   if(community.summary)liveStatus+=" · Community feeds "+community.summary;
+  }catch(communityError){console.warn("CHICANE community schedule refresh failed; retaining prior calendar",communityError)}
   const storedAt=new Date().toISOString();
   const persistence=persistCalendarSnapshot({
    storage:localStorage,storageKey,events,baselineEvents:beforeEvents,
