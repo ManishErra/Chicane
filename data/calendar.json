@@ -15,17 +15,6 @@
       "sourceName": "NASCAR official schedule"
     },
     {
-      "id": "f1-us-2026",
-      "series": "f1",
-      "short": "F1",
-      "name": "United States Grand Prix",
-      "venue": "Circuit of The Americas · Austin, USA",
-      "start": "2026-10-23",
-      "end": "2026-10-25",
-      "source": "https://www.formula1.com/en/racing/2026",
-      "sourceName": "Formula 1 official calendar"
-    },
-    {
       "id": "motogp-australia-2026",
       "series": "motogp",
       "short": "MGP",
@@ -35,6 +24,17 @@
       "end": "2026-10-25",
       "source": "https://www.motogp.com/en/calendar",
       "sourceName": "MotoGP official calendar"
+    },
+    {
+      "id": "f1-us-2026",
+      "series": "f1",
+      "short": "F1",
+      "name": "United States Grand Prix",
+      "venue": "Circuit of The Americas · Austin, USA",
+      "start": "2026-10-23",
+      "end": "2026-10-25",
+      "source": "https://www.formula1.com/en/racing/2026",
+      "sourceName": "Formula 1 official calendar"
     },
     {
       "id": "f1-mexico-2026",
@@ -48,17 +48,6 @@
       "sourceName": "Formula 1 official calendar"
     },
     {
-      "id": "motogp-malaysia-2026",
-      "series": "motogp",
-      "short": "MGP",
-      "name": "Malaysian Grand Prix",
-      "venue": "Sepang International Circuit · Malaysia",
-      "start": "2026-10-30",
-      "end": "2026-11-01",
-      "source": "https://www.motogp.com/en/calendar",
-      "sourceName": "MotoGP official calendar"
-    },
-    {
       "id": "gtwc-shanghai-2026",
       "series": "gtwc",
       "short": "GTWC",
@@ -68,6 +57,17 @@
       "end": "2026-11-01",
       "source": "https://www.gt-world-challenge.com/calendar",
       "sourceName": "GT World Challenge official calendar"
+    },
+    {
+      "id": "motogp-malaysia-2026",
+      "series": "motogp",
+      "short": "MGP",
+      "name": "Malaysian Grand Prix",
+      "venue": "Sepang International Circuit · Malaysia",
+      "start": "2026-10-30",
+      "end": "2026-11-01",
+      "source": "https://www.motogp.com/en/calendar",
+      "sourceName": "MotoGP official calendar"
     },
     {
       "id": "f1-brazil-2026",
@@ -92,6 +92,17 @@
       "sourceName": "MotoGP official calendar"
     },
     {
+      "id": "wec-monza-2026",
+      "series": "wec",
+      "short": "WEC",
+      "name": "6 Hours of Monza",
+      "venue": "Autodromo Nazionale Monza · Italy",
+      "start": "2026-11-06",
+      "end": "2026-11-08",
+      "source": "https://www.fiawec.com/en/season/2026",
+      "sourceName": "FIA WEC official 2026 season calendar"
+    },
+    {
       "id": "f1-las-vegas-2026",
       "series": "f1",
       "short": "F1",
@@ -112,6 +123,17 @@
       "end": "2026-11-22",
       "source": "https://www.motogp.com/en/calendar",
       "sourceName": "MotoGP official calendar"
+    },
+    {
+      "id": "gtwc-australia-adelaide-2026",
+      "series": "gtwc",
+      "short": "GTWC",
+      "name": "GT World Challenge Australia · Adelaide Grand Final",
+      "venue": "Adelaide Parklands Circuit · Adelaide, Australia",
+      "start": "2026-11-26",
+      "end": "2026-11-29",
+      "source": "https://www.gt-world-challenge.com/calendar",
+      "sourceName": "GT World Challenge official calendar"
     },
     {
       "id": "f1-qatar-2026",
@@ -387,17 +409,6 @@
       "end": "2027-07-25",
       "source": "https://www.fiaformulae.com/en/calendar",
       "sourceName": "Formula E official calendar"
-    },
-    {
-      "id": "wec-monza-2026",
-      "series": "wec",
-      "short": "WEC",
-      "name": "6 Hours of Monza",
-      "venue": "Autodromo Nazionale Monza · Italy",
-      "start": "2026-11-06",
-      "end": "2026-11-08",
-      "source": "https://www.fiawec.com/en/season/2026",
-      "sourceName": "FIA WEC official 2026 season calendar"
     }
   ]
 }
