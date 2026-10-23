@@ -715,7 +715,7 @@ async function loadCalendarData(){
   if(!saved)console.warn("CHICANE could not persist this device's calendar snapshot",persistence.error);
   const age=Math.floor((Date.parse(todayIST()+"T00:00:00Z")-Date.parse(snapshotDate+"T00:00:00Z"))/86400000);
   const savedSnapshot=!saved?" · Snapshot not saved; previous snapshot date retained":changed?" · Snapshot updated on this device":" · No calendar changes detected";
-  status.textContent="Calendar snapshot: "+dateLabel(snapshotDate)+" · Checked: "+checkLabel+" IST"+liveStatus+savedSnapshot+" · Worldwide calendar remains curated; Race.mx covers selected Mexico-linked events only";
+  status.textContent="Calendar snapshot: "+dateLabel(snapshotDate)+" · Checked: "+checkLabel+" IST"+liveStatus+savedSnapshot+" · Free community feeds supplement the curated fallback";
   status.dataset.stale=String(age>14);
   renderEvents();
  }catch(error){
