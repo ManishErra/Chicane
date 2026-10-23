@@ -171,6 +171,34 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
 .event-image:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#0001,#0003)}
 .photo-f1{background-image:url('https://commons.wikimedia.org/wiki/Special:Redirect/file/2022_Formula_One_car_at_the_2021_British_Grand_Prix_(51350002179).jpg?width=960')}
 .photo-gt{background-image:url('https://commons.wikimedia.org/wiki/Special:Redirect/file/GT3_and_GT4_race_one_-_McLaren_leading_a_Lamborghini_and_an_Aston_Martin_(51372326297).jpg?width=960')}
+
+/* GTWC event-specific visual treatment: distinct venue colourways and a track-outline motif. */
+.event-image[class*="event-photo-gtwc-"]{background-image:linear-gradient(135deg,var(--track-a,#101010),var(--track-b,#252525)),url('https://commons.wikimedia.org/wiki/Special:Redirect/file/GT3_and_GT4_race_one_-_McLaren_leading_a_Lamborghini_and_an_Aston_Martin_(51372326297).jpg?width=960');background-blend-mode:screen,normal}
+.event-image[class*="event-photo-gtwc-"]:before{content:"";position:absolute;inset:12% 8%;z-index:1;opacity:.78;background-repeat:no-repeat;background-position:center;background-size:contain;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 150'%3E%3Cpath d='M34 94 C18 74 34 43 62 49 L88 23 Q103 13 116 32 L135 51 L177 43 Q203 37 211 60 L247 63 Q273 65 265 88 L245 108 Q230 120 210 103 L177 91 L145 116 Q126 128 111 110 L87 91 L60 109 Q44 113 34 94Z' fill='none' stroke='%23fff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")}
+.event-image[class*="event-photo-gtwc-"]:after{z-index:2;background:linear-gradient(90deg,#0002,#0007)}
+.event-photo-gtwc-shanghai-2026{--track-a:#172e42;--track-b:#111}
+.event-photo-gtwc-australia-adelaide-2026{--track-a:#4b2518;--track-b:#101010}
+.event-photo-gtwc-us-2027-sonoma{--track-a:#243b28;--track-b:#111}
+.event-photo-gtwc-asia-2027-sepang{--track-a:#16414a;--track-b:#111}
+.event-photo-gtwc-eu-2027-paul-ricard{--track-a:#242e55;--track-b:#111}
+.event-photo-gtwc-au-2027-phillip-island{--track-a:#284a47;--track-b:#111}
+.event-photo-gtwc-eu-2027-brands-hatch{--track-a:#4b3420;--track-b:#111}
+.event-photo-gtwc-asia-2027-chang{--track-a:#4b2424;--track-b:#111}
+.event-photo-gtwc-us-2027-cota{--track-a:#39294e;--track-b:#111}
+.event-photo-gtwc-eu-2027-imola{--track-a:#25412d;--track-b:#111}
+.event-photo-gtwc-us-2027-watkins-glen{--track-a:#234b37;--track-b:#111}
+.event-photo-gtwc-au-2027-the-bend{--track-a:#4b3b20;--track-b:#111}
+.event-photo-gtwc-asia-2027-suzuka{--track-a:#243d65;--track-b:#111}
+.event-photo-gtwc-us-2027-road-atlanta{--track-a:#4a2828;--track-b:#111}
+.event-photo-gtwc-eu-2027-spa{--track-a:#17463e;--track-b:#111}
+.event-photo-gtwc-asia-2027-fuji{--track-a:#254c6a;--track-b:#111}
+.event-photo-gtwc-eu-2027-misano{--track-a:#4b2b48;--track-b:#111}
+.event-photo-gtwc-au-2027-sydney{--track-a:#3b3434;--track-b:#111}
+.event-photo-gtwc-eu-2027-magny-cours{--track-a:#443a25;--track-b:#111}
+.event-photo-gtwc-eu-2027-nurburgring{--track-a:#293c2b;--track-b:#111}
+.event-photo-gtwc-eu-2027-zandvoort{--track-a:#204553;--track-b:#111}
+.event-photo-gtwc-eu-2027-hungaroring{--track-a:#4b2a1d;--track-b:#111}
+.event-photo-gtwc-eu-2027-barcelona{--track-a:#2f3459;--track-b:#111}
 .photo-stock{background-image:url('https://commons.wikimedia.org/wiki/Special:Redirect/file/Nascar_cup_series_(49562235351).jpg?width=960')}
 .photo-rally{background-image:url('https://commons.wikimedia.org/wiki/Special:Redirect/file/Skoda_Fabia_rally_car.jpg?width=960')}
 .photo-moto{background-image:url('https://commons.wikimedia.org/wiki/Special:Redirect/file/MotoGP_final_race.jpg?width=960')}
