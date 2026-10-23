@@ -640,15 +640,20 @@ async function loadCalendarData(){
   const after=signature(events);
   const changed=before!==after;
   const priorSnapshot=previous&&/^\d{4}-\d{2}-\d{2}$/.test(previous.snapshotDate||"")?previous.snapshotDate:payload.snapshotDate;
-  // A snapshot date advances only when the event data changes and the resulting
-  // snapshot is saved locally. A check alone never advances the snapshot date.
-  const snapshotDate=changed?todayIST():priorSnapshot;
+  // Only advance the snapshot date after the changed event data is successfully
+  // persisted. If storage is unavailable, keep the previous date and say so.
+  const proposedSnapshotDate=changed?todayIST():priorSnapshot;
   const storedAt=new Date().toISOString();
+  let saved=true,snapshotDate=priorSnapshot;
   try{
-   localStorage.setItem(storageKey,JSON.stringify({schemaVersion:1,snapshotDate,checkedAt:storedAt,events}));
-  }catch(storageError){console.warn("CHICANE could not persist this device's calendar snapshot",storageError)}
+   localStorage.setItem(storageKey,JSON.stringify({schemaVersion:1,snapshotDate:proposedSnapshotDate,checkedAt:storedAt,events}));
+   snapshotDate=proposedSnapshotDate;
+  }catch(storageError){
+   saved=false;
+   console.warn("CHICANE could not persist this device's calendar snapshot",storageError);
+  }
   const age=Math.floor((Date.parse(todayIST()+"T00:00:00Z")-Date.parse(snapshotDate+"T00:00:00Z"))/86400000);
-  const savedSnapshot=changed?" · Snapshot updated on this device": " · No calendar changes detected";
+  const savedSnapshot=!saved?" · Snapshot not saved; previous snapshot date retained":changed?" · Snapshot updated on this device":" · No calendar changes detected";
   status.textContent="Calendar snapshot: "+dateLabel(snapshotDate)+" · Checked: "+checkLabel+" IST"+liveStatus+savedSnapshot+" · Worldwide calendar remains curated; Race.mx covers selected Mexico-linked events only";
   status.dataset.stale=String(age>14);
   renderEvents();
