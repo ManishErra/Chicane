@@ -174,6 +174,31 @@ body{background:#000;color:#fff;letter-spacing:-.025em}
 
 /* GTWC event-specific visual treatment: distinct venue colourways and a track-outline motif. */
 
+
+/* Real venue-specific GTWC photography where a relevant public image is available.
+   Hide the decorative track outline on photo-backed cards. */
+.event-image.event-photo-gtwc-shanghai-2026,
+.event-image.event-photo-gtwc-australia-adelaide-2026,
+.event-image.event-photo-gtwc-us-2027-sonoma,
+.event-image.event-photo-gtwc-asia-2027-sepang,
+.event-image.event-photo-gtwc-eu-2027-paul-ricard{
+ filter:none!important;background-size:cover!important;background-position:center!important;background-repeat:no-repeat!important
+}
+.event-image.event-photo-gtwc-shanghai-2026{background-image:linear-gradient(90deg,#0002,#0005),url('https://www.gt-world-challenge-asia.com/images/race%201%20start_DSC2412.jpg')!important}
+.event-image.event-photo-gtwc-australia-adelaide-2026{background-image:linear-gradient(90deg,#0002,#0005),url('https://www.gt-world-challenge-australia.com/timthumb.php?src=%2Fimages%2FGT+World+Challenge+Australia+-+Adelaide+main.jpg&w=1600')!important}
+.event-image.event-photo-gtwc-us-2027-sonoma{background-image:linear-gradient(90deg,#0002,#0005),url('https://cdn-cs-images.racer.com/v3/assets/blte77f57883ea46be1/blte5a6b6620a86abb9/67d4113285c5cee849ed8d9d/wwq.jpg?environment=live')!important}
+.event-image.event-photo-gtwc-asia-2027-sepang{background-image:linear-gradient(90deg,#0002,#0005),url('https://www.gt-world-challenge-asia.com/images/Rae%20Start_3TL13114%20%281%29.jpg')!important}
+.event-image.event-photo-gtwc-eu-2027-paul-ricard{background-image:linear-gradient(90deg,#0002,#0005),url('https://images.squarespace-cdn.com/content/v1/5e67c0b15cc05f67605d7d5c/91380fe5-af94-4c08-ab0f-76015d1f81f2/porschesport.jpg')!important}
+.event-image.event-photo-gtwc-shanghai-2026:before,
+.event-image.event-photo-gtwc-australia-adelaide-2026:before,
+.event-image.event-photo-gtwc-us-2027-sonoma:before,
+.event-image.event-photo-gtwc-asia-2027-sepang:before,
+.event-image.event-photo-gtwc-eu-2027-paul-ricard:before{display:none!important}
+.event-image.event-photo-gtwc-shanghai-2026:after,
+.event-image.event-photo-gtwc-australia-adelaide-2026:after,
+.event-image.event-photo-gtwc-us-2027-sonoma:after,
+.event-image.event-photo-gtwc-asia-2027-sepang:after,
+.event-image.event-photo-gtwc-eu-2027-paul-ricard:after{background:linear-gradient(90deg,#0001,#0005)!important}
 /* Strongly differentiate GTWC cards: the base CSS applies grayscale to all event art,
    so override it here and make each venue's palette visible. */
 .event-image[class*="event-photo-gtwc-"]{filter:none!important;background-blend-mode:normal!important;background-image:linear-gradient(135deg,var(--track-a,#16343a) 0%,#101010 80%),url('https://commons.wikimedia.org/wiki/Special:Redirect/file/GT3_and_GT4_race_one_-_McLaren_leading_a_Lamborghini_and_an_Aston_Martin_(51372326297).jpg?width=960')!important;background-size:cover!important;background-position:center!important}
