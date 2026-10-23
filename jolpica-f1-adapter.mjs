@@ -38,13 +38,18 @@ export function normalizeJolpicaSchedule(payload, year = new Date().getUTCFullYe
 export function mergeJolpicaSchedule(existingEvents, incomingEvents) {
  if (!Array.isArray(existingEvents) || !Array.isArray(incomingEvents) || incomingEvents.length === 0) throw new Error("Existing and incoming F1 event arrays are required");
  const incomingById = new Map(incomingEvents.map(event => [event.id,event]));
+ const incomingByName = new Map(incomingEvents.map(event => [canonical(event.name),event]));
+ const consumed = new Set();
+ let matchedCount = 0;
  const result = existingEvents.map(event => {
-  const incoming = incomingById.get(event.id);
+  const incoming = incomingById.get(event.id) || (event.series === "f1" ? incomingByName.get(canonical(event.name)) : null);
   if (!incoming) return event;
-  incomingById.delete(event.id);
+  consumed.add(incoming.id);
+  matchedCount++;
   // Only replace schedule fields from the validated F1 schedule; preserve the
   // curated event identity and any app-specific display metadata.
   return {...event,start:incoming.start,end:incoming.end,name:incoming.name,venue:incoming.venue || event.venue,source:incoming.source,sourceName:incoming.sourceName,provider:"Jolpica F1",dataOrigin:"live-provider"};
  });
- return {events:[...result,...incomingById.values()],updatedCount:incomingById.size,matchedCount:incomingEvents.length-incomingById.size};
+ const additions = incomingEvents.filter(event => !consumed.has(event.id) && !result.some(existing => existing.series === "f1" && canonical(existing.name) === canonical(event.name)));
+ return {events:[...result,...additions],updatedCount:additions.length,matchedCount};
 }
