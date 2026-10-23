@@ -605,14 +605,22 @@ async function loadCalendarData(){
   const curatedEvents=payload.events;
   let previous=null;
   try{previous=JSON.parse(localStorage.getItem(storageKey)||"null")}catch{}
+  // Always render the known-good curated calendar first. Browser storage is
+  // only an optional enhancement: malformed or older saved live records must
+  // never make the entire calendar unavailable.
+  events=curatedEvents;
   if(previous&&previous.schemaVersion===1&&Array.isArray(previous.events)&&/^\d{4}-\d{2}-\d{2}$/.test(previous.snapshotDate||"")){
-   // Rebuild from the curated source and reapply only the previously validated live events.
    const priorLive=previous.events.filter(e=>e&&e.dataOrigin==="live-provider");
    if(priorLive.length){
-    const {mergeRaceMxEvents}=await import("./race-mx-adapter.mjs");
-    events=mergeRaceMxEvents(curatedEvents,priorLive).events;
-   }else events=curatedEvents;
-  }else events=curatedEvents;
+    try{
+     const {mergeRaceMxEvents}=await import("./race-mx-adapter.mjs");
+     events=mergeRaceMxEvents(curatedEvents,priorLive).events;
+    }catch(storageMergeError){
+     console.warn("Ignoring incompatible saved live events; using curated calendar",storageMergeError);
+     events=curatedEvents;
+    }
+   }
+  }
   const before=signature(events);
   let successfulLiveCheck=false;
   try{
