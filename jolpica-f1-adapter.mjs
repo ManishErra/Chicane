@@ -10,6 +10,12 @@ function endDate(race, fallback) {
  dates.push(fallback);
  return dates.sort().at(-1);
 }
+function sameWeekendAndPlace(a, b) {
+ if (a.series !== "f1" || b.series !== "f1" || a.start !== b.start || a.end !== b.end) return false;
+ const aTokens = new Set(canonical(a.venue).split(" ").filter(token => token.length > 3 && !["circuit","autodromo","international","grand","prix"].includes(token)));
+ const overlap = canonical(b.venue).split(" ").filter(token => token.length > 3 && !["circuit","autodromo","international","grand","prix"].includes(token) && aTokens.has(token));
+ return overlap.length >= 2;
+}
 export function normalizeJolpicaSchedule(payload, year = new Date().getUTCFullYear()) {
  const races = payload?.MRData?.RaceTable?.Races;
  if (!Array.isArray(races) || races.length === 0) throw new Error("Jolpica F1 schedule contains no races");
@@ -42,14 +48,13 @@ export function mergeJolpicaSchedule(existingEvents, incomingEvents) {
  const consumed = new Set();
  let matchedCount = 0;
  const result = existingEvents.map(event => {
-  const incoming = incomingById.get(event.id) || (event.series === "f1" ? incomingByName.get(canonical(event.name)) : null);
+  const incoming = incomingById.get(event.id) || (event.series === "f1" ? incomingByName.get(canonical(event.name)) || incomingEvents.find(candidate => sameWeekendAndPlace(event,candidate)) : null);
   if (!incoming) return event;
   consumed.add(incoming.id);
   matchedCount++;
-  // Only replace schedule fields from the validated F1 schedule; preserve the
-  // curated event identity and any app-specific display metadata.
+  // Match renamed rounds by exact weekend + shared venue/city tokens as well as IDs/names.
   return {...event,start:incoming.start,end:incoming.end,name:incoming.name,venue:incoming.venue || event.venue,source:incoming.source,sourceName:incoming.sourceName,provider:"Jolpica F1",dataOrigin:"live-provider"};
  });
- const additions = incomingEvents.filter(event => !consumed.has(event.id) && !result.some(existing => existing.series === "f1" && canonical(existing.name) === canonical(event.name)));
+ const additions = incomingEvents.filter(event => !consumed.has(event.id) && !result.some(existing => existing.series === "f1" && (canonical(existing.name) === canonical(event.name) || sameWeekendAndPlace(existing,event))));
  return {events:[...result,...additions],updatedCount:additions.length,matchedCount};
 }
