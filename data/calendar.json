@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "snapshotDate": "2026-10-18",
+  "snapshotDate": "2026-10-23",
   "updateMode": "curated-static",
   "events": [
     {
@@ -387,6 +387,17 @@
       "end": "2027-07-25",
       "source": "https://www.fiaformulae.com/en/calendar",
       "sourceName": "Formula E official calendar"
+    },
+    {
+      "id": "wec-monza-2026",
+      "series": "wec",
+      "short": "WEC",
+      "name": "6 Hours of Monza",
+      "venue": "Autodromo Nazionale Monza · Italy",
+      "start": "2026-11-06",
+      "end": "2026-11-08",
+      "source": "https://www.fiawec.com/en/season/2026",
+      "sourceName": "FIA WEC official 2026 season calendar"
     }
   ]
 }
