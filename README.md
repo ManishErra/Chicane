@@ -22,6 +22,15 @@
 - Service-worker shell cache updated to `chicane-shell-v24` and includes the calendar JSON.
 - Automatic provider adapters are still a subsequent phase; the app does not claim schedules refresh automatically.
 
+## Free automatic schedule refresh (23 October 2026)
+
+- The curated JSON remains the safe fallback, but the browser now attempts a live refresh from the public MotoDB CC0 dataset for WEC, IndyCar, NASCAR Cup, MotoGP and WRC.
+- Existing F1 refreshes remain on Jolpica; Race.mx continues to supplement selected F1/Formula E events.
+- Incoming records are normalized, validated for date ranges, filtered to upcoming events, and deduplicated against curated and previously fetched records before rendering.
+- Feed failures are isolated per series; one failed provider does not block the other feeds or remove the curated calendar.
+- The feed is a community-maintained dataset rather than an official API. Treat event data as best-effort and verify dates at the linked official series calendar.
+- No paid API key or user account is required. The feed refresh happens when the calendar loads; it is not a background server-side scheduled job.
+
 ## Current schedule coverage
 
 The preview includes manually curated upcoming dates confirmed against official public calendars checked on **18 October 2026** for:
