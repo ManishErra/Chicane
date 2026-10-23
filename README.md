@@ -60,6 +60,15 @@ Dates are event ranges, not session start times. Each listed event links to an o
 - Rechecked the nearest race dates against primary sources: [F1 2026 calendar](https://www.formula1.com/en/racing/2026), [MotoGP 2026 calendar](https://www.motogp.com/en/calendar), [NASCAR Cup schedule](https://www.nascar.com/nascar-cup-series/2026/schedule/), and the [Formula E 2026/27 calendar](https://www.fiaformulae.com/en/calendar).
 - Dates remain all-day event ranges, not session times. CHICANE still uses a curated static snapshot and does not claim automatic schedule refresh.
 
+## GT World Challenge 2027 coverage (23 October 2026)
+
+- Added 28 dated rounds across GT World Challenge Europe (10), Asia (6), Australia (5 confirmed provisional rounds) and America (7).
+- Europe dates link to the official 2027 calendar. Asia, Australia and America entries are marked provisional because their published calendars are provisional or subject to final details. Australia round 6 is omitted until its date is announced.
+- Event ranges are meeting dates, not exact race/session start times. Cards link to official regional calendars or announcements.
+- This is a verified, manually maintained official-source fallback, not an automatic official SRO feed. The official calendar pages did not expose a confirmed stable public JSON endpoint during this implementation pass. No private/internal endpoint scraping is used; automatic structured-feed integration can be revisited if SRO publishes a stable public feed.
+
+Sources checked 23 October 2026: [GTWC Europe 2027 calendar](https://www.gt-world-challenge-europe.com/calendar?filter_season_id=27), [GTWC Asia calendar](https://www.gt-world-challenge-asia.com/), [GTWC Australia 2027 provisional calendar](https://www.gt-world-challenge-australia.com/news/520/bathurst-return-headlines-2027-gt-world-challenge-australia-powered-by-aws-provisional-calendar-announcement-), [GTWC America 2027 calendar](https://www.gt-world-challenge-america.com/news/1491/sro-america-unveils-2027-calendar-with-new-venue-and-exciting-update).
+
 ## Circuit silhouettes (deferred)
 
 - Removed the unused local SVG pilot and its renderer because the silhouettes were not visible in the target preview.
