@@ -1,0 +1,22 @@
+name: Validate calendar data and source adapters
+
+on:
+  push:
+    branches:
+      - feature/chicane-first-build
+  pull_request:
+    branches:
+      - feature/chicane-first-build
+
+jobs:
+  validate-calendar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Validate curated calendar and Race.mx adapter
+        run: npm test

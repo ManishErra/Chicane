@@ -1,0 +1,9 @@
+{
+  "name": "chicane-motorsport-hub",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "validate:calendar": "node scripts/validate-calendar.mjs",
+    "test": "npm run validate:calendar && node scripts/test-race-mx-adapter.mjs && node scripts/test-calendar-snapshot.mjs && node scripts/test-jolpica-f1-adapter.mjs"
+  }
+}
