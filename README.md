@@ -2,6 +2,23 @@
 
 **A mobile-first motorsport hub.** Monochrome black-and-white card UI, bold typography, no account, and a ₹0 target.
 
+## Live preview
+
+**Preview website:** https://chicane-motorsport-hub-preview-le1v9evva-oney-s.vercel.app
+
+- Deployment platform: Vercel
+- Environment: Preview (not production)
+- Source branch: `feature/chicane-first-build`
+- Deployed commit: `99166e289ccbcce4012a53f7b3b0f6145ef6082a`
+- Deployment status at publication: Ready
+- Production release: Not published; `main` has not been changed by this deployment.
+
+The preview URL is intended for review and testing. Event dates and availability can change; follow the official source links in the app before making plans.
+
+## Repository privacy and safe sharing
+
+This repository currently contains application source and documentation. Before changing its GitHub visibility to private, review the complete repository history, open pull requests, collaborators, GitHub Actions and Vercel integration permissions. Making a repository private does not make an already deployed preview private; the Vercel deployment may remain accessible through its URL unless deployment protection is enabled separately. Never commit API keys, passwords, tokens, private datasets or personal information.
+
 ## Current preview milestone
 
 - Reference-matched dashboard with two image-led hero cards, rounded race cards, and bottom navigation on mobile
